@@ -1,4 +1,4 @@
-package com.example.unionline.Views;
+package com.example.unionline.Views.Students;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

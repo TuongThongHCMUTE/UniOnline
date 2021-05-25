@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_color">#1F1D83</color>
     <color name="colorAccent">#0ED6B9</color>
+    <color name="shadow_color">#555555</color>
+    <color name="layout_background_color">#EFEFEF</color>
 </resources>
