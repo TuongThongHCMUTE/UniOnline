@@ -11,4 +11,5 @@
     <color name="colorAccent">#0ED6B9</color>
     <color name="shadow_color">#555555</color>
     <color name="layout_background_color">#EFEFEF</color>
+    <color name="text_blue_color">#2B507C</color>
 </resources>

@@ -1,4 +1,12 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="logo">Logo</string>
+    <string name="vn_teacher_home">Trang chủ</string>
+    <string name="vn_teacher_interaction">Tương tác</string>
+    <string name="vn_teacher_account">Hồ sơ</string>
+    <string name="vn_schedule">Thời khóa biểu</string>
+    <string name="vn_class">Lớp học</string>
+    <string name="vn_mark">Điểm số</string>
+    <string name="vn_application">Đơn xin nghỉ</string>
+    <string name="vn_profile">Cá nhân</string>
 </resources>
