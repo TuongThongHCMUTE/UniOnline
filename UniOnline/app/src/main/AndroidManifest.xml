@@ -9,15 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniOnline">
-        <activity android:name=".Views.Teachers.TeacherListClassesActivity"></activity>
-        <activity android:name=".Views.Teachers.TeacherMainActivity">
+        <activity android:name=".Views.Teachers.TeacherMainActivity"></activity>
+        <activity android:name=".Views.Teachers.TeacherListClassesActivity" />TeacherMainActivity
+        <activity android:name=".Views.Common.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.Students.StudentMainActivity"></activity>
+        <activity android:name=".Views.Students.StudentMainActivity" />
     </application>
 
 </manifest>

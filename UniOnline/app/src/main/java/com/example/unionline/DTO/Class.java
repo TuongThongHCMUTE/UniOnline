@@ -105,6 +105,4 @@ public class Class {
         this.endClass = endClass;
         this.teacherId = teacherId;
     }
-
-
 }
