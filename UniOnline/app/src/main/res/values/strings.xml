@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">UniOnline</string>
+    <string name="app_slogan">Keep The University In Your Hand</string>
+    <string name="vn_email">Email</string>
+    <string name="vn_password">Mật khẩu</string>
+    <string name="vn_role">Vai trò</string>
+    <string name="vn_forgot_password">Quên mật khẩu</string>
 
-    <string name="vn_home">Trang chủ</string>
-    <string name="vn_interaction">Tương tác</string>
-    <string name="vn_notification">Thông báo</string>
-    <string name="vn_account">Tài khoản</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

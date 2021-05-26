@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/white_toobar_background">
+        android:background="@drawable/white_toolbar_background">
 
         <ImageView
             android:id="@+id/imgLogo"

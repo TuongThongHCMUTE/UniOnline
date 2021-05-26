@@ -11,6 +11,7 @@
         android:theme="@style/Theme.UniOnline">
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity">
+        <activity android:name=".Views.Common.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
