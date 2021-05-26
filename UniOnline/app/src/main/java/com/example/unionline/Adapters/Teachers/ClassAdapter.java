@@ -2,9 +2,9 @@ package com.example.unionline.Adapters.Teachers;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +19,12 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
 
     Context context;
     ArrayList<Class> classes;
+    RecyclerViewClickListener listener;
 
-    public ClassAdapter(Context context, ArrayList<Class> classes) {
+    public ClassAdapter(Context context, ArrayList<Class> classes, RecyclerViewClickListener listener) {
         this.context = context;
         this.classes = classes;
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,8 +39,8 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
         Class aClass = classes.get(position);
 
         String className = aClass.getName();
-        String classDate = "Từ ngày " + aClass.getEndDate().toString() + "dến ngày" + aClass.getEndDate().toString();
-
+        //String classDate = "Từ ngày " + aClass.getEndDate().toString() + "dến ngày" + aClass.getEndDate().toString();
+        String classDate = "Từ ngày đến ngày";
         holder.txtClassName.setText(className);
         holder.txtClassDate.setText(classDate);
     }
@@ -48,7 +50,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
         return classes.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnTouchListener {
 
         TextView txtClassName, txtClassDate;
 
@@ -58,9 +60,24 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
             txtClassName = itemView.findViewById(R.id.txtClassName);
             txtClassDate = itemView.findViewById(R.id.txtClassDate);
 
-            itemView.setOnClickListener((View v) -> {
-
-            });
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            listener.onCLick(itemView, getAdapterPosition());
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            listener.onTouch(itemView, getAdapterPosition());
+            return true;
+        }
+    }
+
+    public interface RecyclerViewClickListener {
+        void onCLick(View v, int position);
+
+        void onTouch(View v, int position);
     }
 }

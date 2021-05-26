@@ -106,5 +106,13 @@ public class Class {
         this.teacherId = teacherId;
     }
 
+    public Class(String id, String name, String day, int startClass, int endClass) {
+        this.id = id;
+        this.name = name;
+        this.day = day;
+        this.startClass = startClass;
+        this.endClass = endClass;
+    }
+
 
 }
