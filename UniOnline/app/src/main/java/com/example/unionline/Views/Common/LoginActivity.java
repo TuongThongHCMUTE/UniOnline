@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import com.example.unionline.Common;
 import com.example.unionline.R;
 import com.example.unionline.Views.Students.StudentMainActivity;
+import com.example.unionline.Views.Teachers.TeacherMainActivity;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(spRoles.getSelectedItem().toString() == Common.roleStudent){
                     startActivity(new Intent(LoginActivity.this, StudentMainActivity.class));
+                    return;
+                } else if(spRoles.getSelectedItem().toString() == Common.roleTeacher){
+                    startActivity(new Intent(LoginActivity.this, TeacherMainActivity.class));
                     return;
                 }
             }

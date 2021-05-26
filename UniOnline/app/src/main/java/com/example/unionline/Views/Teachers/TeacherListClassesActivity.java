@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unionline.Adapters.Teachers.ClassAdapter;
@@ -32,26 +33,36 @@ public class TeacherListClassesActivity extends AppCompatActivity {
     ClassAdapter adapter;
     ClassAdapter.RecyclerViewClickListener listener;
     ImageView backIcon;
+    TextView txtActivityName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_list_classes);
 
-        setOnClickListener();
-        setRecyclerView();
+        // Set activity name on toolbar
+        txtActivityName = (TextView) findViewById(R.id.activity_name);
+        txtActivityName.setText("Danh sách lớp");
 
+        // Set event click for backIcon on toolbar
+        // When click backIcon: finish this activity
         backIcon = (ImageView) findViewById(R.id.left_icon);
         backIcon.setOnClickListener((View v) -> {
             this.finish();
         });
+
+        // Set event click for item in list classes
+        setOnClickListener();
+
+        //
+        setRecyclerView();
     }
 
     private void setOnClickListener() {
         listener = new ClassAdapter.RecyclerViewClickListener() {
             @Override
             public void onCLick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), TeacherMainActivity.class);
+                Intent intent = new Intent(TeacherListClassesActivity.this, TeacherClassDetailActivity.class);
                 startActivity(intent);
             }
 
