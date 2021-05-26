@@ -6,6 +6,8 @@ public class Attendance {
     private String studentId;
     private String state;
 
+    public Attendance(){}
+
     public Attendance(String classId, String lessonId, String studentId, String state) {
         this.classId = classId;
         this.lessonId = lessonId;

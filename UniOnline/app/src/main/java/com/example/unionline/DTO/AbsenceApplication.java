@@ -1,16 +1,28 @@
 package com.example.unionline.DTO;
 
 public class AbsenceApplication {
+    private int id;
     private String classId;
     private String studentId;
     private String reason;
-    private String state;
+    private int state;
 
-    public AbsenceApplication(String classId, String studentId, String reason, String state) {
+    public AbsenceApplication(){}
+
+    public AbsenceApplication(int id, String classId, String studentId, String reason, int state) {
+        this.id = id;
         this.classId = classId;
         this.studentId = studentId;
         this.reason = reason;
         this.state = state;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getClassId() {
@@ -37,11 +49,11 @@ public class AbsenceApplication {
         this.reason = reason;
     }
 
-    public String getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
     }
 }

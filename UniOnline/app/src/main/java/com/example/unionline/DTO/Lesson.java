@@ -6,6 +6,8 @@ public class Lesson {
     private String name;
     private String description;
 
+    public Lesson(){}
+
     public Lesson(String lessonId, String classId, String name, String description) {
         this.lessonId = lessonId;
         this.classId = classId;
