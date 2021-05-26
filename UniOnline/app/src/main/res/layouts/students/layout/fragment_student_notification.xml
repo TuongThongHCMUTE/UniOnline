@@ -8,7 +8,7 @@
     android:background="#F9F9F9">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvLanguages"
+        android:id="@+id/rvNotifications"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -23,7 +23,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="@+id/rvLanguages"
+        app:layout_constraintEnd_toEndOf="@+id/rvNotifications"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -38,7 +38,7 @@
                 android:layout_marginTop="16dp"
                 android:background="#FFFFFF"
                 android:ellipsize="none"
-                android:text="Thông báo"
+                android:text="@string/vn_notification"
                 android:textAlignment="center"
                 android:textColor="@color/main_color"
                 android:textSize="24sp"

@@ -5,6 +5,8 @@ public class Enrollment {
     private String studentId;
     private String studentName;
 
+    public Enrollment(){};
+
     public Enrollment(String classId, String studentId, String studentName) {
         this.classId = classId;
         this.studentId = studentId;

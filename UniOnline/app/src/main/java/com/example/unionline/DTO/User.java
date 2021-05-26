@@ -7,20 +7,18 @@ public class User {
     private String email;
     private String phone;
     private boolean isActive;
-    private String resetPasswordCode;
 
     public User() {
 
     }
 
-    public User(String userId, String password, String name, String email, String phone, boolean isActive, String resetPasswordCode) {
+    public User(String userId, String password, String name, String email, String phone, boolean isActive) {
         this.userId = userId;
         this.password = password;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.isActive = isActive;
-        this.resetPasswordCode = resetPasswordCode;
     }
 
     public String getUserId() {
@@ -70,13 +68,4 @@ public class User {
     public void setActive(boolean active) {
         isActive = active;
     }
-
-    public String getResetPasswordCode() {
-        return resetPasswordCode;
-    }
-
-    public void setResetPasswordCode(String resetPasswordCode) {
-        this.resetPasswordCode = resetPasswordCode;
-    }
-
 }
