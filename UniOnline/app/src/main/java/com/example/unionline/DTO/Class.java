@@ -1,72 +1,48 @@
 package com.example.unionline.DTO;
 
-import java.util.Date;
-
 public class Class {
 
-    private String id;
-    private String name;
-    private String day;
-    private Date startDate;
-    private Date endDate;
-    private int startClass;
-    private int endClass;
+    private String classId;
+    private String semesterId;
     private String teacherId;
+    private String className;
+    private Integer capacity;
+    private String room;
+    private String startTime;
+    private String endTime;
+    private String state;
+    private boolean isActive;
 
-    public String getId() {
-        return id;
+    public Class() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Class(String classId, String semesterId, String teacherId, String className, Integer capacity, String room, String startTime, String endTime, String state, boolean isActive) {
+        this.classId = classId;
+        this.semesterId = semesterId;
+        this.teacherId = teacherId;
+        this.className = className;
+        this.capacity = capacity;
+        this.room = room;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.state = state;
+        this.isActive = isActive;
     }
 
-    public String getName() {
-        return name;
+    public String getClassId() {
+        return classId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 
-    public String getDay() {
-        return day;
+    public String getSemesterId() {
+        return semesterId;
     }
 
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public int getStartClass() {
-        return startClass;
-    }
-
-    public void setStartClass(int startClass) {
-        this.startClass = startClass;
-    }
-
-    public int getEndClass() {
-        return endClass;
-    }
-
-    public void setEndClass(int endClass) {
-        this.endClass = endClass;
+    public void setSemesterId(String semesterId) {
+        this.semesterId = semesterId;
     }
 
     public String getTeacherId() {
@@ -77,32 +53,59 @@ public class Class {
         this.teacherId = teacherId;
     }
 
-    /**
-     *
-     */
-    public Class() {
-
+    public String getClassName() {
+        return className;
     }
 
-    /**
-     * Class Constructor
-     * @param id: class id
-     * @param name: class name
-     * @param day: class in which day of week?
-     * @param startDate: date beginning class
-     * @param endDate: date ending class
-     * @param startClass: first class start at
-     * @param endClass: last class end at
-     * @param teacherId: id of teacher who teaches this class
-     */
-    public Class(String id, String name, String day, Date startDate, Date endDate, int startClass, int endClass, String teacherId) {
-        this.id = id;
-        this.name = name;
-        this.day = day;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.startClass = startClass;
-        this.endClass = endClass;
-        this.teacherId = teacherId;
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
