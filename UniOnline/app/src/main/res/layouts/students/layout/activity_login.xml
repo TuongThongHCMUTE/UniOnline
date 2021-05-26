@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:fontFamily="sans-serif-black"
-        android:text="Đăng nhập"
+        android:text="@string/vn_login"
         android:textAlignment="center"
         android:textColor="@color/main_color"
         android:textSize="40sp"
@@ -165,15 +165,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-<<<<<<< HEAD
-        android:layout_marginTop="8dp"
-=======
         android:layout_marginTop="16dp"
->>>>>>> 566e9d52f4baa1de2b519f0a6b8372415023667c
         android:layout_marginRight="16dp"
         android:background="@drawable/button_bg"
         android:backgroundTint="#0ED6B9"
-        android:text="Login"
+        android:text="@string/vn_login"
         android:textColor="@color/white"
         android:textSize="26sp"
         android:textStyle="bold"
