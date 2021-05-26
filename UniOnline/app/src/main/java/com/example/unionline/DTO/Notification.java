@@ -1,25 +1,31 @@
 package com.example.unionline.DTO;
 
+import com.example.unionline.DAO.Dao;
+
 public class Notification {
-    private String id;
+    private int id;
     private String title;
     private String content;
-    private String image;
+    private int image;
     private String sentTo;
+    private String createDate;
 
-    public Notification(String id, String title, String content, String image, String sentTo) {
+    public Notification(){}
+
+    public Notification(int id, String title, String content, int image, String sentTo, String createDate) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.image = image;
         this.sentTo = sentTo;
+        this.createDate = createDate;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -39,11 +45,11 @@ public class Notification {
         this.content = content;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
@@ -53,5 +59,13 @@ public class Notification {
 
     public void setSentTo(String sentTo) {
         this.sentTo = sentTo;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }
