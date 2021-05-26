@@ -20,7 +20,7 @@ public class StudentMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_main);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.student_fragment_container, new StudentInteractFragment()).commit();
+                .replace(R.id.student_fragment_container, new StudentInteractionFragment()).commit();
 
         bottomNav = findViewById(R.id.student_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -34,16 +34,16 @@ public class StudentMainActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new StudentInteractFragment();
+                            selectedFragment = new StudentInteractionFragment();
                             break;
                         case R.id.nav_interaction:
-                            selectedFragment = new StudentInteractFragment();
+                            selectedFragment = new StudentInteractionFragment();
                             break;
                         case R.id.nav_notification:
-                            selectedFragment = new StudentInteractFragment();
+                            selectedFragment = new StudentInteractionFragment();
                             break;
                         case R.id.nav_admin_account:
-                            selectedFragment = new StudentInteractFragment();
+                            selectedFragment = new StudentInteractionFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction()

@@ -38,7 +38,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ClassAdapter.ViewHolder holder, int position) {
         Class aClass = classes.get(position);
 
-        String className = aClass.getName();
+        String className = aClass.getClassName();
         //String classDate = "Từ ngày " + aClass.getEndDate().toString() + "dến ngày" + aClass.getEndDate().toString();
         String classDate = "Từ ngày đến ngày";
         holder.txtClassName.setText(className);
