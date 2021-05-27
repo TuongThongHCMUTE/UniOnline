@@ -24,7 +24,6 @@ public class TeacherClassDetailActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabItem tabClassInfo, tabUpdateProcess, tabMark;
     public PageAdapter pageAdapter;
-    private String classId, className;
     private Class currentClass;
 
     @Override
@@ -43,7 +42,7 @@ public class TeacherClassDetailActivity extends AppCompatActivity {
 
         // Set activity name on toolbar
         txtActivityName = (TextView) findViewById(R.id.activity_name);
-        txtActivityName.setText(className);
+        txtActivityName.setText(currentClass.getClassName());
 
         // Set event click for backIcon on toolbar
         // When click backIcon: finish this activity

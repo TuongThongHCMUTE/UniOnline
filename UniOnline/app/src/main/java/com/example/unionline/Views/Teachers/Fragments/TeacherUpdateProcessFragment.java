@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.unionline.Adapters.Teachers.ClassProcessAdapter;
 import com.example.unionline.Common;
 import com.example.unionline.DAO.LessonDAO;
+import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.Lesson;
 import com.example.unionline.R;
 import com.google.firebase.database.DataSnapshot;
@@ -28,9 +29,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TeacherUpdateProcessFragment extends Fragment {
+
+    private static final String ARG_CLASS = "class";
+    private Class aClass;
 
     RecyclerView recyclerView;
     ArrayList<Lesson> lessons;
@@ -44,9 +49,11 @@ public class TeacherUpdateProcessFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static TeacherUpdateProcessFragment newInstance(String param1, String param2) {
+    public static TeacherUpdateProcessFragment newInstance(Class aClass) {
         TeacherUpdateProcessFragment fragment = new TeacherUpdateProcessFragment();
-
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CLASS, (Serializable) aClass);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -54,7 +61,7 @@ public class TeacherUpdateProcessFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
+            aClass = (Class) getArguments().getSerializable(ARG_CLASS);
         }
     }
 
@@ -77,7 +84,7 @@ public class TeacherUpdateProcessFragment extends Fragment {
             public void onTouch(View v, int adapterPosition) {
                 if(adapterPosition >= 0) {
                     Lesson lesson = lessons.get(adapterPosition);
-                    LessonDAO.getInstance().changeStatusLesson(lesson, "2020_2021_HK1");
+                    LessonDAO.getInstance().changeStatusLesson(lesson, Common.semester.getSemesterId());
                 }
             }
 
@@ -101,8 +108,8 @@ public class TeacherUpdateProcessFragment extends Fragment {
         recyclerView.setAdapter(classProcessAdapter);
 
         // Fill data from Firebase
-        mData = FirebaseDatabase.getInstance().getReference("Lessons").child("2020_2021_HK1");
-        Query query = mData.orderByChild("classId").equalTo("-Mah1bXNZ1gVfLAtjT7w");
+        mData = FirebaseDatabase.getInstance().getReference("Lessons").child(Common.semester.getSemesterId());
+        Query query = mData.orderByChild("classId").equalTo(aClass.getClassId());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {

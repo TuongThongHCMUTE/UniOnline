@@ -33,7 +33,7 @@ public class ClassMarkAdapter extends RecyclerView.Adapter<ClassMarkAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_teacher_mark, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_update_mark, parent, false);
         return new ViewHolder(view);
     }
 
@@ -64,42 +64,6 @@ public class ClassMarkAdapter extends RecyclerView.Adapter<ClassMarkAdapter.View
             tvStudentName   = (TextView) itemView.findViewById(R.id.txtName);
             edMidTermScore  = (EditText) itemView.findViewById(R.id.edMidTerm);
             edFinalScore    = (EditText) itemView.findViewById(R.id.edFinal);
-
-            edMidTermScore.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    String midTermScore = edMidTermScore.getText().toString();
-                    scoreList.get(getAdapterPosition()).setMidScore(midTermScore);
-                }
-            });
-
-            edFinalScore.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    String finalScore = edFinalScore.getText().toString();
-                    scoreList.get(getAdapterPosition()).setFinalScore(finalScore);
-                }
-            });
 
             itemView.setOnClickListener(this);
         }

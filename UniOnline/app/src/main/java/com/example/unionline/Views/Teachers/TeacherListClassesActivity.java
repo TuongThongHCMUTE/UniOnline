@@ -91,7 +91,7 @@ public class TeacherListClassesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Fill data from Firebase
-        mData = FirebaseDatabase.getInstance().getReference("Classes").child(Common.semester.getSemesterId());
+        mData = FirebaseDatabase.getInstance().getReference("Classes").child("2020_2021_HK1");
         mData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

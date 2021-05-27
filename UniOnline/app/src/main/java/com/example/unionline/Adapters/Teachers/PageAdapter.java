@@ -34,13 +34,17 @@ public class PageAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                TeacherClassInfoFragment fragment = new TeacherClassInfoFragment();
-                fragment.setArguments(bundle);
-                return fragment;
+                TeacherClassInfoFragment teacherClassInfoFragment = new TeacherClassInfoFragment();
+                teacherClassInfoFragment.setArguments(bundle);
+                return teacherClassInfoFragment;
             case 1:
-                return new TeacherUpdateProcessFragment();
+                TeacherUpdateProcessFragment teacherUpdateProcessFragment = new TeacherUpdateProcessFragment();
+                teacherUpdateProcessFragment.setArguments(bundle);
+                return teacherUpdateProcessFragment;
             case 2:
-                return new TeacherMarkFragment();
+                TeacherMarkFragment teacherMarkFragment = new TeacherMarkFragment();
+                teacherMarkFragment.setArguments(bundle);
+                return teacherMarkFragment;
             default:
                 return null;
         }
