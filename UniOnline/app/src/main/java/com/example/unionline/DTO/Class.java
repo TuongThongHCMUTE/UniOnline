@@ -1,6 +1,8 @@
 package com.example.unionline.DTO;
 
-public class Class {
+import java.io.Serializable;
+
+public class Class implements Serializable {
 
     private String classId;
     private String semesterId;
@@ -126,4 +128,5 @@ public class Class {
     public void setActive(boolean active) {
         isActive = active;
     }
+
 }

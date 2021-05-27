@@ -3,12 +3,15 @@ package com.example.unionline.Views.Teachers;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.unionline.Adapters.Teachers.PageAdapter;
+import com.example.unionline.DTO.Class;
 import com.example.unionline.R;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -21,15 +24,26 @@ public class TeacherClassDetailActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabItem tabClassInfo, tabUpdateProcess, tabMark;
     public PageAdapter pageAdapter;
+    private String classId, className;
+    private Class currentClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_class_detail);
 
+        // Get data from intent
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            currentClass = (Class) bundle.getSerializable("class");
+        }
+
+        Toast.makeText(this, currentClass.getClassId(), Toast.LENGTH_LONG).show();
+
         // Set activity name on toolbar
         txtActivityName = (TextView) findViewById(R.id.activity_name);
-        txtActivityName.setText("Lớp lập trình di động");
+        txtActivityName.setText(className);
 
         // Set event click for backIcon on toolbar
         // When click backIcon: finish this activity
@@ -46,7 +60,7 @@ public class TeacherClassDetailActivity extends AppCompatActivity {
         viewPager           = (ViewPager) findViewById(R.id.teacher_class_viewPager);
 
         // Set Adapter for ViewPager
-        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), currentClass);
         viewPager.setAdapter(pageAdapter);
 
         // Set event onTabSelected

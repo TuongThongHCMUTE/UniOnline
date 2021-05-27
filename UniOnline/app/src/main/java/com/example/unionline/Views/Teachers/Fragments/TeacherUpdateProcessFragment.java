@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unionline.Adapters.Teachers.ClassProcessAdapter;
+import com.example.unionline.Common;
 import com.example.unionline.DAO.LessonDAO;
 import com.example.unionline.DTO.Lesson;
 import com.example.unionline.R;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
@@ -99,8 +101,9 @@ public class TeacherUpdateProcessFragment extends Fragment {
         recyclerView.setAdapter(classProcessAdapter);
 
         // Fill data from Firebase
-        mData = FirebaseDatabase.getInstance().getReference("Lessons").child("2020_2021_HK1").child("MP");
-        mData.addValueEventListener(new ValueEventListener() {
+        mData = FirebaseDatabase.getInstance().getReference("Lessons").child("2020_2021_HK1");
+        Query query = mData.orderByChild("classId").equalTo("-Mah1bXNZ1gVfLAtjT7w");
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 lessons.clear();

@@ -7,43 +7,30 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.unionline.DAO.ClassDAO;
+import com.example.unionline.DTO.Class;
 import com.example.unionline.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TeacherClassInfoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.Serializable;
+
 public class TeacherClassInfoFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_CLASS = "class";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Class aClass;
+    private TextView tvClassName, tvClassId, tvStartDate, tvEndDate, tvStatus, tvRoom, tvTime, tvProcess;
 
     public TeacherClassInfoFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TeacherClassInfoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TeacherClassInfoFragment newInstance(String param1, String param2) {
+    public static TeacherClassInfoFragment newInstance(Class aClass) {
         TeacherClassInfoFragment fragment = new TeacherClassInfoFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(ARG_CLASS, (Serializable) aClass);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,8 +39,7 @@ public class TeacherClassInfoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            aClass = (Class) getArguments().getSerializable(ARG_CLASS);
         }
     }
 
@@ -61,6 +47,33 @@ public class TeacherClassInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_teacher_class_info, container, false);
+        View root = inflater.inflate(R.layout.fragment_teacher_class_info, container, false);
+
+        mapView(root);
+        setValueForView();
+
+        return root;
+    }
+
+    private void mapView(View root) {
+        // Mapping variables with view
+        tvClassName = (TextView) root.findViewById(R.id.txtClassName);
+        tvClassId   = (TextView) root.findViewById(R.id.txtClassId);
+        tvStartDate = (TextView) root.findViewById(R.id.txtStartDateValue);
+        tvEndDate   = (TextView) root.findViewById(R.id.txtEndDateValue);
+        tvStatus    = (TextView) root.findViewById(R.id.txtStatusValue);
+        tvRoom      = (TextView) root.findViewById(R.id.txtRoomValue);
+        tvTime      = (TextView) root.findViewById(R.id.txtTimeValue);
+        tvProcess   = (TextView) root.findViewById(R.id.txtProcessValue);
+    }
+
+    private void setValueForView() {
+        tvClassName.setText(aClass.getClassName());
+        tvClassId.setText(aClass.getClassId());
+        tvStartDate.setText(aClass.getStartDate());
+        tvEndDate.setText(aClass.getEndDate());
+        tvRoom.setText(aClass.getRoom());
+        tvStatus.setText(aClass.getState());
+        tvTime.setText("Từ " + aClass.getStartTime() + " đến " + aClass.getEndTime());
     }
 }

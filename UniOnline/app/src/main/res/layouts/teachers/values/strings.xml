@@ -17,4 +17,9 @@
     <string name="vn_status">Trạng thái:</string>
     <string name="vn_time">Thời gian:</string>
     <string name="vn_process">Tiến độ</string>
+    <string name="vn_studentId">Mã SV</string>
+    <string name="vn_studentName">Họ và tên</string>
+    <string name="vn_midTerm">Giữa kỳ</string>
+    <string name="vn_final">Cuối kỳ</string>
+    <string name="vn_save">Lưu</string>
 </resources>

@@ -3,34 +3,52 @@ package com.example.unionline.DAO;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.unionline.DTO.Class;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import com.example.unionline.DTO.Class;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class ClassDAO implements Dao<Class> {
+import org.jetbrains.annotations.NotNull;
 
-    static DatabaseReference mData;
-    static List<Class> classes = new ArrayList<>();
+public class ClassDAO {
+    String path;
+    DatabaseReference mDataBase;
+
+    private static ClassDAO instance;
+
+    public static ClassDAO getInstance() {
+        if (instance == null) {
+            instance = new ClassDAO();
+        }
+        return instance;
+    }
+
+    public static void setInstance(ClassDAO instance) {
+        ClassDAO.instance = instance;
+    }
 
     public ClassDAO() {
-        mData = FirebaseDatabase.getInstance().getReference();
+        path = "Classes";
+    }
 
-        mData.child("Class").addChildEventListener(new ChildEventListener() {
+    public Class getClassById(String id) {
+        final Class[] aClass = {new Class()};
+
+        mDataBase = FirebaseDatabase.getInstance().getReference(path).child(id);
+        mDataBase.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Class aClass = snapshot.getValue(Class.class);
-                classes.add(aClass);
+            public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChildName) {
+                if (snapshot.getKey() == id) {
+                    aClass[0] = snapshot.getValue(Class.class);
+                    return;
+                }
             }
 
             @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onChildChanged(@NonNull DataSnapshot snapshot, String previousChildName) {
 
             }
 
@@ -40,7 +58,7 @@ public class ClassDAO implements Dao<Class> {
             }
 
             @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onChildMoved(@NonNull DataSnapshot snapshot, String previousChildName) {
 
             }
 
@@ -49,31 +67,7 @@ public class ClassDAO implements Dao<Class> {
 
             }
         });
+        return aClass[0];
     }
 
-
-    @Override
-    public Optional<Class> get(long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Class> getAll() {
-        return classes;
-    }
-
-    @Override
-    public void save(Class aClass) {
-        mData.child("Class").push().setValue(aClass);
-    }
-
-    @Override
-    public void update(Class aClass, String[] params) {
-
-    }
-
-    @Override
-    public void delete(Class aClass) {
-
-    }
 }

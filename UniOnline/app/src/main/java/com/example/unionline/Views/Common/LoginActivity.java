@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setSpinnerItems();
 
-        addDataV2();
+        //addDataV2();
 
         Common.semester = new Semester();
         Common.semester.setSemesterId("2020_2021_HK1");
@@ -189,12 +189,13 @@ public class LoginActivity extends AppCompatActivity {
         mDatabase.child("Parent_Students").child(parent_student.getParentId()).setValue(parent_student);
 
         Class class_s = new Class();
+        /*
         class_s.setClassId("SE");
         class_s.setSemesterId(semester.getSemesterId());
         class_s.setClassName("Công nghệ phần mềm");
         class_s.setCapacity(40);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Classes").child(semester.getSemesterId()).child(class_s.getClassId()).setValue(class_s);
+        mDatabase.child("Classes").child(semester.getSemesterId()).child(class_s.getClassId()).setValue(class_s); */
 
         //Add for teachers
         mDatabase = FirebaseDatabase.getInstance().getReference();

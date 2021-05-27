@@ -27,7 +27,6 @@ public class LessonDAO {
         mDataBase = FirebaseDatabase.getInstance().getReference();
         mDataBase.child(path)
                 .child(semesterId)
-                .child(String.valueOf(lesson.getClassId()))
                 .child(String.valueOf(lesson.getLessonId()))
                 .child("status").setValue(!lesson.isStatus());
     }

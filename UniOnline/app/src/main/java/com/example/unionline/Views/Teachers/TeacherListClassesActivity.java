@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unionline.Adapters.Teachers.ClassAdapter;
+import com.example.unionline.Common;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.R;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +65,11 @@ public class TeacherListClassesActivity extends AppCompatActivity {
             @Override
             public void onCLick(View v, int position) {
                 Intent intent = new Intent(TeacherListClassesActivity.this, TeacherClassDetailActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("class", (Serializable) classes.get(position));
+                intent.putExtras(bundle);
+
                 startActivity(intent);
             }
 
@@ -84,7 +91,7 @@ public class TeacherListClassesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Fill data from Firebase
-        mData = FirebaseDatabase.getInstance().getReference("Classes").child("2020_2021_HK1");
+        mData = FirebaseDatabase.getInstance().getReference("Classes").child(Common.semester.getSemesterId());
         mData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
