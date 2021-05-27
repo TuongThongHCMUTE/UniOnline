@@ -39,9 +39,6 @@ public class TeacherMainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         mData = FirebaseDatabase.getInstance().getReference();
-        mData.child("Name").setValue("Dinh Bach Thong");
-
-
     }
 
     /**

@@ -13,8 +13,18 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/main_color</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- Custom style for tab -->
     <style name="CustomTextAppearanceTab" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Custom style for checkbox -->
+    <style name="colored_checkBox" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- selected checkbox color -->
+        <item name="colorAccent">@color/main_color</item>
+        <!-- default/unselected checkbox color -->
+        <item name="android:textColorSecondary">@color/text_blue_color</item>
     </style>
 </resources>

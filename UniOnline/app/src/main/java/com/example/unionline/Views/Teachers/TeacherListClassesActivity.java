@@ -68,7 +68,6 @@ public class TeacherListClassesActivity extends AppCompatActivity {
 
             @Override
             public void onTouch(View v, int position) {
-                Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -85,7 +84,7 @@ public class TeacherListClassesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Fill data from Firebase
-        mData = FirebaseDatabase.getInstance().getReference("Class");
+        mData = FirebaseDatabase.getInstance().getReference("Classes").child("2020_2021_HK1");
         mData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -29,7 +29,7 @@ public class TeacherClassDetailActivity extends AppCompatActivity {
 
         // Set activity name on toolbar
         txtActivityName = (TextView) findViewById(R.id.activity_name);
-        txtActivityName.setText("Danh sách lớp");
+        txtActivityName.setText("Lớp lập trình di động");
 
         // Set event click for backIcon on toolbar
         // When click backIcon: finish this activity

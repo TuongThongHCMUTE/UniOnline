@@ -9,4 +9,12 @@
     <string name="vn_mark">Điểm số</string>
     <string name="vn_application">Đơn xin nghỉ</string>
     <string name="vn_profile">Cá nhân</string>
+    <string name="vn_class_name">Tên lớp học</string>
+    <string name="vn_class_id">Mã lớp học</string>
+    <string name="vn_start_date">Ngày bắt đầu:</string>
+    <string name="vn_end_date">Ngày kết thúc:</string>
+    <string name="vn_room">Phòng học:</string>
+    <string name="vn_status">Trạng thái:</string>
+    <string name="vn_time">Thời gian:</string>
+    <string name="vn_process">Tiến độ</string>
 </resources>
