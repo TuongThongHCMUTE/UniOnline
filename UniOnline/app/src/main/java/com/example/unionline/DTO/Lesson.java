@@ -5,14 +5,16 @@ public class Lesson {
     private String classId;
     private String name;
     private String description;
+    private boolean status;
 
     public Lesson(){}
 
-    public Lesson(String lessonId, String classId, String name, String description) {
+    public Lesson(String lessonId, String classId, String name, String description, boolean status) {
         this.lessonId = lessonId;
         this.classId = classId;
         this.name = name;
         this.description = description;
+        this.status = status;
     }
 
     public String getLessonId() {
@@ -45,5 +47,13 @@ public class Lesson {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

@@ -92,9 +92,9 @@ public class LoginActivity extends AppCompatActivity {
         mDatabase.child("Parent_Students").child(parent_student.getParentId()).setValue(parent_student);
 
         Class class_s = new Class();
-        class_s.setClassId("MP");
+        class_s.setClassId("SE");
         class_s.setSemesterId(semester.getSemesterId());
-        class_s.setClassName("Lập trình di động");
+        class_s.setClassName("Công nghệ phần mềm");
         class_s.setCapacity(40);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Classes").child(semester.getSemesterId()).child(class_s.getClassId()).setValue(class_s);
@@ -118,8 +118,9 @@ public class LoginActivity extends AppCompatActivity {
         //Add lesson
         Lesson lesson = new Lesson();
         lesson.setClassId(class_s.getClassId());
-        lesson.setLessonId("1");
-        lesson.setName("Web API");
+        lesson.setLessonId("2");
+        lesson.setName("Recycler View");
+        lesson.setStatus(true);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Lessons").child(semester.getSemesterId()).child(class_s.getClassId()).child(lesson.getLessonId()).setValue(lesson);
 
