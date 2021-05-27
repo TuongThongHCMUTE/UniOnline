@@ -1,8 +1,13 @@
 package com.example.unionline.DTO;
 
 public class Attendance {
+    private String id;
     private String classId;
+    private String className;
+    private String classRoom;
+    private String fullTime;
     private String lessonId;
+    private String lessonName;
     private String studentId;
     private String state;
 
@@ -15,6 +20,14 @@ public class Attendance {
         this.state = state;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getClassId() {
         return classId;
     }
@@ -23,12 +36,43 @@ public class Attendance {
         this.classId = classId;
     }
 
+    public String getClassName() {
+        return className;
+    }
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getClassRoom() {
+        return classRoom;
+    }
+
+    public void setClassRoom(String classRoom) {
+        this.classRoom = classRoom;
+    }
+
+    public String getFullTime() {
+        return fullTime;
+    }
+
+    public void setFullTime(String fullTime) {
+        this.fullTime = fullTime;
+    }
+
     public String getLessonId() {
         return lessonId;
     }
 
     public void setLessonId(String lessonId) {
         this.lessonId = lessonId;
+    }
+
+    public String getLessonName() {
+        return lessonName;
+    }
+
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
     }
 
     public String getStudentId() {

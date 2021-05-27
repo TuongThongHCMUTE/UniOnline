@@ -1,5 +1,7 @@
 package com.example.unionline.Views.Common;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +17,7 @@ import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.Enrollment;
 import com.example.unionline.DTO.Lesson;
+import com.example.unionline.DTO.Notification;
 import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
@@ -24,7 +27,13 @@ import com.example.unionline.Views.Teachers.TeacherMainActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,7 +45,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         setSpinnerItems();
-        addData();
+
+        addDataV2();
+
+        Common.semester = new Semester();
+        Common.semester.setSemesterId("2020_2021_HK1");
+        Common.semester.setSemesterName("Hoc ky 1, nam hoc 2020-2021");
+
+        Common.user = new User();
+        Common.user.setUserId("18110234");
 
         btLogin = findViewById(R.id.btLogin);
         btLogin.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +88,15 @@ public class LoginActivity extends AppCompatActivity {
         spRoles.setAdapter(arrayAdapter);
     }
 
-    private void addData(){
+    private void addDataV2(){
         DatabaseReference mDatabase;
+        String key;
+
+        Semester semester = new Semester();
+        semester.setSemesterId("2020_2021_HK1");
+        semester.setSemesterName("Hoc ky 1, nam hoc 2020-2021");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Semesters").child(semester.getSemesterId()).setValue(semester);
 
         //Add user
         User user = new User();
@@ -81,11 +105,84 @@ public class LoginActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Users").child(user.getUserId()).setValue(user);
 
+        Parent_Student parent_student = new Parent_Student("10110101","18110234");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Parent_Students");
+        key = mDatabase.push().getKey();
+        parent_student.setId(key);
+        mDatabase.child(key).setValue(parent_student);
+
+        Class class_s = new Class();
+        class_s.setTeacherId(user.getUserId());
+        class_s.setSemesterId(semester.getSemesterId());
+        class_s.setClassName("Lập trình di động");
+        class_s.setCapacity(40);
+        mDatabase = FirebaseDatabase.getInstance().getReference("Classes").child(semester.getSemesterId());
+        key = mDatabase.push().getKey();
+        class_s.setClassId(key);
+        mDatabase.child(class_s.getClassId()).setValue(class_s);
+
+        //Add enrollment
+        Enrollment enrollment = new Enrollment();
+        enrollment.setClassId(class_s.getClassId());
+        enrollment.setStudentId(user.getUserId());
+        enrollment.setStudentName(user.getName());
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Enrollments").child(semester.getSemesterId());
+        key = mDatabase.push().getKey();
+        enrollment.setId(key);
+        mDatabase.child(key).setValue(enrollment);
+
+        //Add lesson
+        Lesson lesson = new Lesson();
+        lesson.setLessonId("1");
+        lesson.setName("Web API");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Lessons").child(semester.getSemesterId());
+        key = mDatabase.push().getKey();
+        lesson.setClassId(key);
+        mDatabase.child(key).setValue(lesson);
+
+        // Add attendance
+        Attendance attendance = new Attendance();
+        attendance.setClassId(class_s.getClassId());
+        attendance.setLessonId(lesson.getLessonId());
+        attendance.setStudentId(user.getUserId());
+        attendance.setState("Trễ");
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Attendances").child(semester.getSemesterId());
+        key = mDatabase.push().getKey();
+        enrollment.setId(key);
+        mDatabase.child(key).setValue(enrollment);
+
+        // Add absence application
+        AbsenceApplication aa = new AbsenceApplication();
+        aa.setClassId(class_s.getClassId());
+        aa.setStudentId(user.getUserId());
+        aa.setReason("So late");
+        aa.setState(0);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("AbsenceApplications").child(semester.getSemesterId());
+        key = mDatabase.push().getKey();
+        aa.setId(key);
+        mDatabase.setValue(aa);
+
+        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute, "1", "1");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Notifications").child(String.valueOf(notification.getId())).setValue(notification);
+    }
+
+    private void addData(){
+        DatabaseReference mDatabase;
+
         Semester semester = new Semester();
         semester.setSemesterId("2020_2021_HK1");
         semester.setSemesterName("Hoc ky 1, nam hoc 2020-2021");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Semesters").child(semester.getSemesterId()).setValue(semester);
+
+        //Add user
+        User user = new User();
+        user.setUserId("18110234");
+        user.setEmail("Le Nhat Tuong");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Users").child(user.getUserId()).setValue(user);
 
         Parent_Student parent_student = new Parent_Student("10110101","18110234");
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -132,7 +229,7 @@ public class LoginActivity extends AppCompatActivity {
         mDatabase.child("Attendances").child(semester.getSemesterId()).child(class_s.getClassId()).child(attendance.getLessonId()).child(attendance.getStudentId()).setValue(enrollment);
 
         AbsenceApplication aa = new AbsenceApplication();
-        aa.setId(0);
+        //aa.setId(0);
         aa.setClassId(class_s.getClassId());
         aa.setStudentId(user.getUserId());
         aa.setReason("So late");
@@ -143,5 +240,15 @@ public class LoginActivity extends AppCompatActivity {
         //Set ab for students
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Students").child("AbsenceApplications").child(String.valueOf(aa.getId())).setValue(aa);
+
+        Common.class_ = class_s;
+        Common.semester = semester;
+
+        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute, "1", "1");
+
+
+        ArrayList<User> users;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Notifications").child(String.valueOf(notification.getId())).setValue(notification);
     }
 }

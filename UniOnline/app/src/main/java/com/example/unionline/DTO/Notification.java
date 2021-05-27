@@ -2,8 +2,11 @@ package com.example.unionline.DTO;
 
 import com.example.unionline.DAO.Dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Notification {
-    private int id;
+    private String id;
     private String title;
     private String content;
     private int image;
@@ -12,7 +15,7 @@ public class Notification {
 
     public Notification(){}
 
-    public Notification(int id, String title, String content, int image, String sentTo, String createDate) {
+    public Notification(String id, String title, String content, int image, String sentTo, String createDate) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -21,11 +24,11 @@ public class Notification {
         this.createDate = createDate;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

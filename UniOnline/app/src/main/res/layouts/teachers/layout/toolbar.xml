@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/vn_class"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"

@@ -1,7 +1,7 @@
 package com.example.unionline.DTO;
 
 public class AbsenceApplication {
-    private int id;
+    private String id;
     private String classId;
     private String studentId;
     private String reason;
@@ -9,7 +9,7 @@ public class AbsenceApplication {
 
     public AbsenceApplication(){}
 
-    public AbsenceApplication(int id, String classId, String studentId, String reason, int state) {
+    public AbsenceApplication(String id, String classId, String studentId, String reason, int state) {
         this.id = id;
         this.classId = classId;
         this.studentId = studentId;
@@ -17,11 +17,11 @@ public class AbsenceApplication {
         this.state = state;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

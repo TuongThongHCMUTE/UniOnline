@@ -68,10 +68,6 @@ public class StudentNotificationFragment extends Fragment {
 
         recyclerView.setAdapter(notificationAdapter);
 
-        //Notification notification = new Notification(0, "1", "1", R.drawable.logo_hcmute, "1", "1");
-        //mDatabase = FirebaseDatabase.getInstance().getReference();
-        //mDatabase.child("Notifications").child(String.valueOf(notification.getId())).setValue(notification);
-
         // Get data from firebase
         mDatabase = FirebaseDatabase.getInstance().getReference("Notifications");
         mDatabase.addValueEventListener(new ValueEventListener() {
