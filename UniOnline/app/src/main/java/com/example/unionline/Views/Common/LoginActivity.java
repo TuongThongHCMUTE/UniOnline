@@ -149,8 +149,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Attendances").child(semester.getSemesterId());
         key = mDatabase.push().getKey();
-        enrollment.setId(key);
-        mDatabase.child(key).setValue(enrollment);
+        attendance.setId(key);
+        mDatabase.child(key).setValue(attendance);
 
         // Add absence application
         AbsenceApplication aa = new AbsenceApplication();

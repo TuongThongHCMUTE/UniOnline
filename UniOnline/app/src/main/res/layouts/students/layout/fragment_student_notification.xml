@@ -19,6 +19,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include"
-        tools:listitem="@layout/item_notification" />
+        tools:listitem="@layout/item_student_notification" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

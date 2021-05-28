@@ -35,7 +35,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFullTime" />
+                app:layout_constraintTop_toBottomOf="@+id/tvClassDate" />
 
             <TextView
                 android:id="@+id/tvClassName"
@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvClassName" />
 
             <TextView
-                android:id="@+id/tvFullTime"
+                android:id="@+id/tvClassDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -86,7 +86,7 @@
                 android:textColor="@color/teal_700"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tvFullTime"
+                app:layout_constraintStart_toStartOf="@+id/tvClassDate"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
             <TextView

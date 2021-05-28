@@ -4,23 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.Students.StudentScheduleActivity">
+    tools:context=".Views.Students.StudentEnrollmentActivity">
 
     <include
         android:id="@+id/include"
         layout="@layout/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNotifications"
-        android:layout_width="0dp"
+        android:id="@+id/rvClass"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include"
-        tools:listitem="@layout/item_student_notification" />
-
+        tools:listitem="@layout/item_student_class" />
 </androidx.constraintlayout.widget.ConstraintLayout>

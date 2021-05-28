@@ -6,18 +6,16 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.service.quickaccesswallet.GetWalletCardsCallback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.unionline.R;
-import com.example.unionline.Views.Teachers.TeacherListClassesActivity;
 
 
 public class StudentInteractionFragment extends Fragment {
 
-    CardView cvSchedule;
+    CardView cvSchedule, cvClass;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +36,20 @@ public class StudentInteractionFragment extends Fragment {
         cvSchedule = view.findViewById(R.id.cvStudentSchedule);
         cvSchedule.setOnClickListener(onClickListener);
 
+        cvClass = view.findViewById(R.id.cvStudentClass);
+        cvClass.setOnClickListener(onClickListener);
+
     }
 
     private View.OnClickListener onClickListener = (View v) -> {
         Intent intent;
         switch (v.getId()) {
             case R.id.cvStudentSchedule:
-                intent = new Intent(this.getActivity(), TeacherListClassesActivity.class);
+                intent = new Intent(this.getActivity(), StudentScheduleActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.cvStudentClass:
+                intent = new Intent(this.getActivity(), StudentEnrollmentActivity.class);
                 startActivity(intent);
                 break;
         }
