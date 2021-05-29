@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         setSpinnerItems();
 
         //addDataV2();
+        Common common = new Common();
 
         Common.semester = new Semester();
         Common.semester.setSemesterId("2020_2021_HK1");

@@ -10,12 +10,14 @@ public class Enrollment implements Serializable {
     private String fullDate;
     private String studentId;
     private String studentName;
-    private String midScore;
-    private String finalScore;
+    private double midScore;
+    private double finalScore;
+    private int stateMark;
 
     public Enrollment(){};
 
-    public Enrollment(String classId, String className, String classRoom, String fullDate, String studentId, String studentName, String midScore, String finalScore) {
+    public Enrollment(String id, String classId, String className, String classRoom, String fullDate, String studentId, String studentName, double midScore, double finalScore, int stateMark) {
+        this.id = id;
         this.classId = classId;
         this.className = className;
         this.classRoom = classRoom;
@@ -24,6 +26,7 @@ public class Enrollment implements Serializable {
         this.studentName = studentName;
         this.midScore = midScore;
         this.finalScore = finalScore;
+        this.stateMark = stateMark;
     }
 
     public String getId() {
@@ -82,19 +85,27 @@ public class Enrollment implements Serializable {
         this.studentName = studentName;
     }
 
-    public String getMidScore() {
+    public double getMidScore() {
         return midScore;
     }
 
-    public void setMidScore(String midScore) {
+    public void setMidScore(double midScore) {
         this.midScore = midScore;
     }
 
-    public String getFinalScore() {
+    public double getFinalScore() {
         return finalScore;
     }
 
-    public void setFinalScore(String finalScore) {
+    public void setFinalScore(double finalScore) {
         this.finalScore = finalScore;
+    }
+
+    public int getState() {
+        return stateMark;
+    }
+
+    public void setState(int stateMark) {
+        this.stateMark = stateMark;
     }
 }

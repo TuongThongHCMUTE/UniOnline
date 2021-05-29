@@ -109,11 +109,12 @@
         android:id="@+id/rvListScore"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header_title"
         android:layout_above="@id/footer"
-        android:layout_marginTop="8dp"
+        android:layout_below="@id/header_title"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
-        tools:listitem="@layout/item_update_mark"/>
+        android:layout_marginBottom="0dp"
+        tools:listitem="@layout/item_update_mark" />
 
 </RelativeLayout>

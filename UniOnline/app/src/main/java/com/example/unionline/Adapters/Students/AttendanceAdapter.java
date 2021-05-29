@@ -52,7 +52,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
         }
 
         holder.tvFullTime.setText(attendance.getFullDate()  + " | " + attendance.getFullTime());
-        holder.tvAttendanceState.setText(attendance.getState());
+        holder.tvAttendanceState.setText(Common.attendanceNames.get(attendance.getState()));
     }
 
     @Override
