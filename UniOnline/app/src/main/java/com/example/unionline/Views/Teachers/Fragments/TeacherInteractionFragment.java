@@ -13,13 +13,14 @@ import android.widget.Toast;
 
 import com.example.unionline.R;
 import com.example.unionline.Views.Teachers.TeacherAddNotificationActivity;
+import com.example.unionline.Views.Teachers.TeacherAttendantActivity;
 import com.example.unionline.Views.Teachers.TeacherListClassesActivity;
 import com.example.unionline.Views.Teachers.TeacherListNotificationsActivity;
 
 public class TeacherInteractionFragment extends Fragment {
 
     View view;
-    CardView cvSchedule, cvClass, cvMark, cvApplication, cvNotification, cvProfile;
+    CardView cvSchedule, cvClass, cvAttendant, cvApplication, cvNotification, cvProfile;
 
 
     public TeacherInteractionFragment() {
@@ -46,6 +47,7 @@ public class TeacherInteractionFragment extends Fragment {
 
         cvClass.setOnClickListener(onClickListener);
         cvNotification.setOnClickListener(onClickListener);
+        cvAttendant.setOnClickListener(onClickListener);
 
         return view;
     }
@@ -57,7 +59,7 @@ public class TeacherInteractionFragment extends Fragment {
     private void mapView(View view) {
         cvSchedule      = (CardView) view.findViewById(R.id.cvTeacherSchedule);
         cvClass         = (CardView) view.findViewById(R.id.cvTeacherClass);
-        cvMark          = (CardView) view.findViewById(R.id.cvTeacherMark);
+        cvAttendant     = (CardView) view.findViewById(R.id.cvTeacherAttendant);
         cvApplication   = (CardView) view.findViewById(R.id.cvTeacherApplication);
         cvNotification  = (CardView) view.findViewById(R.id.cvTeacherNotification);
         cvProfile       = (CardView) view.findViewById(R.id.cvTeacherAccount);
@@ -75,8 +77,8 @@ public class TeacherInteractionFragment extends Fragment {
                 intent = new Intent(this.getActivity(), TeacherListClassesActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.cvTeacherMark:
-                intent = new Intent(this.getActivity(), TeacherListClassesActivity.class);
+            case R.id.cvTeacherAttendant:
+                intent = new Intent(this.getActivity(), TeacherAttendantActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cvTeacherApplication:

@@ -14,4 +14,11 @@ public class Common {
     public static String roleTeacher = "Giảng viên";
     public static String roleStudent = "Sinh viên";
     public static String roleParent = "Phụ huynh";
+
+    // Attendance states
+    public static final int ATTENDANCE_NOT_YET = 0;
+    public static final int ATTENDANCE_ON_TIME = 1;
+    public static final int ATTENDANCE_LATE = 2;
+    public static final int ATTENDANCE_WITH_PERMISSION = 3;
+    public static final int ATTENDANCE_WITHOUT_PERMISSION = 4;
 }

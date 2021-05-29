@@ -71,7 +71,7 @@ public class StudentAttendanceActivity extends AppCompatActivity {
 
         tvActivityName.setText("Lớp học");
 
-        if(attendance.getState().equals("Chưa điểm danh")){
+        if(attendance.getState() == Common.ATTENDANCE_NOT_YET) {
             tvState.setText("Chưa học");
         } else {
             tvState.setText("Đã học");

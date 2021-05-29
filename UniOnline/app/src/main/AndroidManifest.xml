@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniOnline">
-
+        <activity android:name=".Views.Teachers.Fragments.TeacherAttendantUpdateActivity"></activity>
+        <activity android:name=".Views.Teachers.TeacherAttendantActivity" />
         <activity android:name=".Views.Teachers.TeacherAddNotificationActivity" />
         <activity android:name=".Views.Teachers.TeacherListNotificationsActivity" />
         <activity android:name=".Views.Students.StudentAttendanceActivity" />

@@ -30,4 +30,10 @@
     <string name="vn_enterTitlle">Nhập tiêu đề</string>
     <string name="vn_enterContent">Nhập nội dung</string>
     <string name="vn_exit">Thoát</string>
+    <string name="vn_onTime">Đúng giờ</string>
+    <string name="vn_late">Trễ</string>
+    <string name="vn_withPermission">Có phép</string>
+    <string name="vn_withoutPermission">Không phép</string>
+    <string name="vn_attendant">Điểm danh</string>
+    <string name="vn_student">Sinh viên</string>
 </resources>

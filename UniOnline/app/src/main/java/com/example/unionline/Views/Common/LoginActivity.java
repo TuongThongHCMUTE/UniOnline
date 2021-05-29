@@ -145,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
         attendance.setClassId(class_s.getClassId());
         attendance.setLessonId(lesson.getLessonId());
         attendance.setStudentId(user.getUserId());
-        attendance.setState("Trễ");
+        attendance.setState(2);
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Attendances").child(semester.getSemesterId());
         key = mDatabase.push().getKey();
@@ -226,7 +226,7 @@ public class LoginActivity extends AppCompatActivity {
         attendance.setClassId(class_s.getClassId());
         attendance.setLessonId(lesson.getLessonId());
         attendance.setStudentId(user.getUserId());
-        attendance.setState("Trễ");
+        attendance.setState(2);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Attendances").child(semester.getSemesterId()).child(class_s.getClassId()).child(attendance.getLessonId()).child(attendance.getStudentId()).setValue(enrollment);
 
