@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.unionline.Adapters.Students.EnrollmentAdapter;
 import com.example.unionline.Common;
@@ -22,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class StudentEnrollmentActivity extends AppCompatActivity {
@@ -61,6 +64,13 @@ public class StudentEnrollmentActivity extends AppCompatActivity {
         listener = new EnrollmentAdapter.RecyclerViewClickListener() {
             @Override
             public void onCLick(View v, int position) {
+                Intent intent = new Intent(StudentEnrollmentActivity.this, StudentClassDetailActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("enrollment", (Serializable) enrollments.get(position));
+                intent.putExtras(bundle);
+
+                startActivity(intent);
             }
         };
     }
