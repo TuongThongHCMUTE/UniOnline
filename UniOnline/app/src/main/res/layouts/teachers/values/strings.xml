@@ -22,4 +22,11 @@
     <string name="vn_midTerm">Giữa kỳ</string>
     <string name="vn_final">Cuối kỳ</string>
     <string name="vn_save">Lưu</string>
+    <string name="vn_chooseClassToSendNotification">Chọn lớp mà bạn muốn gửi thông báo</string>
+    <string name="vn_createNotification">Tạo</string>
+    <string name="vn_sendNotification">Gửi</string>
+    <string name="vn_tittle">Tiêu đề</string>
+    <string name="vn_content">Nội dung</string>
+    <string name="vn_enterTitlle">Nhập tiêu đề</string>
+    <string name="vn_enterContent">Nhập nội dung</string>
 </resources>

@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.unionline.R;
+import com.example.unionline.Views.Teachers.TeacherAddNotificationActivity;
 import com.example.unionline.Views.Teachers.TeacherListClassesActivity;
+import com.example.unionline.Views.Teachers.TeacherListNotificationsActivity;
 
 public class TeacherInteractionFragment extends Fragment {
 
@@ -43,6 +45,7 @@ public class TeacherInteractionFragment extends Fragment {
         mapView(view);
 
         cvClass.setOnClickListener(onClickListener);
+        cvNotification.setOnClickListener(onClickListener);
 
         return view;
     }
@@ -81,7 +84,7 @@ public class TeacherInteractionFragment extends Fragment {
                 startActivity(intent);
                 break;
             case R.id.cvTeacherNotification:
-                intent = new Intent(this.getActivity(), TeacherListClassesActivity.class);
+                intent = new Intent(this.getActivity(), TeacherListNotificationsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cvTeacherAccount:

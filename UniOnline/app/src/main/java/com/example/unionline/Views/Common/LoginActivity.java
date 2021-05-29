@@ -163,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
         aa.setId(key);
         mDatabase.setValue(aa);
 
-        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute, "1", "1");
+        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute,"1", "1", "1");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Notifications").child(String.valueOf(notification.getId())).setValue(notification);
     }
@@ -246,7 +246,7 @@ public class LoginActivity extends AppCompatActivity {
         Common.class_ = class_s;
         Common.semester = semester;
 
-        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute, "1", "1");
+        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute,"1", "1", "1");
 
 
         ArrayList<User> users;

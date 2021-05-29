@@ -71,8 +71,8 @@ public class TeacherUpdateProcessFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_teacher_update_process, container, false);
 
-        setRecyclerView(root);
         setOnClickListener();
+        setRecyclerView(root);
 
         return root;
     }
