@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/layout_background_color"
-    tools:context=".Views.Teachers.Fragments.TeacherClassInfoFragment">
+    tools:context=".Views.Students.StudentClassInfoFragment">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

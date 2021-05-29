@@ -12,6 +12,7 @@
 
         <activity android:name=".Views.Teachers.TeacherAddNotificationActivity" />
         <activity android:name=".Views.Teachers.TeacherListNotificationsActivity" />
+        <activity android:name=".Views.Students.StudentClassDetailActivity"/>
         <activity android:name=".Views.Students.StudentAttendanceActivity" />
         <activity android:name=".Views.Students.StudentEnrollmentActivity" />
         <activity android:name=".Views.Students.StudentScheduleActivity" />

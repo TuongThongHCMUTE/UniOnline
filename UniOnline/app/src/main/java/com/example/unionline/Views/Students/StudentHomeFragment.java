@@ -17,6 +17,7 @@ import com.example.unionline.Adapters.Students.AttendanceAdapter;
 import com.example.unionline.Common;
 import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.Class;
+import com.example.unionline.DTO.Semester;
 import com.example.unionline.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
