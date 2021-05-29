@@ -11,6 +11,7 @@
         android:theme="@style/Theme.UniOnline">
         <activity android:name=".Views.Students.StudentAbsenceApplicationActivity"></activity>
         <activity android:name=".Views.Teachers.Fragments.TeacherAttendantUpdateActivity" />
+        <activity android:name=".Views.Teachers.TeacherAttendantUpdateActivity"></activity>
         <activity android:name=".Views.Teachers.TeacherAttendantActivity" />
         <activity android:name=".Views.Students.StudentMarkActivity" />
         <activity android:name=".Views.Teachers.TeacherAddNotificationActivity" />

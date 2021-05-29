@@ -41,16 +41,12 @@
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/rbOnTime"
-                        android:layout_width="0dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_selector"
@@ -61,7 +57,7 @@
 
                     <RadioButton
                         android:id="@+id/rbLate"
-                        android:layout_width="0dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
                         android:button="@drawable/radio_selector"
@@ -72,7 +68,7 @@
 
                     <RadioButton
                         android:id="@+id/rbWithPermission"
-                        android:layout_width="0dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_selector"
@@ -83,7 +79,7 @@
 
                     <RadioButton
                         android:id="@+id/rbWithoutPermission"
-                        android:layout_width="0dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.1"
                         android:button="@drawable/radio_selector"
@@ -91,8 +87,6 @@
                         android:text="@string/vn_withoutPermission"
                         android:textColor="@color/shadow_color"
                         android:textSize="11sp" />
-
-                </LinearLayout>
 
             </RadioGroup>
 
