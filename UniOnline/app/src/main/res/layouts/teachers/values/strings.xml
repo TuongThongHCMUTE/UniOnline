@@ -29,4 +29,5 @@
     <string name="vn_content">Nội dung</string>
     <string name="vn_enterTitlle">Nhập tiêu đề</string>
     <string name="vn_enterContent">Nhập nội dung</string>
+    <string name="vn_exit">Thoát</string>
 </resources>

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +38,9 @@ public class TeacherChooseClassFragment extends Fragment {
     GridLayoutManager gridLayoutManager;
     DatabaseReference mDataBase;
 
+    private TextView fragmentName;
+    private ImageView backIcon;
+
     private ClassCheckAdapter.RecyclerViewClickListener listener;
     private String classesIds = "";
 
@@ -55,6 +60,7 @@ public class TeacherChooseClassFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_teacher_choose_class, container, false);
 
+        setToolbar(root);
         setOnClickListener();
         setRecyclerView(root);
 
@@ -66,6 +72,10 @@ public class TeacherChooseClassFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Set adapter to recycler view
+     * @param root: current fragment
+     */
     private void setRecyclerView(View root) {
 
         // Initialize
@@ -79,7 +89,8 @@ public class TeacherChooseClassFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // Fill data from Firebase
-        mDataBase = FirebaseDatabase.getInstance().getReference("Classes").child("2020_2021_HK1");
+        mDataBase = FirebaseDatabase.getInstance().getReference("Classes").child(Common.semester.getSemesterId());
+        // Get classes which have teacherId == current userId
         Query query = mDataBase.orderByChild("teacherId").equalTo(Common.user.getUserId());
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -99,28 +110,55 @@ public class TeacherChooseClassFragment extends Fragment {
         });
     }
 
+    /**
+     * Event click for checkbox of each class
+     * Add or remove classId to/from classIds when checkbox is checked/unchecked
+     */
     private void setOnClickListener() {
         listener = (itemView, adapterPosition) -> {
             CheckBox cb = itemView.findViewById(R.id.cbIsChecked);
 
+            // If checkbox is checked --> add classId of chosen class to classIds
             if(cb.isChecked()) {
                 classesIds += classes.get(adapterPosition).getClassId() + ";";
-            } else {
+            }
+            // If checkbox is unchecked --> remove classId of chosen class from classIds
+            else {
                 classesIds = classesIds.replace(classes.get(adapterPosition).getClassId() + ";", "");
             }
-
-            Toast.makeText(getContext(), classesIds, Toast.LENGTH_SHORT).show();
         };
     }
 
+    /**
+     * Replace current fragment with TeacherAddNotificationFragment
+     */
     private void changeFragment() {
         TeacherAddNotificationFragment fragment = new TeacherAddNotificationFragment();
+        // Put classIds to bundle and set bundle to fragment
         Bundle bundle = new Bundle();
         bundle.putString("ListIDs", classesIds);
         fragment.setArguments(bundle);
 
+        // Replace fragment
         getFragmentManager().beginTransaction().replace(R.id.main, fragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    /**
+     * Mapping variables and set event for toolbar
+     * @param root: current fragment
+     */
+    private void setToolbar(View root){
+        // Mapping
+        fragmentName = (TextView) root.findViewById(R.id.activity_name);
+        fragmentName.setText("Gửi thông báo");
+        backIcon = (ImageView) root.findViewById(R.id.left_icon);
+
+        // Set event
+        // When click on backIcon (on the left of toolbar) --> return TeacherChooseClassFragment
+        backIcon.setOnClickListener((View v) -> {
+            getActivity().finish();
+        });
     }
 }

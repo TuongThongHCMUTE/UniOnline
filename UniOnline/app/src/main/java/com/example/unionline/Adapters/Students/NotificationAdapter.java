@@ -42,7 +42,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position) {
         Notification notification = listNotification.get(position);
 
-        holder.ivAvatar.setImageResource(notification.getImage());
+        holder.ivAvatar.setImageResource(R.drawable.logo_hcmute);
         holder.tvTitle.setText(notification.getTitle());
         holder.tvContent.setText(notification.getContent());
         holder.tvCreateDate.setText(notification.getCreateDate());
