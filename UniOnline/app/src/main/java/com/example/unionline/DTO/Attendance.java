@@ -1,10 +1,13 @@
 package com.example.unionline.DTO;
 
-public class Attendance {
+import java.io.Serializable;
+
+public class Attendance implements Serializable {
     private String id;
     private String classId;
     private String className;
     private String classRoom;
+    private String fullDate;
     private String fullTime;
     private String lessonId;
     private String lessonName;
@@ -49,6 +52,14 @@ public class Attendance {
 
     public void setClassRoom(String classRoom) {
         this.classRoom = classRoom;
+    }
+
+    public String getFullDate() {
+        return fullDate;
+    }
+
+    public void setFullDate(String fullDate) {
+        this.fullDate = fullDate;
     }
 
     public String getFullTime() {

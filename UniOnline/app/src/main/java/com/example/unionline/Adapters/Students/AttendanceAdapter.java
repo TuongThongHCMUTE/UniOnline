@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,7 +31,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_attendance, parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_student_attendance, parent,false);
 
         return new ViewHolder(view);
     }
@@ -45,13 +44,13 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
         holder.tvRoom.setText(attendance.getClassRoom());
 
 
-        if(attendance.getState() == "Chưa điểm danh"){
+        if(attendance.getState().equals("Chưa điểm danh")){
             holder.tvState.setText("Chưa học");
         } else {
             holder.tvState.setText("Đã học");
         }
 
-        holder.tvFullTime.setText(attendance.getFullTime());
+        holder.tvFullTime.setText(attendance.getFullDate()  + " | " + attendance.getFullTime());
         holder.tvAttendanceState.setText(attendance.getState());
     }
 
@@ -69,7 +68,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
             tvClassName = itemView.findViewById(R.id.tvClassName);
             tvRoom = itemView.findViewById(R.id.tvRoom);
             tvState = itemView.findViewById(R.id.tvState);
-            tvFullTime = itemView.findViewById(R.id.tvFullTime);
+            tvFullTime = itemView.findViewById(R.id.tvClassDate);
             tvAttendanceState = itemView.findViewById(R.id.tvAttendanceState);
 
             itemView.setOnClickListener(this);

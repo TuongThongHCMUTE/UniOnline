@@ -1,5 +1,6 @@
 package com.example.unionline.Views.Students;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.unionline.Adapters.Students.AttendanceAdapter;
 import com.example.unionline.Common;
@@ -23,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Queue;
 
@@ -31,6 +34,8 @@ public class StudentHomeFragment extends Fragment {
     ArrayList<Attendance> listAttendance;
     AttendanceAdapter attendanceAdapter;
     DatabaseReference mDatabase;
+
+    String currentDate;
 
     private AttendanceAdapter.RecyclerViewClickListener listener;
 
@@ -41,6 +46,10 @@ public class StudentHomeFragment extends Fragment {
 
         setOnClickListener();
         setRecyclerView(root);
+        currentDate = android.text.format.DateFormat.format("dd/MM/yyyy", new java.util.Date()).toString();
+
+        TextView tvCurrentDate = root.findViewById(R.id.tvCurrentDate);
+        tvCurrentDate.setText(currentDate);
 
         return root;
     }
@@ -49,12 +58,34 @@ public class StudentHomeFragment extends Fragment {
         listener = new AttendanceAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                // Do something
+                Intent intent = new Intent(getActivity(), StudentAttendanceActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("attendance", (Serializable) listAttendance.get(position));
+                intent.putExtras(bundle);
+
+                startActivity(intent);
             }
         };
     }
 
     private void setRecyclerView(View root){
+        /*Attendance attendance = new Attendance();
+        attendance.setClassId("-Mah1bXNZ1gVfLAtjT7w");
+        attendance.setClassName("Lập trình di động");
+        attendance.setClassRoom("E1 - 503");
+        attendance.setFullTime("27/05/2021");
+        attendance.setLessonId("-MahEe2hO7lHBigxxGhT");
+        attendance.setLessonName("Web API");
+        attendance.setStudentId("18110234");
+        attendance.setState("Chưa học");
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Attendances").child(Common.semester.getSemesterId());
+        String key = mDatabase.push().getKey();
+        attendance.setId(key);
+        mDatabase.child(key).setValue(attendance);*/
+
+
         recyclerView = root.findViewById(R.id.rvAttendance);
 
         listAttendance = new ArrayList<>();
@@ -76,7 +107,11 @@ public class StudentHomeFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Attendance attendance = dataSnapshot.getValue(Attendance.class);
 
-                    listAttendance.add(attendance);
+                    if(attendance.getFullDate()!=null){
+                        if(attendance.getFullDate().equals(currentDate)){
+                            listAttendance.add(attendance);
+                        }
+                    }
                 }
                 attendanceAdapter.notifyDataSetChanged();
             }

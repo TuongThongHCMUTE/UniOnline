@@ -9,7 +9,6 @@ public class Semester {
     private Date endTime;
 
     public Semester() {
-
     }
 
     public Semester(String semesterId, String semesterName, Date startTime, Date endTime) {
