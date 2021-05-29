@@ -8,11 +8,12 @@
     tools:context=".Views.Students.StudentHomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topbar"
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/white_toolbar_background">
+        android:background="@drawable/white_toolbar_background"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imgLogo"
@@ -40,7 +41,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topbar" />
+        app:layout_constraintTop_toBottomOf="@+id/topBar" />
 
     <TextView
         android:id="@+id/tvCurrentDate"

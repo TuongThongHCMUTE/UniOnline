@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 
 import com.example.unionline.R;
 
+import java.util.Calendar;
+
 
 public class StudentInteractionFragment extends Fragment {
 
-    CardView cvSchedule, cvClass;
+    CardView cvSchedule, cvClass, cvMark;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,9 @@ public class StudentInteractionFragment extends Fragment {
         cvClass = view.findViewById(R.id.cvStudentClass);
         cvClass.setOnClickListener(onClickListener);
 
+        cvMark = view.findViewById(R.id.cvStudentMark);
+        cvMark.setOnClickListener(onClickListener);
+
     }
 
     private View.OnClickListener onClickListener = (View v) -> {
@@ -52,6 +57,10 @@ public class StudentInteractionFragment extends Fragment {
                 intent = new Intent(this.getActivity(), StudentEnrollmentActivity.class);
                 startActivity(intent);
                 break;
+            /*case R.id.cvStudentMark:
+                intent = new Intent(this.getActivity(), CalenderActivity.class);
+                startActivity(intent);
+                break;*/
         }
     };
 }

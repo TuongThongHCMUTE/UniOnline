@@ -58,7 +58,7 @@ public class StudentHomeFragment extends Fragment {
         listener = new AttendanceAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getContext(), StudentAttendanceActivity.class);
+                Intent intent = new Intent(getActivity(), StudentAttendanceActivity.class);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("attendance", (Serializable) listAttendance.get(position));

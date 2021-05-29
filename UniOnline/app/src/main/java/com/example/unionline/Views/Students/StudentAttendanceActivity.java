@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class StudentAttendanceActivity extends AppCompatActivity {
     TextView tvActivityName, tvClassName, tvRoom, tvState, tvFullTime, tvAttendanceState,
             tvTeacherName, tvLessonName, tvLessonDescription;
 
-    ImageView ivTeacherAvatar;
+    ImageView backIcon, ivTeacherAvatar;
 
     Attendance attendance;
 
@@ -42,6 +43,12 @@ public class StudentAttendanceActivity extends AppCompatActivity {
         if (bundle != null) {
             attendance = (Attendance) bundle.getSerializable("attendance");
         }
+
+        //Set event click for back icon
+        backIcon = (ImageView) findViewById(R.id.left_icon);
+        backIcon.setOnClickListener((View v) -> {
+            this.finish();
+        });
 
         mapView();
         mapViewValue();
@@ -90,7 +97,7 @@ public class StudentAttendanceActivity extends AppCompatActivity {
 
         // Get teacher
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("User").child("18110234").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDatabase.child("Users").child("18110234").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -106,7 +113,7 @@ public class StudentAttendanceActivity extends AppCompatActivity {
 
         // Get lesson
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Lesson").child(Common.semester.getSemesterId()).child(attendance.getLessonId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDatabase.child("Lessons").child(Common.semester.getSemesterId()).child(attendance.getLessonId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {

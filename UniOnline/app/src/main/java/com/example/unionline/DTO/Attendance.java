@@ -1,6 +1,8 @@
 package com.example.unionline.DTO;
 
-public class Attendance {
+import java.io.Serializable;
+
+public class Attendance implements Serializable {
     private String id;
     private String classId;
     private String className;
