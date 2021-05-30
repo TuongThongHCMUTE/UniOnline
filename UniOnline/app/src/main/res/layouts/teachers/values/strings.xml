@@ -36,4 +36,5 @@
     <string name="vn_withoutPermission">Không phép</string>
     <string name="vn_attendant">Điểm danh</string>
     <string name="vn_student">Sinh viên</string>
+    <string name="vn_enterMark">Nhập điểm</string>
 </resources>
