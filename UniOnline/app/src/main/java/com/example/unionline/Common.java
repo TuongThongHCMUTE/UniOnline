@@ -45,7 +45,6 @@ public class Common {
         userRoles.add("Quản lý khoa");
         userRoles.add("Giảng viên");
         userRoles.add("Sinh viên");
-        userRoles.add("");
         userRoles.add("Phụ huynh");
 
         //Set attendance name
