@@ -20,10 +20,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.unionline.Adapters.Teachers.ClassMarkAdapter;
 import com.example.unionline.Adapters.Teachers.ClassProcessAdapter;
 import com.example.unionline.Common;
+import com.example.unionline.DAO.EnrollmentDAO;
 import com.example.unionline.DAO.LessonDAO;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.Enrollment;
@@ -83,8 +85,8 @@ public class TeacherMarkFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_teacher_mark, container, false);
 
-        setRecyclerView(root);
         setOnClickListener();
+        setRecyclerView(root);
 
         return root;
     }
@@ -110,20 +112,33 @@ public class TeacherMarkFragment extends Fragment {
         // Initialize
         scores = new ArrayList<>();
 
-        Score score1 = new Score(aClass.getClassId(), "18110207", "Đinh Bách Thông", "9.5", "9.5");
-        Score score2 = new Score(aClass.getClassId(), "18110207", "Đinh Bách Thông", "9.5", "9.5");
-        Score score3 = new Score(aClass.getClassId(), "18110207", "Đinh Bách Thông", "9.5", "9.5");
-        scores.add(score1);
-        scores.add(score2);
-        scores.add(score3);
-
-        classMarkAdapter = new ClassMarkAdapter(getContext(), (ArrayList<Score>) scores, listener);
+        classMarkAdapter = new ClassMarkAdapter(getContext(), (ArrayList<Enrollment>) scores, listener);
         gridLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
 
         // Set adapter for recycler view
         recyclerView = root.findViewById(R.id.rvListScore);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(classMarkAdapter);
+
+        // Fill data from Firebase
+        mData = FirebaseDatabase.getInstance().getReference("Enrollments").child(Common.semester.getSemesterId());
+        Query query = mData.orderByChild("classId").equalTo(aClass.getClassId());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                scores.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Enrollment enrollment = dataSnapshot.getValue(Enrollment.class);
+                    scores.add(enrollment);
+                }
+                classMarkAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void openDiagLog(Enrollment score) {
@@ -167,8 +182,15 @@ public class TeacherMarkFragment extends Fragment {
 
         // Save mark when click btnSave
         btnSave.setOnClickListener((View v) -> {
-            score.setMidScore(edMidTerm.getText().toString());
-            dialog.dismiss();
+            try {
+                score.setMidScore(Double.parseDouble(edMidTerm.getText().toString()));
+                score.setFinalScore(Double.parseDouble(edFinal.getText().toString()));
+                EnrollmentDAO.getInstance().update(score);
+                Toast.makeText(getContext(), "Cập nhật điểm thành công", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "Đã xảy ra lỗi. Vui lòng thử lại", Toast.LENGTH_LONG).show();
+            }
         });
 
         // Show dialog

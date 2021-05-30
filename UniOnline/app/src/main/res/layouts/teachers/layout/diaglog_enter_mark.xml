@@ -37,14 +37,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="24dp"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
+            android:paddingRight="16dp"
             android:paddingBottom="16dp"
             android:text="Đinh Bách Thông"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/shadow_color"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_blue_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,14 +60,15 @@
             android:id="@+id/txtStudentId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="24dp"
+            android:paddingLeft="18dp"
             android:paddingTop="16dp"
+            android:paddingRight="24dp"
             android:paddingBottom="16dp"
             android:text="18110207"
-            android:textSize="16sp"
-            android:textColor="@color/shadow_color"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_blue_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -90,14 +91,14 @@
             android:id="@+id/edMidTerm"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/in_bg_v2"
-            android:inputType="number"
+            android:background="@drawable/input_bg"
+            android:inputType="numberDecimal"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="10.0"
             android:textAlignment="center"
-            android:textColor="@color/shadow_color"
-            android:textSize="16sp"
+            android:textColor="@color/text_blue_color"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -122,14 +123,14 @@
             android:id="@+id/edFinal"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/in_bg_v2"
-            android:inputType="number"
+            android:background="@drawable/input_bg"
+            android:inputType="numberDecimal"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="10.0"
             android:textAlignment="center"
-            android:textColor="@color/shadow_color"
-            android:textSize="16sp"
+            android:textColor="@color/text_blue_color"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -138,7 +139,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="16dp">
 
         <Button
             android:id="@+id/btnClose"
@@ -150,7 +151,7 @@
             android:text="@string/vn_exit"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -164,7 +165,7 @@
             android:text="@string/vn_save"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

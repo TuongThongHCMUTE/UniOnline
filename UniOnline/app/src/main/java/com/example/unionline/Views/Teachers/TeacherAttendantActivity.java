@@ -63,10 +63,11 @@ public class TeacherAttendantActivity extends AppCompatActivity {
         listener = new ClassAdapter.RecyclerViewClickListener() {
             @Override
             public void onCLick(View v, int position) {
-                Intent intent = new Intent(TeacherAttendantActivity.this, TeacherAttendantUpdateActivity.class);
+                Intent intent = new Intent(TeacherAttendantActivity.this, TeacherListLessonsActivity.class);
 
                 Bundle bundle = new Bundle();
                 bundle.putString("classId", classes.get(position).getClassId());
+                bundle.putString("className", classes.get(position).getClassName());
                 intent.putExtras(bundle);
 
                 startActivity(intent);
