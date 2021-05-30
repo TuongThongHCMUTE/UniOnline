@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniOnline">
-        <activity android:name=".Views.Students.StudentAbsenceApplicationActivity"></activity>
-        <activity android:name=".Views.Teachers.TeacherAttendantUpdateActivity"></activity>
+        <activity android:name=".Views.Teachers.TeacherListLessonsActivity"></activity>
+        <activity android:name=".Views.Students.StudentAbsenceApplicationActivity" />
+        <activity android:name=".Views.Teachers.TeacherAttendantUpdateActivity" />
         <activity android:name=".Views.Teachers.TeacherAttendantActivity" />
         <activity android:name=".Views.Students.StudentMarkActivity" />
         <activity android:name=".Views.Teachers.TeacherAddNotificationActivity" />

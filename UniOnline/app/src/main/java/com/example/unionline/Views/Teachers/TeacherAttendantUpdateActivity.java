@@ -15,8 +15,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.unionline.Adapters.Students.NotificationAdapter;
@@ -41,14 +43,15 @@ import java.util.stream.Collectors;
 
 public class TeacherAttendantUpdateActivity extends AppCompatActivity {
 
-    private String currentClassId;
+    private String currentLessonId;
+    private int week;
 
     RecyclerView recyclerView;
     ArrayList<Attendance> lisAttendances;
     UpdateAttendantAdapter adapter;
     DatabaseReference mDatabase;
 
-    private TextView tvSum, tvLate, tvWithPermission, tvWithoutPermission, tvActivityName;
+    private TextView tvSum, tvLate, tvWithPermission, tvWithoutPermission, tvActivityName, tvWeek;
     private RadioButton rbOnTime, rbLate, rbWithPermission, rbWithoutPermission;
     private ImageView backIcon;
     private int sum, lateCount, withPermissionCount, withoutPermissionCount;
@@ -63,7 +66,8 @@ public class TeacherAttendantUpdateActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
-            currentClassId = bundle.getString("classId");
+            currentLessonId = bundle.getString("lessonId");
+            week = bundle.getInt("week");
         }
 
         mappingView();
@@ -71,9 +75,11 @@ public class TeacherAttendantUpdateActivity extends AppCompatActivity {
         setRecyclerView();
     }
 
-
     private void mappingView(){
         setToolbar();
+
+        tvWeek = (TextView) findViewById(R.id.tvWeek);
+        tvWeek.setText(String.valueOf(week));
 
         tvSum = (TextView) findViewById(R.id.txtSum);
         tvLate = (TextView) findViewById(R.id.txtLate);
@@ -137,7 +143,7 @@ public class TeacherAttendantUpdateActivity extends AppCompatActivity {
 
         // Get data from firebase
         mDatabase = FirebaseDatabase.getInstance().getReference("Attendances").child(Common.semester.getSemesterId());
-        Query query = mDatabase.orderByChild("classId").equalTo(currentClassId);
+        Query query = mDatabase.orderByChild("lessonId").equalTo(currentLessonId);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
