@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar10"
+        android:layout_width="406dp"
+        android:layout_height="119dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewChiTietMonHoc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="61dp"
+            android:layout_height="66dp"
+            app:srcCompat="@android:drawable/ic_menu_sort_by_size"
+            tools:layout_editor_absoluteX="1dp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            app:srcCompat="@drawable/nen"
+            tools:layout_editor_absoluteX="91dp" />
+
+        <ImageButton
+            android:id="@+id/imgButtonNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/notice"
+            tools:layout_editor_absoluteX="357dp"
+            tools:layout_editor_absoluteY="4dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChiTietMonHoc"
+        android:layout_width="404dp"
+        android:layout_height="516dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar10" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar11"
+        android:layout_width="0dp"
+        android:layout_height="78dp"
+        android:background="#D3CACA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewChiTietMonHoc">
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="120dp"
+            android:layout_height="78dp"
+            android:layout_marginLeft="150dp"
+            android:background="@drawable/plus"
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="50dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

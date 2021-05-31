@@ -30,4 +30,18 @@ public class NotificationDAO {
         notification.setId(key);
         mDataBase.child(key).setValue(notification);
     }
+    public void setValude(Notification notification)
+    {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        mDataBase.child("Notifications").child(notification.getId()).setValue(notification);
+    }
+    public boolean deleteNotification(String id) {
+        try {
+            mDataBase = FirebaseDatabase.getInstance().getReference();
+            mDataBase.child(path).child(id).removeValue();
+            return true;
+        } catch (Error error){
+            return false;
+        }
+    }
 }

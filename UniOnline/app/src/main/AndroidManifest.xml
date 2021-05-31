@@ -23,6 +23,7 @@
         <activity android:name=".Views.Teachers.TeacherClassDetailActivity" />
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity" />
+        <activity android:name=".Views.Manager.MainActivity" />
         <activity android:name=".Views.Common.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

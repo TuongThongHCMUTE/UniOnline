@@ -22,6 +22,7 @@ import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
+import com.example.unionline.Views.Manager.MainActivity;
 import com.example.unionline.Views.Students.StudentMainActivity;
 import com.example.unionline.Views.Teachers.TeacherMainActivity;
 import com.google.firebase.database.DatabaseReference;
@@ -43,10 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        setSpinnerItems();
-
-        //addDataV2();
         Common common = new Common();
 
         Common.semester = new Semester();
@@ -55,6 +52,10 @@ public class LoginActivity extends AppCompatActivity {
 
         Common.user = new User();
         Common.user.setUserId("18110234");
+        setSpinnerItems();
+
+        //addDataV2();
+
 
         btLogin = findViewById(R.id.btLogin);
         btLogin.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 } else if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleTeacher)){
                     startActivity(new Intent(LoginActivity.this, TeacherMainActivity.class));
+                    return;
+                }
+                else if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleManager)){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     return;
                 }
             }
