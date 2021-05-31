@@ -44,7 +44,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+
         Common common = new Common();
+
+        setSpinnerItems();
+
+        //addDataV2();
 
         Common.semester = new Semester();
         Common.semester.setSemesterId("2020_2021_HK1");
