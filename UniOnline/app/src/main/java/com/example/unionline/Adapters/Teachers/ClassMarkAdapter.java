@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.unionline.DTO.Enrollment;
 import com.example.unionline.DTO.Score;
 import com.example.unionline.R;
 
@@ -21,10 +22,10 @@ import java.util.ArrayList;
 public class ClassMarkAdapter extends RecyclerView.Adapter<ClassMarkAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Score> scoreList;
+    private ArrayList<Enrollment> scoreList;
     private ClassMarkAdapter.RecyclerViewClickListener listener;
 
-    public ClassMarkAdapter(Context context, ArrayList<Score> scoreList, ClassMarkAdapter.RecyclerViewClickListener listener) {
+    public ClassMarkAdapter(Context context, ArrayList<Enrollment> scoreList, ClassMarkAdapter.RecyclerViewClickListener listener) {
         this.context = context;
         this.scoreList = scoreList;
         this.listener = listener;
@@ -39,12 +40,12 @@ public class ClassMarkAdapter extends RecyclerView.Adapter<ClassMarkAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Score score = scoreList.get(position);
+        Enrollment score = scoreList.get(position);
 
         holder.tvStudentId.setText(score.getStudentId());
         holder.tvStudentName.setText(score.getStudentName());
-        holder.edMidTermScore.setText(score.getMidScore());
-        holder.edFinalScore.setText(score.getFinalScore());
+        holder.edMidTermScore.setText(String.valueOf(score.getMidScore()));
+        holder.edFinalScore.setText(String.valueOf(score.getFinalScore()));
     }
 
     @Override
@@ -55,15 +56,15 @@ public class ClassMarkAdapter extends RecyclerView.Adapter<ClassMarkAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener, View.OnClickListener {
 
         TextView tvStudentId, tvStudentName;
-        EditText edMidTermScore, edFinalScore;
+        TextView edMidTermScore, edFinalScore;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvStudentId     = (TextView) itemView.findViewById(R.id.txtId);
             tvStudentName   = (TextView) itemView.findViewById(R.id.txtName);
-            edMidTermScore  = (EditText) itemView.findViewById(R.id.edMidTerm);
-            edFinalScore    = (EditText) itemView.findViewById(R.id.edFinal);
+            edMidTermScore  = (TextView) itemView.findViewById(R.id.edMidTerm);
+            edFinalScore    = (TextView) itemView.findViewById(R.id.edFinal);
 
             itemView.setOnClickListener(this);
         }

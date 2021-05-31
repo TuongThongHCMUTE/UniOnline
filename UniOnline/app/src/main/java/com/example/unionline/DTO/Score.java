@@ -5,10 +5,10 @@ public class Score {
     private String classId;
     private String studentId;
     private String studentName;
-    private String midScore;
-    private String finalScore;
+    private Double midScore;
+    private Double finalScore;
 
-    public Score(String classId, String studentId, String studentName, String midScore, String finalScore) {
+    public Score(String classId, String studentId, String studentName, Double midScore, Double finalScore) {
         this.classId = classId;
         this.studentId = studentId;
         this.studentName = studentName;
@@ -40,19 +40,19 @@ public class Score {
         this.studentId = studentId;
     }
 
-    public String getMidScore() {
+    public Double getMidScore() {
         return midScore;
     }
 
-    public void setMidScore(String midScore) {
+    public void setMidScore(Double midScore) {
         this.midScore = midScore;
     }
 
-    public String getFinalScore() {
+    public Double getFinalScore() {
         return finalScore;
     }
 
-    public void setFinalScore(String finalScore) {
+    public void setFinalScore(Double finalScore) {
         this.finalScore = finalScore;
     }
 

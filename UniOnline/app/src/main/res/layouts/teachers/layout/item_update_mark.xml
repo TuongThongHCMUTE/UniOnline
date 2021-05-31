@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Midterm mark -->
-            <EditText
+            <TextView
                 android:id="@+id/edMidTerm"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Final mark -->
-            <EditText
+            <TextView
                 android:id="@+id/edFinal"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

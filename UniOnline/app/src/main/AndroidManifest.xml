@@ -9,23 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniOnline">
-        <activity android:name=".Views.Admin.AdminChangePasswordActivity"></activity>
-        <activity android:name=".Views.Admin.AdminParentAccountActivity" />
-        <activity android:name=".Views.Admin.AdminParentAddEditMainActivity" />
-        <activity android:name=".Views.Admin.AdminStudentAddEditMainActivity" />
-        <activity android:name=".Views.Admin.AdminTeacherAddDelActivity" />
-        <activity android:name=".Views.Admin.AdminTeacherAccountActivity" />
-        <activity android:name=".Views.Admin.AdminQlkAddDelMainActivity" />
-        <activity android:name=".Views.Admin.AdminInfoUpdateActivity" />
-        <activity android:name=".Views.Admin.AdminStudentAccountActivity" />
-        <activity android:name=".Views.Admin.AdminQlkAccountActivity" />
-        <activity android:name=".Views.Admin.AdminMainActivity" />
+        <activity android:name=".Views.Teachers.TeacherListLessonsActivity"></activity>
+        <activity android:name=".Views.Students.StudentAbsenceApplicationActivity" />
+        <activity android:name=".Views.Teachers.TeacherAttendantUpdateActivity" />
+        <activity android:name=".Views.Teachers.TeacherAttendantActivity" />
+        <activity android:name=".Views.Students.StudentMarkActivity" />
+        <activity android:name=".Views.Teachers.TeacherAddNotificationActivity" />
+        <activity android:name=".Views.Teachers.TeacherListNotificationsActivity" />
+        <activity android:name=".Views.Students.StudentClassDetailActivity" />
         <activity android:name=".Views.Students.StudentAttendanceActivity" />
         <activity android:name=".Views.Students.StudentEnrollmentActivity" />
         <activity android:name=".Views.Students.StudentScheduleActivity" />
         <activity android:name=".Views.Teachers.TeacherClassDetailActivity" />
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity" />
+        <activity android:name=".Views.Manager.MainActivity" />
         <activity android:name=".Views.Common.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,10 +32,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Views.Students.StudentMainActivity" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

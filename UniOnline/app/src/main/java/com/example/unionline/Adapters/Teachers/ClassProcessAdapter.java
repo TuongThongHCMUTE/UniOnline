@@ -40,7 +40,7 @@ public class ClassProcessAdapter extends RecyclerView.Adapter<ClassProcessAdapte
     public void onBindViewHolder(@NonNull ClassProcessAdapter.ViewHolder holder, int position) {
         Lesson lesson = lessons.get(position);
 
-        holder.tvWeek.setText("Bài " + lesson.getLessonId());
+        holder.tvWeek.setText("Tuần " + lesson.getWeek());
         holder.tvLessonName.setText(lesson.getName());
         holder.cbIsLearned.setChecked(lesson.isStatus());
     }

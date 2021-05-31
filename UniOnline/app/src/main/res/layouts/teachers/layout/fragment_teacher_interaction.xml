@@ -80,7 +80,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:contentPadding="3dp"
-        app:layout_constraintEnd_toStartOf="@+id/cvTeacherMark"
+        app:layout_constraintEnd_toStartOf="@+id/cvTeacherAttendant"
         app:layout_constraintStart_toEndOf="@+id/cvTeacherSchedule"
         app:layout_constraintTop_toBottomOf="@+id/tvTeacherInteraction">
 
@@ -121,9 +121,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Mark Card View -->
+    <!-- Attendant Card View -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvTeacherMark"
+        android:id="@+id/cvTeacherAttendant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -139,13 +139,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/txtMark"
+                android:id="@+id/txtAttendant"
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="@string/vn_mark"
+                android:text="@string/vn_attendant"
                 android:textAlignment="center"
                 android:textColor="@color/main_color"
                 android:textSize="14sp"
@@ -229,7 +229,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:contentPadding="3dp"
-        app:layout_constraintEnd_toStartOf="@+id/cvTeacherMark"
+        app:layout_constraintEnd_toStartOf="@+id/cvTeacherAccount"
         app:layout_constraintStart_toEndOf="@+id/cvTeacherSchedule"
         app:layout_constraintTop_toBottomOf="@+id/cvTeacherClass">
 
@@ -281,7 +281,7 @@
         app:cardElevation="5dp"
         app:contentPadding="3dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvTeacherMark">
+        app:layout_constraintTop_toBottomOf="@+id/cvTeacherAttendant">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

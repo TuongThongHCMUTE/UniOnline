@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
@@ -91,8 +92,9 @@ public class TeacherListClassesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Fill data from Firebase
-        mData = FirebaseDatabase.getInstance().getReference("Classes").child("2020_2021_HK1");
-        mData.addValueEventListener(new ValueEventListener() {
+        mData = FirebaseDatabase.getInstance().getReference("Classes").child(Common.semester.getSemesterId());
+        Query query = mData.orderByChild("teacherId").equalTo(Common.user.getUserId());
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 classes.clear();

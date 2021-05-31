@@ -17,6 +17,7 @@ import com.example.unionline.Adapters.Students.AttendanceAdapter;
 import com.example.unionline.Common;
 import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.Class;
+import com.example.unionline.DTO.Semester;
 import com.example.unionline.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,7 +59,7 @@ public class StudentHomeFragment extends Fragment {
         listener = new AttendanceAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getContext(), StudentAttendanceActivity.class);
+                Intent intent = new Intent(getActivity(), StudentAttendanceActivity.class);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("attendance", (Serializable) listAttendance.get(position));

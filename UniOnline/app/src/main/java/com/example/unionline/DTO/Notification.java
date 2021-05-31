@@ -10,16 +10,18 @@ public class Notification {
     private String title;
     private String content;
     private int image;
+    private String sentFrom;
     private String sentTo;
     private String createDate;
 
     public Notification(){}
 
-    public Notification(String id, String title, String content, int image, String sentTo, String createDate) {
+    public Notification(String id, String title, String content, int image, String sentFrom, String sentTo, String createDate) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.image = image;
+        this.sentFrom = sentFrom;
         this.sentTo = sentTo;
         this.createDate = createDate;
     }
@@ -70,5 +72,13 @@ public class Notification {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getSentFrom() {
+        return sentFrom;
+    }
+
+    public void setSentFrom(String sentFrom) {
+        this.sentFrom = sentFrom;
     }
 }

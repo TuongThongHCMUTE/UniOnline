@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.unionline.Common;
-import com.example.unionline.DAO.Dao;
 import com.example.unionline.DTO.AbsenceApplication;
 import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.Class;
@@ -23,10 +22,9 @@ import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
-import com.example.unionline.Views.Admin.AdminMainActivity;
+import com.example.unionline.Views.Manager.MainActivity;
 import com.example.unionline.Views.Students.StudentMainActivity;
 import com.example.unionline.Views.Teachers.TeacherMainActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -40,16 +38,16 @@ import java.util.ListIterator;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNav;
-    DatabaseReference mData;
-    private static Dao<Class> classDao;
-
     Spinner spRoles;
     Button btLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+
+        Common common = new Common();
 
         setSpinnerItems();
 
@@ -61,19 +59,24 @@ public class LoginActivity extends AppCompatActivity {
 
         Common.user = new User();
         Common.user.setUserId("18110234");
+        setSpinnerItems();
+
+        //addDataV2();
+
 
         btLogin = findViewById(R.id.btLogin);
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(spRoles.getSelectedItem().toString() == Common.roleStudent){
+                if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleStudent)){
                     startActivity(new Intent(LoginActivity.this, StudentMainActivity.class));
                     return;
-                } else if(spRoles.getSelectedItem().toString() == Common.roleTeacher){
+                } else if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleTeacher)){
                     startActivity(new Intent(LoginActivity.this, TeacherMainActivity.class));
                     return;
-                } else if (spRoles.getSelectedItem().toString() == Common.roleAdmin){
-                    startActivity(new Intent(LoginActivity.this, AdminMainActivity.class));
+                }
+                else if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleManager)){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     return;
                 }
             }
@@ -87,11 +90,11 @@ public class LoginActivity extends AppCompatActivity {
         spRoles = findViewById(R.id.spRoles);
 
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add(Common.roleAdmin);
-        arrayList.add(Common.roleManager);
-        arrayList.add(Common.roleTeacher);
-        arrayList.add(Common.roleStudent);
-        arrayList.add(Common.roleParent);
+        arrayList.add(Common.userRoles.get(Common.roleAdmin));
+        arrayList.add(Common.userRoles.get(Common.roleManager));
+        arrayList.add(Common.userRoles.get(Common.roleTeacher));
+        arrayList.add(Common.userRoles.get(Common.roleStudent));
+        arrayList.add(Common.userRoles.get(Common.roleParent));
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -155,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
         attendance.setClassId(class_s.getClassId());
         attendance.setLessonId(lesson.getLessonId());
         attendance.setStudentId(user.getUserId());
-        attendance.setState("Trễ");
+        attendance.setState(2);
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Attendances").child(semester.getSemesterId());
         key = mDatabase.push().getKey();
@@ -173,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
         aa.setId(key);
         mDatabase.setValue(aa);
 
-        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute, "1", "1");
+        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute,"1", "1", "1");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Notifications").child(String.valueOf(notification.getId())).setValue(notification);
     }
@@ -236,7 +239,7 @@ public class LoginActivity extends AppCompatActivity {
         attendance.setClassId(class_s.getClassId());
         attendance.setLessonId(lesson.getLessonId());
         attendance.setStudentId(user.getUserId());
-        attendance.setState("Trễ");
+        attendance.setState(2);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Attendances").child(semester.getSemesterId()).child(class_s.getClassId()).child(attendance.getLessonId()).child(attendance.getStudentId()).setValue(enrollment);
 
@@ -256,7 +259,7 @@ public class LoginActivity extends AppCompatActivity {
         Common.class_ = class_s;
         Common.semester = semester;
 
-        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute, "1", "1");
+        Notification notification = new Notification("1", "1", "1", R.drawable.logo_hcmute,"1", "1", "1");
 
 
         ArrayList<User> users;

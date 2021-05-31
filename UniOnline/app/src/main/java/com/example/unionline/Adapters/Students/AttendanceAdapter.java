@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.unionline.Common;
 import com.example.unionline.DTO.Attendance;
 import com.example.unionline.R;
 
@@ -44,14 +45,14 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
         holder.tvRoom.setText(attendance.getClassRoom());
 
 
-        if(attendance.getState().equals("Chưa điểm danh")){
+        if(attendance.getState() == Common.ATTENDANCE_NOT_YET){
             holder.tvState.setText("Chưa học");
         } else {
             holder.tvState.setText("Đã học");
         }
 
         holder.tvFullTime.setText(attendance.getFullDate()  + " | " + attendance.getFullTime());
-        holder.tvAttendanceState.setText(attendance.getState());
+        holder.tvAttendanceState.setText(Common.attendanceNames.get(attendance.getState()));
     }
 
     @Override

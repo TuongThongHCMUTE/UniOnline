@@ -3,17 +3,26 @@ package com.example.unionline.DTO;
 public class AbsenceApplication {
     private String id;
     private String classId;
+    private String className;
+    private String classTime;
     private String studentId;
+    private String studentName;
     private String reason;
+    private String dateOff;
+    private String dateCreate;
     private int state;
 
     public AbsenceApplication(){}
 
-    public AbsenceApplication(String id, String classId, String studentId, String reason, int state) {
+    public AbsenceApplication(String id, String classId, String className, String classTime, String studentId, String reason, String dateOff, String dateCreate, int state) {
         this.id = id;
         this.classId = classId;
+        this.className = className;
+        this.classTime = classTime;
         this.studentId = studentId;
         this.reason = reason;
+        this.dateOff = dateOff;
+        this.dateCreate = dateCreate;
         this.state = state;
     }
 
@@ -33,6 +42,22 @@ public class AbsenceApplication {
         this.classId = classId;
     }
 
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getClassTime() {
+        return classTime;
+    }
+
+    public void setClassTime(String classTime) {
+        this.classTime = classTime;
+    }
+
     public String getStudentId() {
         return studentId;
     }
@@ -47,6 +72,22 @@ public class AbsenceApplication {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getDateOff() {
+        return dateOff;
+    }
+
+    public void setDateOff(String dateOff) {
+        this.dateOff = dateOff;
+    }
+
+    public String getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(String dateCreate) {
+        this.dateCreate = dateCreate;
     }
 
     public int getState() {

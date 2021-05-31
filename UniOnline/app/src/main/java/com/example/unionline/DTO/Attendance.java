@@ -1,6 +1,8 @@
 package com.example.unionline.DTO;
 
-public class Attendance {
+import java.io.Serializable;
+
+public class Attendance implements Serializable {
     private String id;
     private String classId;
     private String className;
@@ -10,14 +12,16 @@ public class Attendance {
     private String lessonId;
     private String lessonName;
     private String studentId;
-    private String state;
+    private String studentName;
+    private int state;
 
     public Attendance(){}
 
-    public Attendance(String classId, String lessonId, String studentId, String state) {
+    public Attendance(String classId, String lessonId, String studentId, String studentName, int state) {
         this.classId = classId;
         this.lessonId = lessonId;
         this.studentId = studentId;
+        this.studentName = studentName;
         this.state = state;
     }
 
@@ -92,11 +96,19 @@ public class Attendance {
         this.studentId = studentId;
     }
 
-    public String getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 }
