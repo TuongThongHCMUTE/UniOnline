@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.unionline.Common;
+import com.example.unionline.DAO.Dao;
 import com.example.unionline.DTO.AbsenceApplication;
 import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.Class;
@@ -22,8 +23,10 @@ import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
+import com.example.unionline.Views.Admin.AdminMainActivity;
 import com.example.unionline.Views.Students.StudentMainActivity;
 import com.example.unionline.Views.Teachers.TeacherMainActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,6 +39,10 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private BottomNavigationView bottomNav;
+    DatabaseReference mData;
+    private static Dao<Class> classDao;
 
     Spinner spRoles;
     Button btLogin;
@@ -64,6 +71,9 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 } else if(spRoles.getSelectedItem().toString() == Common.roleTeacher){
                     startActivity(new Intent(LoginActivity.this, TeacherMainActivity.class));
+                    return;
+                } else if (spRoles.getSelectedItem().toString() == Common.roleAdmin){
+                    startActivity(new Intent(LoginActivity.this, AdminMainActivity.class));
                     return;
                 }
             }

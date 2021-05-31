@@ -5,21 +5,31 @@ public class User {
     private String password;
     private String name;
     private String email;
-    private String phone;
+    private Long phone;
+    private String major;
+    private String address;
     private boolean isActive;
+    private int role;
 
-    public User() {
-
-    }
-
-    public User(String userId, String password, String name, String email, String phone, boolean isActive) {
+    public User(String userId, String password, String name, String email, Long phone, String major, boolean isActive, int role, String address) {
         this.userId = userId;
         this.password = password;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.isActive = isActive;
+        this.major = major;
+        this.role = role;
+        this.address = address;
     }
+
+    public User() {
+
+    }
+
+    public String getAddress() { return address; }
+
+    public void setAddress(String address) { this.address = address; }
 
     public String getUserId() {
         return userId;
@@ -53,19 +63,25 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
+
+    public String getMajor() { return major; }
+
+    public void setMajor(String major) { this.major = major; }
 
     public boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
+    public void setActive(boolean active) { isActive = active; }
+
+    public int getRole() { return role; }
+
+    public void setRole(int role) { this.role = role; }
 }
