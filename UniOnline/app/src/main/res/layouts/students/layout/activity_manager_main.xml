@@ -35,4 +35,31 @@
     <!--        tools:layout="@layout/thoikhoabieu">-->
 
     <!--    </fragment>-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/manager_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_navigation_background"
+        android:foregroundGravity="fill_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/manager_bottom_navigation">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <FrameLayout
+        android:id="@+id/manager_container"
+        android:layout_width="413dp"
+        android:layout_height="674dp"
+        android:layout_above="@+id/manager_bottom_navigation"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/manager_bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

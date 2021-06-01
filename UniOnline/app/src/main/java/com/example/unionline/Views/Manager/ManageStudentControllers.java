@@ -137,7 +137,6 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         studentAdapter=new StudentAdapter(getContext(),classUsers,listener);
         System.out.println(classUsers.size());
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),1,RecyclerView.VERTICAL,false);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(studentAdapter);
 
@@ -201,7 +200,8 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         enrollment.setStudentName(user.getName());
         enrollment.setFinalScore(0);
         enrollment.setMidScore(0);
-        enrollment.setFullDate(classModel1.getStartDate());
+        String fulldate=classModel1.getStartDate()+" | "+changeTime(classModel1.getStartTime())+" - "+changeTime(classModel1.getEndTime());
+        enrollment.setFullDate(fulldate);
         enrollment.setState(1);
         String key;
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Enrollments").child(classModel1.getSemesterId());
@@ -313,4 +313,54 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         String dateString = simpleDateFormat.format(date);
         return dateString;
     }
+
+    public String changeTime(String time)
+    {
+        String timeString="";
+        System.out.println("Number is "+time);
+        int convertString=Integer.parseInt(time);
+        switch (convertString)
+        {
+            case 1:
+                timeString="7:00";
+                break;
+            case 2:
+                timeString="7:50";
+                break;
+            case 3:
+                timeString="8:50";
+                break;
+            case 4:
+                timeString="9:40";
+                break;
+            case 5:
+                timeString="10:40";
+                break;
+            case 7:
+                timeString="12:30";
+                break;
+            case 8:
+                timeString="13:20";
+                break;
+            case 9:
+                timeString="14:20";
+                break;
+            case 10:
+                timeString="15:10";
+                break;
+            case 11:
+                timeString="16:10";
+                break;
+            case 12:
+                timeString="17:50";
+                break;
+            case 13:
+                timeString="6:00";
+                break;
+            default:
+                timeString="7:40";
+                break;
+        }
+        return timeString;
+        }
 }

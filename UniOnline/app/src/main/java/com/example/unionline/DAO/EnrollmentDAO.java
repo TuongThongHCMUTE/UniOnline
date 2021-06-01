@@ -2,6 +2,7 @@ package com.example.unionline.DAO;
 
 import com.example.unionline.Common;
 import com.example.unionline.DTO.Attendance;
+import com.example.unionline.DTO.ClassModel1;
 import com.example.unionline.DTO.Enrollment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,4 +33,16 @@ public class EnrollmentDAO {
                 .child(String.valueOf(enrollment.getId()))
                 .setValue(enrollment);
     }
+
+    public boolean deleteEnrollMent(Enrollment enrollment,ClassModel1 classModel1) {
+        try {
+            System.out.println(classModel1.getSemesterId()+enrollment.getId()+ "Is there");
+            mDataBase = FirebaseDatabase.getInstance().getReference();
+            mDataBase.child(path).child(classModel1.getSemesterId()).child(enrollment.getId()).removeValue();
+            return true;
+        } catch (Error error){
+            return false;
+        }
+    }
+
 }

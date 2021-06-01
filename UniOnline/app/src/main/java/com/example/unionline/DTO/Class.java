@@ -32,6 +32,20 @@ public class Class implements Serializable {
         this.state = state;
         this.isActive = isActive;
     }
+    public Class(String classId, String semesterId, String teacherId, String className, Integer capacity, String room, String startTime, String endTime, String startDate, String endDate, String state, boolean isActive) {
+        this.classId = classId;
+        this.semesterId = semesterId;
+        this.teacherId = teacherId;
+        this.className = className;
+        this.capacity = capacity;
+        this.room = room;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.state = state;
+        this.isActive = isActive;
+    }
 
     public String getClassId() {
         return classId;

@@ -49,8 +49,8 @@ public class AdminQlkAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_qlk_account);
 
         btnBack = findViewById(R.id.btn_back_quanly);
-        btnAddNewQlkAccount = findViewById(R.id.btn_add_quanly);
-        btnSearch = findViewById(R.id.btn_admin_qlk_search);
+        //btnAddNewQlkAccount = findViewById(R.id.btn_add_quanly);
+        //btnSearch = findViewById(R.id.btn_admin_qlk_search);
         btnEditQlk = findViewById(R.id.btn_edit_qlk);
         editTextSearching = findViewById(R.id.et_box_search_qlk);
         recyclerViewQlk = findViewById(R.id.rv_admin_qlkhoa_account);

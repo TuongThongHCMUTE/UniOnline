@@ -35,22 +35,137 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Thêm sinh viên vào lớp"
-            android:textColor="@color/white"
-            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+
+            android:textStyle="bold"
             tools:layout_editor_absoluteX="95dp"
             tools:layout_editor_absoluteY="5dp" />
-
-
-        <!--        <ImageButton-->
-        <!--            android:id="@+id/imageButton17"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:srcCompat="@drawable/notice"-->
-
-        <!--            tools:layout_editor_absoluteX="355dp"-->
-        <!--            tools:layout_editor_absoluteY="3dp" />-->
-
     </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:text="Mã học phần"
+        android:textColor="@color/main_color"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvHocPhan"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHocPhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:text="tvMaHocPhan"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvLop"
+        app:layout_constraintStart_toStartOf="@+id/tvLop" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:text="Tên lớp học"
+        android:textColor="@color/main_color"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvLop"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="13dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvGVien"
+        app:layout_constraintStart_toStartOf="@+id/tvGVien" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="176dp"
+        android:text="Giảng viên"
+        android:textColor="@color/main_color"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGVien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="9dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvSSo"
+        app:layout_constraintEnd_toEndOf="@+id/tvSSo" />
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="9dp"
+        android:text="Sỉ số"
+        android:textColor="@color/main_color"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="Phòng học"
+        android:textColor="@color/main_color"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView43"
+        app:layout_constraintTop_toBottomOf="@+id/textView43" />
+
+    <TextView
+        android:id="@+id/tvSSo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="7dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvPhong"
+        app:layout_constraintStart_toStartOf="@+id/tvPhong" />
+
+    <TextView
+        android:id="@+id/tvPhong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="3dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView44"
+        app:layout_constraintTop_toTopOf="@+id/textView44" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rycyclerview_themsinhvien"
@@ -68,109 +183,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPhong"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:text="Mã học phần"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvHocPhan"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvHocPhan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:text="tvMaHocPhan"
-        app:layout_constraintBottom_toTopOf="@+id/tvLop"
-        app:layout_constraintStart_toStartOf="@+id/tvLop" />
-
-    <TextView
-        android:id="@+id/textView39"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:text="Tên lớp học"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvLop"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvLop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginBottom="13dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/tvGVien"
-        app:layout_constraintStart_toStartOf="@+id/tvGVien" />
-
-    <TextView
-        android:id="@+id/textView41"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="176dp"
-        android:text="Giảng viên"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvGVien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="9dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/tvSSo"
-        app:layout_constraintEnd_toEndOf="@+id/tvSSo" />
-
-    <TextView
-        android:id="@+id/textView43"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="9dp"
-        android:text="Sỉ số"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView41" />
-
-    <TextView
-        android:id="@+id/textView44"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:text="Phòng học"
-        app:layout_constraintStart_toStartOf="@+id/textView43"
-        app:layout_constraintTop_toBottomOf="@+id/textView43" />
-
-    <TextView
-        android:id="@+id/tvSSo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginBottom="7dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/tvPhong"
-        app:layout_constraintStart_toStartOf="@+id/tvPhong" />
-
-    <TextView
-        android:id="@+id/tvPhong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="3dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView44"
-        app:layout_constraintTop_toTopOf="@+id/textView44" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
