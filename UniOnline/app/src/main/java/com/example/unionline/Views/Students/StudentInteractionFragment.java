@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 public class StudentInteractionFragment extends Fragment {
 
-    CardView cvSchedule, cvClass, cvMark, cvStudentApplication;
+    CardView cvSchedule, cvClass, cvMark, cvStudentApplication, cvNews, cvStudentTuition;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +47,12 @@ public class StudentInteractionFragment extends Fragment {
         cvStudentApplication = view.findViewById(R.id.cvStudentApplication);
         cvStudentApplication.setOnClickListener(onClickListener);
 
+        cvNews = view.findViewById(R.id.cvStudentNews);
+        cvNews.setOnClickListener(onClickListener);
+
+        cvStudentTuition = view.findViewById(R.id.cvStudentTuition);
+        cvStudentTuition.setOnClickListener(onClickListener);
+
     }
 
     private View.OnClickListener onClickListener = (View v) -> {
@@ -67,7 +73,15 @@ public class StudentInteractionFragment extends Fragment {
             case R.id.cvStudentApplication:
                 intent = new Intent(this.getActivity(), StudentAbsenceApplicationActivity.class);
                 startActivity(intent);
-
+                break;
+            case R.id.cvStudentNews:
+                intent = new Intent(this.getActivity(), StudentNewsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.cvStudentTuition:
+                intent = new Intent(this.getActivity(), StudentTuitionActivity.class);
+                startActivity(intent);
+                break;
         }
     };
 }

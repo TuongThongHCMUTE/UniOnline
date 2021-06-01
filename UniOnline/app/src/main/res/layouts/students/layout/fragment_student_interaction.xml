@@ -229,7 +229,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:contentPadding="3dp"
-        app:layout_constraintEnd_toStartOf="@+id/cvStudentNotification"
+        app:layout_constraintEnd_toStartOf="@+id/cvStudentNews"
         app:layout_constraintStart_toEndOf="@+id/cvStudentAssignment"
         app:layout_constraintTop_toBottomOf="@+id/cvStudentClass">
 
@@ -271,7 +271,7 @@
 
     <!-- Notification Card View -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvStudentNotification"
+        android:id="@+id/cvStudentNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

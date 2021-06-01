@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNav;
+   private BottomNavigationView bottomNav;
     DatabaseReference mData;
     private static Dao<Class> classDao;
 
@@ -44,7 +44,7 @@ public class AdminMainActivity extends AppCompatActivity {
      * When user selects an item on bottom navigation bar, fragment container will be replaced with
      * corresponding fragment
      */
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = (@NonNull MenuItem item) -> {
+   private BottomNavigationView.OnNavigationItemSelectedListener navListener = (@NonNull MenuItem item) -> {
         Fragment selectedFragment = null;
 
         // Set selected fragment by corresponding fragment
@@ -63,5 +63,5 @@ public class AdminMainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.admin_fragment_container, selectedFragment).commit();
         return true;
-    };
+    }
 }

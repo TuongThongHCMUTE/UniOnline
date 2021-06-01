@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unionline.Adapters.Students.NotificationAdapter;
+import com.example.unionline.Common;
+import com.example.unionline.DTO.Enrollment;
 import com.example.unionline.DTO.Notification;
 import com.example.unionline.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,6 +26,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -33,6 +36,8 @@ public class StudentNotificationFragment extends Fragment {
     ArrayList<Notification> listNotification;
     NotificationAdapter notificationAdapter;
     DatabaseReference mDatabase;
+    
+    ArrayList<String> classIds;
 
     private NotificationAdapter.RecyclerViewClickListener listener;
 
@@ -42,6 +47,7 @@ public class StudentNotificationFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_student_notification, container, false);
 
         setOnClickListener();
+        getListClasses();
         setRecyclerView(root);
 
         return root;
@@ -77,7 +83,13 @@ public class StudentNotificationFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Notification notification = dataSnapshot.getValue(Notification.class);
 
-                    listNotification.add(notification);
+                    for(int i=0;i<classIds.size();i++){
+                        String classID = classIds.get(i);
+                        if(notification.getSentTo().contains(classID)){
+                            listNotification.add(notification);
+                            break;
+                        }
+                    }
                 }
                 notificationAdapter.notifyDataSetChanged();
             }
@@ -85,6 +97,29 @@ public class StudentNotificationFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+    private void getListClasses() {
+        classIds = new ArrayList<String>();
+
+        // Fill data from Firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference("Enrollments").child(Common.semester.getSemesterId());
+        Query query = mDatabase.orderByChild("studentId").equalTo(Common.user.getUserId());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                classIds.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Enrollment enrollment = dataSnapshot.getValue(Enrollment.class);
+
+                    classIds.add(enrollment.getClassId());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
