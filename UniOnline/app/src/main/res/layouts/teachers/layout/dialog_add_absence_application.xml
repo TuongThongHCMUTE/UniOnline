@@ -13,14 +13,11 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toTopOf="parent"><![CDATA[>
 
-        <ImageView
-            android:id="@+id/left_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+
+        ]]>
 
         <TextView
             android:id="@+id/activity_name"
@@ -36,6 +33,16 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout2"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/txtTittle"
         android:layout_width="wrap_content"
@@ -47,7 +54,7 @@
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edContent" />
+        app:layout_constraintTop_toBottomOf="@+id/edtContent" />
 
     <TextView
         android:id="@+id/txtContent"
@@ -66,7 +73,7 @@
     <!-- Footer -->
 
     <TextView
-        android:id="@+id/txtContent2"
+        android:id="@+id/tvDateOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="30/05/2021"
@@ -79,9 +86,9 @@
         app:layout_constraintTop_toTopOf="@+id/txtContent" />
 
     <EditText
-        android:id="@+id/edContent"
+        android:id="@+id/edtContent"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
@@ -99,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spClassNames"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -109,16 +116,15 @@
         app:layout_constraintTop_toTopOf="@+id/txtTittle" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btSave"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Button"
+        android:text="Lưu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtContent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
