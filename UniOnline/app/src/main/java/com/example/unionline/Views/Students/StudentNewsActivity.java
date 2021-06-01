@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class StudentNewsActivity extends AppCompatActivity {
@@ -45,7 +47,13 @@ public class StudentNewsActivity extends AppCompatActivity {
         listener = new  NewsAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                // Do something
+                Intent intent = new Intent(StudentNewsActivity.this, StudentNewsDetailActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("news", (Serializable) newss.get(position));
+                intent.putExtras(bundle);
+
+                startActivity(intent);
             }
         };
     }
