@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.unionline.DTO.Class;
+import com.example.unionline.DTO.ClassModel1;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -69,5 +70,18 @@ public class ClassDAO {
         });
         return aClass[0];
     }
-
+    public void setValude(ClassModel1 classModel1)
+    {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        mDataBase.child("Classes").child(classModel1.getSemesterId()).child(classModel1.getClassId()).setValue(classModel1);
+    }
+    public boolean deleteClass(ClassModel1 classModel1) {
+        try {
+            mDataBase = FirebaseDatabase.getInstance().getReference();
+            mDataBase.child(path).child(classModel1.getSemesterId()).child(classModel1.getClassId()).removeValue();
+            return true;
+        } catch (Error error){
+            return false;
+        }
+    }
 }

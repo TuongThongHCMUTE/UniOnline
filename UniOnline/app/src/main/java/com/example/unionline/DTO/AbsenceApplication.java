@@ -1,5 +1,9 @@
 package com.example.unionline.DTO;
 
+import android.text.format.DateFormat;
+
+import java.util.Calendar;
+
 public class AbsenceApplication {
     private String id;
     private String classId;
@@ -14,7 +18,7 @@ public class AbsenceApplication {
 
     public AbsenceApplication(){}
 
-    public AbsenceApplication(String id, String classId, String className, String classTime, String studentId, String studentName, String reason, String dateOff, String dateCreate, int state) {
+    public AbsenceApplication(String id, String classId, String className, String classTime, String studentId, String studentName, String reason, String dateOff, int state) {
         this.id = id;
         this.classId = classId;
         this.className = className;
@@ -23,7 +27,7 @@ public class AbsenceApplication {
         this.studentName = studentName;
         this.reason = reason;
         this.dateOff = dateOff;
-        this.dateCreate = dateCreate;
+        this.dateCreate = DateFormat.format("mm:hh dd/MM/yyyy", Calendar.getInstance()).toString();;
         this.state = state;
     }
 

@@ -12,11 +12,13 @@ public class Common {
     public static Semester semester;
     public static Class class_;
 
-    public static final String roleAdmin = "Admin";
-    public static final String roleManager = "Quản lý khoa";
-    public static final String roleTeacher = "Giảng viên";
-    public static final String roleStudent = "Sinh viên";
-    public static final String roleParent = "Phụ huynh";
+    // User roles
+    public static final int roleAdmin = 0;
+    public static final int roleManager = 1;
+    public static final int roleTeacher = 2;
+    public static final int roleStudent = 3;
+    public static final int roleParent = 4;
+    public static ArrayList<String> userRoles;
 
     // Attendance states
     public static final int ATTENDANCE_NOT_YET = 0;
@@ -37,6 +39,14 @@ public class Common {
     public static ArrayList<String> aaNames;
 
     public Common(){
+        //Set user role
+        userRoles = new ArrayList<String>();
+        userRoles.add("Admin");
+        userRoles.add("Quản lý khoa");
+        userRoles.add("Giảng viên");
+        userRoles.add("Sinh viên");
+        userRoles.add("Phụ huynh");
+
         //Set attendance name
         attendanceNames = new ArrayList<>();
         attendanceNames.add("Chưa điểm danh");

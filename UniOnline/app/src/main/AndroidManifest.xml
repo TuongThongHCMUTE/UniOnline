@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniOnline">
+
         <activity android:name=".Views.Teachers.TeacherAbsenceApplicationActivity"></activity>
+        <activity android:name=".Adapters.Students.StudentNewsActivity"></activity>
         <activity android:name=".Views.Teachers.TeacherListLessonsActivity" />
         <activity android:name=".Views.Students.StudentAbsenceApplicationActivity" />
         <activity android:name=".Views.Teachers.TeacherAttendantUpdateActivity" />
@@ -24,6 +26,7 @@
         <activity android:name=".Views.Teachers.TeacherClassDetailActivity" />
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity" />
+        <activity android:name=".Views.Manager.MainActivity" />
         <activity android:name=".Views.Common.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

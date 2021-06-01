@@ -22,6 +22,7 @@ import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
+import com.example.unionline.Views.Manager.MainActivity;
 import com.example.unionline.Views.Students.StudentMainActivity;
 import com.example.unionline.Views.Teachers.TeacherMainActivity;
 import com.google.firebase.database.DatabaseReference;
@@ -44,10 +45,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Common common = new Common();
+
         setSpinnerItems();
 
         //addDataV2();
-        Common common = new Common();
 
         Common.semester = new Semester();
         Common.semester.setSemesterId("2020_2021_HK1");
@@ -55,16 +57,24 @@ public class LoginActivity extends AppCompatActivity {
 
         Common.user = new User();
         Common.user.setUserId("18110234");
+        setSpinnerItems();
+
+        //addDataV2();
+
 
         btLogin = findViewById(R.id.btLogin);
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(spRoles.getSelectedItem().toString() == Common.roleStudent){
+                if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleStudent)){
                     startActivity(new Intent(LoginActivity.this, StudentMainActivity.class));
                     return;
-                } else if(spRoles.getSelectedItem().toString() == Common.roleTeacher){
+                } else if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleTeacher)){
                     startActivity(new Intent(LoginActivity.this, TeacherMainActivity.class));
+                    return;
+                }
+                else if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleManager)){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     return;
                 }
             }
@@ -78,11 +88,11 @@ public class LoginActivity extends AppCompatActivity {
         spRoles = findViewById(R.id.spRoles);
 
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add(Common.roleAdmin);
-        arrayList.add(Common.roleManager);
-        arrayList.add(Common.roleTeacher);
-        arrayList.add(Common.roleStudent);
-        arrayList.add(Common.roleParent);
+        arrayList.add(Common.userRoles.get(Common.roleAdmin));
+        arrayList.add(Common.userRoles.get(Common.roleManager));
+        arrayList.add(Common.userRoles.get(Common.roleTeacher));
+        arrayList.add(Common.userRoles.get(Common.roleStudent));
+        arrayList.add(Common.userRoles.get(Common.roleParent));
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
