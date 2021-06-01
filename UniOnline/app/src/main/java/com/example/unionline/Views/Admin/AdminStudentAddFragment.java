@@ -49,7 +49,7 @@ public class AdminStudentAddFragment extends DialogFragment {
         et_mail_Student = view.findViewById(R.id.et_admin_parent_add_email);
         et_address_Student = view.findViewById(R.id.et_admin_parent_add_address);
         et_major_student = view.findViewById(R.id.et_admin_student_edit_major);
-        btn_add_Student = view.findViewById(R.id.ib_add_quanly_phuhuynh);
+        btn_add_Student = view.findViewById(R.id.iv_add_quanly_sinhvien);
 
         btn_add_Student.setOnClickListener(new View.OnClickListener() {
             @Override

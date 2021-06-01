@@ -18,8 +18,7 @@ public class AbsenceApplication {
 
     public AbsenceApplication(){}
 
-    public AbsenceApplication(String id, String classId, String className, String classTime,
-                              String studentId, String studentName, String reason, String dateOff, int state) {
+    public AbsenceApplication(String id, String classId, String className, String classTime, String studentId, String studentName, String reason, String dateOff, int state) {
         this.id = id;
         this.classId = classId;
         this.className = className;
@@ -72,6 +71,14 @@ public class AbsenceApplication {
         this.studentId = studentId;
     }
 
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
     public String getReason() {
         return reason;
     }
@@ -102,13 +109,5 @@ public class AbsenceApplication {
 
     public void setState(int state) {
         this.state = state;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
     }
 }

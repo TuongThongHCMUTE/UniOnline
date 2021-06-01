@@ -22,6 +22,7 @@ import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
+import com.example.unionline.Views.Admin.AdminMainActivity;
 import com.example.unionline.Views.Manager.MainActivity;
 import com.example.unionline.Views.Students.StudentMainActivity;
 import com.example.unionline.Views.Teachers.TeacherMainActivity;
@@ -76,6 +77,9 @@ public class LoginActivity extends AppCompatActivity {
                 else if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleManager)){
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     return;
+                }
+                else if (spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleAdmin)){
+                    startActivity(new Intent(LoginActivity.this, AdminMainActivity.class));
                 }
             }
         });
@@ -142,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
         enrollment.setId(key);
         mDatabase.child(key).setValue(enrollment);
 
+        /*
         //Add lesson
         Lesson lesson = new Lesson();
         lesson.setLessonId("1");
@@ -162,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
         key = mDatabase.push().getKey();
         attendance.setId(key);
         mDatabase.child(key).setValue(attendance);
-
+*/
         // Add absence application
         AbsenceApplication aa = new AbsenceApplication();
         aa.setClassId(class_s.getClassId());
@@ -224,6 +229,7 @@ public class LoginActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Enrollments").child(semester.getSemesterId()).child(class_s.getClassId()).child(enrollment.getStudentId()).setValue(enrollment);
 
+        /*
         //Add lesson
         Lesson lesson = new Lesson();
         lesson.setClassId(class_s.getClassId());
@@ -240,7 +246,7 @@ public class LoginActivity extends AppCompatActivity {
         attendance.setState(2);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Attendances").child(semester.getSemesterId()).child(class_s.getClassId()).child(attendance.getLessonId()).child(attendance.getStudentId()).setValue(enrollment);
-
+*/
         AbsenceApplication aa = new AbsenceApplication();
         //aa.setId(0);
         aa.setClassId(class_s.getClassId());
