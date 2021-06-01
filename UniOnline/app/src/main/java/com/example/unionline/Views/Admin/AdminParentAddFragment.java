@@ -74,7 +74,7 @@ public class AdminParentAddFragment extends DialogFragment {
                     return;
                 }
                 else {
-                    User parentAdd = new User("1", "123", et_name_parent.getText().toString(), et_mail_parent.getText().toString(), Long.valueOf(et_phone_parent.getText().toString()), null, true, 4, et_address_parent.getText().toString());
+                    User parentAdd = new User("1", "123", et_name_parent.getText().toString(), et_mail_parent.getText().toString(), et_phone_parent.getText().toString(), null, true, 4, et_address_parent.getText().toString());
                     AdminDAO.getInstance().setParentValue(parentAdd);
                     Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 }
