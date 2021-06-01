@@ -23,7 +23,7 @@
         android:textSize="20sp" />
 
     <ImageButton
-        android:id="@+id/ib_add_quanly_phuhuynh"
+        android:id="@+id/btn_add_quanly_phuhuynh"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/tv_header_quanly"
