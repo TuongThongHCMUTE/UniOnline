@@ -13,6 +13,8 @@ public class Enrollment implements Serializable {
     private double midScore;
     private double finalScore;
     private int stateMark;
+    private int classTuition;
+    private boolean isPayClassTuition;
 
     public Enrollment(){};
 
@@ -107,5 +109,29 @@ public class Enrollment implements Serializable {
 
     public void setState(int stateMark) {
         this.stateMark = stateMark;
+    }
+
+    public int getStateMark() {
+        return stateMark;
+    }
+
+    public void setStateMark(int stateMark) {
+        this.stateMark = stateMark;
+    }
+
+    public int getClassTuition() {
+        return classTuition;
+    }
+
+    public void setClassTuition(int classTuition) {
+        this.classTuition = classTuition;
+    }
+
+    public boolean isPayClassTuition() {
+        return isPayClassTuition;
+    }
+
+    public void setPayClassTuition(boolean payClassTuition) {
+        isPayClassTuition = payClassTuition;
     }
 }

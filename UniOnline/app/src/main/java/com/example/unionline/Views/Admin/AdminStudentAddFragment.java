@@ -49,7 +49,7 @@ public class AdminStudentAddFragment extends DialogFragment {
         et_mail_Student = view.findViewById(R.id.et_admin_parent_add_email);
         et_address_Student = view.findViewById(R.id.et_admin_parent_add_address);
         et_major_student = view.findViewById(R.id.et_admin_student_edit_major);
-        btn_add_Student = view.findViewById(R.id.ib_add_quanly_phuhuynh);
+        btn_add_Student = view.findViewById(R.id.iv_add_quanly_sinhvien);
 
         btn_add_Student.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class AdminStudentAddFragment extends DialogFragment {
                     return;
                 }
                 else {
-                    User studentAdd = new User("1", "123", et_name_Student.getText().toString(), et_mail_Student.getText().toString(), Long.valueOf(et_phone_Student.getText().toString()), "CNTT", true, 4, et_address_Student.getText().toString());
+                    User studentAdd = new User("1", "123", et_name_Student.getText().toString(), et_mail_Student.getText().toString(), et_phone_Student.getText().toString(), "CNTT", true, 4, et_address_Student.getText().toString());
                     AdminDAO.getInstance().setStudentValue(studentAdd);
                     Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 }

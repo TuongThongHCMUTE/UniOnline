@@ -229,7 +229,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:contentPadding="3dp"
-        app:layout_constraintEnd_toStartOf="@+id/cvStudentNotification"
+        app:layout_constraintEnd_toStartOf="@+id/cvStudentNews"
         app:layout_constraintStart_toEndOf="@+id/cvStudentAssignment"
         app:layout_constraintTop_toBottomOf="@+id/cvStudentClass">
 
@@ -271,7 +271,7 @@
 
     <!-- Notification Card View -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvStudentNotification"
+        android:id="@+id/cvStudentNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -287,13 +287,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvNotification"
+                android:id="@+id/tvNews"
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="@string/vn_notification"
+                android:text="@string/vn_news"
                 android:textAlignment="center"
                 android:textColor="@color/main_color"
                 android:textSize="14sp"
@@ -301,10 +301,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgNotification" />
+                app:layout_constraintTop_toBottomOf="@+id/imgNews" />
 
             <ImageView
-                android:id="@+id/imgNotification"
+                android:id="@+id/imgNews"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="18dp"

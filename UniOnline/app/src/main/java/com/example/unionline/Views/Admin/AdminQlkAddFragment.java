@@ -78,7 +78,7 @@ public class AdminQlkAddFragment extends DialogFragment {
                     return;
                 }
                 else {
-                    User qlkAdd = new User("1", "123", et_name_qlk.getText().toString(), et_mail_qlk.getText().toString(), Long.valueOf(et_phone_qlk.getText().toString()), "CNTT", true, 3, null);
+                    User qlkAdd = new User("1", "123", et_name_qlk.getText().toString(), et_mail_qlk.getText().toString(), et_phone_qlk.getText().toString(), "CNTT", true, 3, null);
                     AdminDAO.getInstance().setQlkhoaValue(qlkAdd);
                     Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 }

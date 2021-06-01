@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Views.Teachers.Fragments.TeacherAccountFragment">
+    android:background="@color/layout_background_color"
+    tools:context=".Views.Teachers.AccountActivity">
+
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <Button
         android:id="@+id/btnUpdateProfile"

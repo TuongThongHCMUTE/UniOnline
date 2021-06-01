@@ -48,7 +48,7 @@ public class AdminParentAddFragment extends DialogFragment {
         et_phone_parent = view.findViewById(R.id.et_admin_parent_add_phone);
         et_mail_parent = view.findViewById(R.id.et_admin_parent_add_email);
         et_address_parent = view.findViewById(R.id.et_admin_parent_add_address);
-        btn_add_parent = view.findViewById(R.id.ib_add_quanly_phuhuynh);
+        btn_add_parent = view.findViewById(R.id.btn_add_quanly_phuhuynh);
 
         btn_add_parent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class AdminParentAddFragment extends DialogFragment {
                     return;
                 }
                 else {
-                    User parentAdd = new User("1", "123", et_name_parent.getText().toString(), et_mail_parent.getText().toString(), Long.valueOf(et_phone_parent.getText().toString()), null, true, 4, et_address_parent.getText().toString());
+                    User parentAdd = new User("1", "123", et_name_parent.getText().toString(), et_mail_parent.getText().toString(), et_phone_parent.getText().toString(), null, true, 4, et_address_parent.getText().toString());
                     AdminDAO.getInstance().setParentValue(parentAdd);
                     Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 }

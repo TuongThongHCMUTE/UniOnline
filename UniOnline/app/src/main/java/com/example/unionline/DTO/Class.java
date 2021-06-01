@@ -15,6 +15,7 @@ public class Class implements Serializable {
     private String startDate;
     private String endDate;
     private String state;
+    private int tuition;
     private boolean isActive;
 
     public Class() {
@@ -143,4 +144,11 @@ public class Class implements Serializable {
         isActive = active;
     }
 
+    public int getTuition() {
+        return tuition;
+    }
+
+    public void setTuition(int tuition) {
+        this.tuition = tuition;
+    }
 }
