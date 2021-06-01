@@ -22,6 +22,7 @@ import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
+import com.example.unionline.Views.Admin.AdminMainActivity;
 import com.example.unionline.Views.Manager.MainActivity;
 import com.example.unionline.Views.Students.StudentMainActivity;
 import com.example.unionline.Views.Teachers.TeacherMainActivity;
@@ -78,6 +79,9 @@ public class LoginActivity extends AppCompatActivity {
                 else if(spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleManager)){
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     return;
+                }
+                else if (spRoles.getSelectedItem().toString() == Common.userRoles.get(Common.roleAdmin)){
+                    startActivity(new Intent(LoginActivity.this, AdminMainActivity.class));
                 }
             }
         });

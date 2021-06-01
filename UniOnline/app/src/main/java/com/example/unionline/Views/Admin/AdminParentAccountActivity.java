@@ -98,8 +98,8 @@ public class AdminParentAccountActivity extends AppCompatActivity {
         btnEditParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdminParentEditFragment adminParentEditFragment = new AdminParentEditFragment();
-                adminParentEditFragment.show(getSupportFragmentManager(), "Chỉnh sửa Phụ huynh");
+//                AdminParentEditFragment adminParentEditFragment = new AdminParentEditFragment();
+//                adminParentEditFragment.show(getSupportFragmentManager(), "Chỉnh sửa Phụ huynh");
             }
         });
 

@@ -9,10 +9,6 @@ import android.view.MenuItem;
 
 import com.example.unionline.DAO.Dao;
 import com.example.unionline.R;
-import com.example.unionline.Views.Teachers.Fragments.TeacherAccountFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherHomeFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherInteractionFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherNotificationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,11 +35,6 @@ public class AdminMainActivity extends AppCompatActivity {
         mData = FirebaseDatabase.getInstance().getReference();
     }
 
-    /**
-     * Change Fragment when selecting item on Bottom Navigation Bar
-     * When user selects an item on bottom navigation bar, fragment container will be replaced with
-     * corresponding fragment
-     */
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = (@NonNull MenuItem item) -> {
         Fragment selectedFragment = null;
 
