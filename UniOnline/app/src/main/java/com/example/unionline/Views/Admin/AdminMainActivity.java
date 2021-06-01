@@ -27,11 +27,11 @@ public class AdminMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.admin_fragment_container, new AdminAccountFragment()).commit();
+        //getSupportFragmentManager().beginTransaction()
+                //.replace(R.id.admin_fragment_container, new AdminAccountFragment()).commit();
 
         // Mapping bottomNav with view
-        bottomNav = findViewById(R.id.admin_bottom_navigation);
+        //bottomNav = findViewById(R.id.admin_bottom_navigation);
 
         // Set event listener for bottomNav
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -60,8 +60,8 @@ public class AdminMainActivity extends AppCompatActivity {
                 break;
         }
         // Replace fragment container with selected fragment
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.admin_fragment_container, selectedFragment).commit();
+        //getSupportFragmentManager().beginTransaction()
+                //.replace(R.id.admin_fragment_container, selectedFragment).commit();
         return true;
     };
 }
