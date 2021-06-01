@@ -92,7 +92,7 @@ public class TeacherAccountFragment extends Fragment {
 
     private void setUpdateProfileDialog() {
         View view = getLayoutInflater().inflate(R.layout.dialog_update_profile, null);
-        dialogUpdateProfile = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+        dialogUpdateProfile = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         dialogUpdateProfile.setContentView(view);
 
         edName = dialogUpdateProfile.findViewById(R.id.edName);
@@ -123,7 +123,7 @@ public class TeacherAccountFragment extends Fragment {
 
     private void setChangePassworDialog() {
         View view = getLayoutInflater().inflate(R.layout.dialog_change_password, null);
-        dialogChangePassword = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+        dialogChangePassword = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         dialogChangePassword.setContentView(view);
 
         edCurrentPass = dialogChangePassword.findViewById(R.id.edCurrentPass);
