@@ -48,6 +48,7 @@ public class TeacherListNotificationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_list_notifications);
 
+        setToolbar();
         setOnClickListener();
         setRecyclerView();
 
@@ -59,7 +60,16 @@ public class TeacherListNotificationsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    private void setToolbar() {
+        ImageView backIcon = findViewById(R.id.left_icon);
+        backIcon.setOnClickListener((View v) -> {
+            this.finish();
+        });
+
+        TextView txtToolbarName = findViewById(R.id.activity_name);
+        txtToolbarName.setText("Gửi thông báo");
     }
 
     private void setOnClickListener() {

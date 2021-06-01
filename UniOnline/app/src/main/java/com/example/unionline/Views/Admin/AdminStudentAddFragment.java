@@ -75,7 +75,7 @@ public class AdminStudentAddFragment extends DialogFragment {
                     return;
                 }
                 else {
-                    User studentAdd = new User("1", "123", et_name_Student.getText().toString(), et_mail_Student.getText().toString(), Long.valueOf(et_phone_Student.getText().toString()), "CNTT", true, 4, et_address_Student.getText().toString());
+                    User studentAdd = new User("1", "123", et_name_Student.getText().toString(), et_mail_Student.getText().toString(), et_phone_Student.getText().toString(), "CNTT", true, 4, et_address_Student.getText().toString());
                     AdminDAO.getInstance().setStudentValue(studentAdd);
                     Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 }

@@ -5,13 +5,13 @@ public class User {
     private String password;
     private String name;
     private String email;
-    private Long phone;
+    private String phone;
     private String major;
     private String address;
     private boolean isActive;
     private int role;
 
-    public User(String userId, String password, String name, String email, Long phone, String major, boolean isActive, int role, String address) {
+    public User(String userId, String password, String name, String email, String phone, String major, boolean isActive, int role, String address) {
         this.userId = userId;
         this.password = password;
         this.name = name;
@@ -63,11 +63,11 @@ public class User {
         this.email = email;
     }
 
-    public Long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
