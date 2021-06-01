@@ -15,12 +15,12 @@ import com.example.unionline.Views.Teachers.Fragments.TeacherUpdateProcessFragme
 
 import java.io.Serializable;
 
-public class PageAdapter extends FragmentPagerAdapter {
+public class ClassPagerAdapter extends FragmentPagerAdapter {
 
     private int numberOfTabs;
     private Class aClass;
 
-    public PageAdapter(@NonNull FragmentManager fm, int numberOfTabs, Class aClass) {
+    public ClassPagerAdapter(@NonNull FragmentManager fm, int numberOfTabs, Class aClass) {
         super(fm);
         this.numberOfTabs = numberOfTabs;
         this.aClass = aClass;

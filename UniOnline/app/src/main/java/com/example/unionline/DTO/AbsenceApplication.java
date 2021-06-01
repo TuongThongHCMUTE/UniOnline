@@ -14,12 +14,13 @@ public class AbsenceApplication {
 
     public AbsenceApplication(){}
 
-    public AbsenceApplication(String id, String classId, String className, String classTime, String studentId, String reason, String dateOff, String dateCreate, int state) {
+    public AbsenceApplication(String id, String classId, String className, String classTime, String studentId, String studentName, String reason, String dateOff, String dateCreate, int state) {
         this.id = id;
         this.classId = classId;
         this.className = className;
         this.classTime = classTime;
         this.studentId = studentId;
+        this.studentName = studentName;
         this.reason = reason;
         this.dateOff = dateOff;
         this.dateCreate = dateCreate;
@@ -64,6 +65,14 @@ public class AbsenceApplication {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
     public String getReason() {
