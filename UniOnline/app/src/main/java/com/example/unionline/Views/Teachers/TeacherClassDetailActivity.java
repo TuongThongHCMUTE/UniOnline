@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.unionline.Adapters.Teachers.PageAdapter;
+import com.example.unionline.Adapters.Teachers.ClassPagerAdapter;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.R;
 import com.google.android.material.tabs.TabItem;
@@ -23,7 +23,7 @@ public class TeacherClassDetailActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabItem tabClassInfo, tabUpdateProcess, tabMark;
-    public PageAdapter pageAdapter;
+    public ClassPagerAdapter pageAdapter;
     private Class currentClass;
 
     @Override
@@ -59,7 +59,7 @@ public class TeacherClassDetailActivity extends AppCompatActivity {
         viewPager           = (ViewPager) findViewById(R.id.teacher_class_viewPager);
 
         // Set Adapter for ViewPager
-        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), currentClass);
+        pageAdapter = new ClassPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), currentClass);
         viewPager.setAdapter(pageAdapter);
 
         // Set event onTabSelected

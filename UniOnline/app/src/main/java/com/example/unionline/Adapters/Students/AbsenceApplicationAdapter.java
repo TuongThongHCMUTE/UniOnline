@@ -31,7 +31,7 @@ public class AbsenceApplicationAdapter extends RecyclerView.Adapter<AbsenceAppli
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_student_class, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_student_absence_application, parent, false);
         return new ViewHolder(view);
     }
 
@@ -39,7 +39,7 @@ public class AbsenceApplicationAdapter extends RecyclerView.Adapter<AbsenceAppli
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AbsenceApplication absenceApplication = absenceApplications.get(position);
 
-        holder.tvStudentName.setText(absenceApplication.getClassName());
+        holder.tvStudentName.setText(absenceApplication.getStudentName());
         holder.tvCreateDate.setText(absenceApplication.getDateCreate());
         holder.tvReasonAbsent.setText(absenceApplication.getReason());
         holder.tvClassName.setText(absenceApplication.getClassName());
