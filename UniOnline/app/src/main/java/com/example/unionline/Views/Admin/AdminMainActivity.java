@@ -55,5 +55,5 @@ public class AdminMainActivity extends AppCompatActivity {
         //getSupportFragmentManager().beginTransaction()
                 //.replace(R.id.admin_fragment_container, selectedFragment).commit();
         return true;
-    }
+    };
 }

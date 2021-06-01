@@ -92,7 +92,6 @@
                     android:background="@drawable/input_bg"
                     android:padding="8dp"
                     android:paddingStart="24dp"
-                    android:text="Đinh Bách Thông"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -103,9 +102,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/input_bg"
+                    android:inputType="number"
                     android:padding="8dp"
                     android:paddingStart="24dp"
-                    android:text="18110207"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/edName" />
@@ -120,7 +119,6 @@
                     android:inputType="textEmailAddress"
                     android:padding="8dp"
                     android:paddingStart="24dp"
-                    android:text="01/06/2021"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/edPhone" />

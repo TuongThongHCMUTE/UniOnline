@@ -106,7 +106,14 @@ public class TeacherAccountFragment extends Fragment {
         btnUpdate = dialogUpdateProfile.findViewById(R.id.btnUpdate);
         btnUpdate.setOnClickListener((View v) -> {
             String name = edName.getText().toString();
+            if(name == "") {
+                edName.setError("Nhập tên của bạn!");
+            }
+
             String phone = edPhone.getText().toString();
+            if(phone == "") {
+                edPhone.setError("Nhập số điện thoại!D");
+            }
 
             updateProfile(name, phone);
         });
