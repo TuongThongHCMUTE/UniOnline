@@ -31,7 +31,6 @@ public class AdminMainActivity extends AppCompatActivity {
         mData = FirebaseDatabase.getInstance().getReference();
     }
 
-
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = (@NonNull MenuItem item) -> {
         Fragment selectedFragment = null;
 
