@@ -25,24 +25,6 @@
         <activity android:name=".Views.Admin.AdminTeacherAddDelActivity" />
         <activity android:name=".Views.Admin.AdminStudentAddEditMainActivity" />
         <activity android:name=".Views.Admin.ActivityAdminMain" />
-        <activity android:name=".Views.Teachers.TeacherListLessonsActivity" />
-
-        <activity android:name=".Views.Students.StudentTuitionActivity"></activity>
-        <activity android:name=".Views.Students.StudentNewsActivity" />
-        <activity android:name=".Views.Teachers.TeacherListLessonsActivity" />
-        <activity android:name=".Views.Admin.AdminMainActivity"></activity>
-        <activity android:name=".Views.Admin.AdminTeacherAccountActivity"/>
-        <activity android:name=".Views.Admin.AdminStudentAccountActivity"/>
-        <activity android:name=".Views.Admin.AdminParentAccountActivity"/>
-        <activity android:name=".Views.Admin.AdminQlkAccountActivity"/>
-        <activity android:name=".Views.Admin.AdminChangePasswordActivity"/>
-        <activity android:name=".Views.Admin.AdminInfoUpdateActivity"/>
-        <activity android:name=".Views.Admin.AdminQlkAddDelMainActivity"/>
-        <activity android:name=".Views.Admin.AdminParentAddEditMainActivity"/>
-        <activity android:name=".Views.Admin.AdminTeacherAddDelActivity"/>
-        <activity android:name=".Views.Admin.AdminStudentAddEditMainActivity"/>
-        <activity android:name=".Views.Admin.ActivityAdminMain"/>
-        <activity android:name=".Views.Teachers.AccountActivity"></activity>
         <activity android:name=".Views.Students.StudentAbsenceApplicationActivity" />
         <activity android:name=".Views.Teachers.TeacherAttendantUpdateActivity" />
         <activity android:name=".Views.Teachers.TeacherAttendantActivity" />
@@ -54,6 +36,7 @@
         <activity android:name=".Views.Students.StudentEnrollmentActivity" />
         <activity android:name=".Views.Students.StudentScheduleActivity" />
         <activity android:name=".Views.Teachers.TeacherClassDetailActivity" />
+        <activity android:name=".Views.Teachers.TeacherAbsenceApplicationActivity" />
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity" />
         <activity android:name=".Views.Manager.MainActivity" />
