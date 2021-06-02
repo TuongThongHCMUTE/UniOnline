@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniOnline">
         <activity android:name=".Views.Students.StudentAbcenceAppDetailActivity"></activity>
+        <activity android:name=".Views.Teachers.TeacherScheduleActivity"></activity>
         <activity android:name=".Views.Students.StudentNewsDetailActivity" />
         <activity android:name=".Views.Students.StudentTuitionActivity" />
         <activity android:name=".Views.Students.StudentNewsActivity" />

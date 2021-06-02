@@ -142,7 +142,7 @@ public class TeacherPendingApplicationFragment extends Fragment {
 
     private void setDialog() {
         View view = getLayoutInflater().inflate(R.layout.dialog_application, null);
-        dialog = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+        dialog = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         dialog.setContentView(view);
 
         tvStudentId = dialog.findViewById(R.id.txtStudentIdValue);

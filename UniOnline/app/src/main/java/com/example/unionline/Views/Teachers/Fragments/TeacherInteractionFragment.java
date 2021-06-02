@@ -17,6 +17,7 @@ import com.example.unionline.Views.Teachers.TeacherAddNotificationActivity;
 import com.example.unionline.Views.Teachers.TeacherAttendantActivity;
 import com.example.unionline.Views.Teachers.TeacherListClassesActivity;
 import com.example.unionline.Views.Teachers.TeacherListNotificationsActivity;
+import com.example.unionline.Views.Teachers.TeacherScheduleActivity;
 
 public class TeacherInteractionFragment extends Fragment {
 
@@ -50,6 +51,7 @@ public class TeacherInteractionFragment extends Fragment {
         cvNotification.setOnClickListener(onClickListener);
         cvAttendant.setOnClickListener(onClickListener);
         cvApplication.setOnClickListener(onClickListener);
+        cvSchedule.setOnClickListener(onClickListener);
 
         return view;
     }
@@ -72,7 +74,7 @@ public class TeacherInteractionFragment extends Fragment {
 
         switch (v.getId()) {
             case R.id.cvTeacherSchedule:
-                intent = new Intent(this.getActivity(), TeacherListClassesActivity.class);
+                intent = new Intent(this.getActivity(), TeacherScheduleActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cvTeacherClass:
