@@ -38,6 +38,11 @@ public class AbsenceApplicationAdapter extends RecyclerView.Adapter<AbsenceAppli
         return new ViewHolder(view);
     }
 
+    /**
+     * Map data with view
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AbsenceApplication absenceApplication = absenceApplications.get(position);
@@ -59,10 +64,10 @@ public class AbsenceApplicationAdapter extends RecyclerView.Adapter<AbsenceAppli
 
         TextView tvCreateDate, tvReasonAbsent, tvClassName, tvClassTime, tvAbsentState, tvDateOff;
 
+        // Set view
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ConstraintLayout itemAA;
-
 
             tvCreateDate = itemView.findViewById(R.id.tvCreateDate);
             tvReasonAbsent = itemView.findViewById(R.id.tvReasonAbsent);
@@ -88,6 +93,7 @@ public class AbsenceApplicationAdapter extends RecyclerView.Adapter<AbsenceAppli
         }
     }
 
+    // Set on click and on create context menu
     public interface RecyclerViewClickListener {
         void onCLick(View v, int position);
         void onCreateContextMenu(ContextMenu menu, int position);

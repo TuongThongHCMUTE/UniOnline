@@ -28,6 +28,7 @@ import com.example.unionline.Common;
 import com.example.unionline.DTO.Enrollment;
 import com.example.unionline.DTO.Notification;
 import com.example.unionline.R;
+import com.example.unionline.Sorter.NotificationDateSorter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -70,39 +71,6 @@ public class StudentNotificationFragment extends Fragment {
         };
     }
 
-    private void openNotificationDiaLog(Notification notification) {
-        // Create and set some attributes for dialog
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.diaglog_show_notification);
-        dialog.setCancelable(true);
-
-        // Get dialog window and set some attributes for window
-        Window window = dialog.getWindow();
-        if(window == null) {
-            return;
-        }
-
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = Gravity.CENTER;
-        window.setAttributes(windowAttributes);
-
-        // Mapping variables with view in layout
-        TextView tvTittle = (TextView) dialog.findViewById(R.id.txtTittle);
-        TextView tvContent = (TextView) dialog.findViewById(R.id.txtContent);
-        TextView tvDate = (TextView) dialog.findViewById(R.id.txtDate);
-
-        // Set message content corresponding to type
-        tvTittle.setText(notification.getTitle());
-        tvContent.setText(notification.getContent());
-        tvDate.setText("Ngày gửi: " + notification.getCreateDate());
-
-        // Show dialog
-        dialog.show();
-    }
     private void setRecyclerView(View root){
         recyclerView = root.findViewById(R.id.rvNotifications);
 
@@ -128,6 +96,7 @@ public class StudentNotificationFragment extends Fragment {
                         String classID = classIds.get(i);
                         if(notification.getSentTo().contains(classID)){
                             listNotification.add(notification);
+                            listNotification.sort(new NotificationDateSorter());
                             break;
                         }
                     }
@@ -163,5 +132,43 @@ public class StudentNotificationFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+    /**
+     * Create and show a message dialog when user click on notification
+     * @param notification: notification to show
+     */
+    private void openNotificationDiaLog(Notification notification) {
+        // Create and set some attributes for dialog
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.diaglog_show_notification);
+        dialog.setCancelable(true);
+
+        // Get dialog window and set some attributes for window
+        Window window = dialog.getWindow();
+        if(window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+
+        // Mapping variables with view in layout
+        TextView tvTittle = (TextView) dialog.findViewById(R.id.txtTittle);
+        TextView tvContent = (TextView) dialog.findViewById(R.id.txtContent);
+        TextView tvDate = (TextView) dialog.findViewById(R.id.txtDate);
+
+        // Set message content corresponding to type
+        tvTittle.setText(notification.getTitle());
+        tvContent.setText(notification.getContent());
+        tvDate.setText("Ngày gửi: " + notification.getCreateDate());
+
+        // Show dialog
+        dialog.show();
     }
 }

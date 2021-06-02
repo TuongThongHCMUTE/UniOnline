@@ -85,15 +85,16 @@ public class StudentNewsActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(newsAdapter);
 
-        // Get data from firebase
+        // Get list News data from firebase
         mDatabase = FirebaseDatabase.getInstance().getReference("News");
-        mDatabase.orderByChild("createDate").addValueEventListener(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 newss.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     News news = dataSnapshot.getValue(News.class);
 
+                    // If user have this roles much see the news
                     if(news.getSentTo().contains("Sinh viên") || news.getSentTo().equals("Toàn trường")){
                         newss.add(news);
                     }

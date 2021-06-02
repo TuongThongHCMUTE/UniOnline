@@ -53,6 +53,7 @@ public class StudentTuitionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_tuition);
 
+        // Format int to string with currency format
         formatter = new DecimalFormat("#,###");
         isPayClassTuition = true;
 
@@ -60,26 +61,29 @@ public class StudentTuitionActivity extends AppCompatActivity {
         tvActivityName = (TextView) findViewById(R.id.activity_name);
         tvActivityName.setText("Học phí");
 
+        // Set event click for backIcon on toolbar
+        // When click backIcon: finish this activity
+        backIcon = (ImageView) findViewById(R.id.left_icon);
+        backIcon.setOnClickListener((View v) -> {
+            this.finish();
+        });
+
+        // Click to display tuition to RecyclerView
         tvPaidTuition = findViewById(R.id.tvPaidTuition);
         tvMuchPaidTuition = findViewById(R.id.tvMuchPaidTuition);
 
+        // Set data is paid tuition to display
         cvPaidTuition = findViewById(R.id.cvPaidTuition);
         cvPaidTuition.setOnClickListener((View v) -> {
             isPayClassTuition = true;
             setDataForRecyclerView();
         });
 
+        // Set data is much paid tuition to display
         cvMuchPaidTuition = findViewById(R.id.cvMuchPaidTuition);
         cvMuchPaidTuition.setOnClickListener((View v) -> {
             isPayClassTuition = false;
             setDataForRecyclerView();
-        });
-
-        // Set event click for backIcon on toolbar
-        // When click backIcon: finish this activity
-        backIcon = (ImageView) findViewById(R.id.left_icon);
-        backIcon.setOnClickListener((View v) -> {
-            this.finish();
         });
 
         // Set event click for item in list enrollments
@@ -125,19 +129,23 @@ public class StudentTuitionActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Enrollment enrollment = dataSnapshot.getValue(Enrollment.class);
 
+                    // If tuition is paid or much pay add to list corresponding
                     if(enrollment.isPayClassTuition() == isPayClassTuition){
                         enrollments.add(enrollment);
                     }
 
+                    // Add to totalPaidTuition and totalMuchPaidTuition to display on text view
                     if(enrollment.isPayClassTuition()){
                         totalPaidTuition+=enrollment.getClassTuition();
                     } else {
                         totalMuchPaidTuition += enrollment.getClassTuition();
                     }
 
+                    // Format (totalPaidTuition) int to currency format to display tuition
                     formattedNumber = formatter.format(totalPaidTuition);
                     tvPaidTuition.setText(formattedNumber + " VND");
 
+                    // Format (totalMuchPaidTuition) int to currency format to display tuition
                     formattedNumber = formatter.format(totalMuchPaidTuition);
                     tvMuchPaidTuition.setText(formattedNumber + " VND");
                 }

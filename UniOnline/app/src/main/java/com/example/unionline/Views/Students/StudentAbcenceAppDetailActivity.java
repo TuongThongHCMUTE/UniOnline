@@ -25,7 +25,7 @@ public class StudentAbcenceAppDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_abcence_app_detail);
 
-        setToolBar();
+        setToolBar("Chi tiết đơn xin nghỉ");
 
         // Get data from intent
         Intent intent = getIntent();
@@ -38,10 +38,14 @@ public class StudentAbcenceAppDetailActivity extends AppCompatActivity {
         setView();
     }
 
-    private void setToolBar(){
+    /**
+     * Set tool bar for activity
+     * @param name
+     */
+    private void setToolBar(String name){
         // Set activity name on toolbar
         TextView tvActivityName = (TextView) findViewById(R.id.activity_name);
-        tvActivityName.setText("Chi tiết đơn xin nghỉ");
+        tvActivityName.setText(name);
 
         // Set event click for backIcon on toolbar
         // When click backIcon: finish this activity

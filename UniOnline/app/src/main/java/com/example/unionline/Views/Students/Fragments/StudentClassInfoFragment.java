@@ -13,12 +13,21 @@ import android.widget.TextView;
 import com.example.unionline.Common;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.Enrollment;
+import com.example.unionline.DTO.Lesson;
 import com.example.unionline.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentClassInfoFragment extends Fragment {
 
@@ -27,6 +36,8 @@ public class StudentClassInfoFragment extends Fragment {
     private Enrollment enrollment;
     private TextView tvClassName, tvClassId, tvStartDate, tvEndDate, tvStatus, tvRoom, tvTime, tvProcess;
     DatabaseReference mDatabase;
+
+    List<Lesson> lessons = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,5 +96,29 @@ public class StudentClassInfoFragment extends Fragment {
                 }
             }
         });
+
+        // Get list lesson to count process
+        mDatabase = FirebaseDatabase.getInstance().getReference("Lessons").child(Common.semester.getSemesterId());
+        Query query = mDatabase.orderByChild("classId").equalTo(enrollment.getClassId());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                lessons.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Lesson lesson = dataSnapshot.getValue(Lesson.class);
+                    lessons.add(lesson);
+                }
+
+                int totalLesson = lessons.size();
+                long learnedLesson = lessons.stream().filter(c -> c.isStatus() == true).count();
+                tvProcess.setText(learnedLesson + "/" + totalLesson + " buổi");
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
     }
+
 }

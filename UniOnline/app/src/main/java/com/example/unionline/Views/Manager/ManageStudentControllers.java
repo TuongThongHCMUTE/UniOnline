@@ -208,7 +208,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         //enrollment.setStudentCode(user.getEmail().substring(0,8));
 //        String fulldate=classModel1.getStartDate()+" | "+changeTime(classModel1.getStartTime())+" - "+changeTime(classModel1.getEndTime());
         enrollment.setFullDate(fulldate);
-        enrollment.setState(1);
+        enrollment.setStateMark(0);
         String key;
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Enrollments").child(classModel1.getSemesterId());
         key = mDatabase.push().getKey();

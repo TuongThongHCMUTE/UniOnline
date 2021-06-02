@@ -60,10 +60,12 @@ public class StudentEnrollmentActivity extends AppCompatActivity {
         setRecyclerView();
     }
 
+    // Set click for item recyclerView
     private void setOnClickListener() {
         listener = new EnrollmentAdapter.RecyclerViewClickListener() {
             @Override
             public void onCLick(View v, int position) {
+                // Click to open class detail
                 Intent intent = new Intent(StudentEnrollmentActivity.this, StudentClassDetailActivity.class);
 
                 Bundle bundle = new Bundle();
@@ -76,20 +78,6 @@ public class StudentEnrollmentActivity extends AppCompatActivity {
     }
 
     private void setRecyclerView() {
-
-        /*//Add enrollment
-        Enrollment enrollment = new Enrollment();
-        enrollment.setClassId("-Mah1bXNZ1gVfLAtjT7w");
-        enrollment.setClassName("Lập trình di động");
-        enrollment.setClassRoom("E1 - 503");
-        enrollment.setFullDate("20/05/2021 | 07:00 - 10:30");
-        enrollment.setStudentId("18110234");
-        enrollment.setStudentName("Lê Nhật Tường");
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Enrollments").child(Common.semester.getSemesterId());
-        String key = mDatabase.push().getKey();
-        enrollment.setId(key);
-        mDatabase.child(key).setValue(enrollment);*/
-
         // Initialize
         recyclerView = findViewById(R.id.rvClass);
 

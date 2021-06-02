@@ -56,6 +56,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvReasonAbsent" />
 
             <TextView
+                android:id="@+id/tvClassName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Lý do"
+                android:textAlignment="center"
+                android:textColor="@color/main_color"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCreateDate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvCreateDate" />
+
+            <TextView
                 android:id="@+id/tvCreateDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

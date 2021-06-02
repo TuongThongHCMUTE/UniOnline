@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.unionline.R;
@@ -17,8 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CommonForgotPasswordActivity extends AppCompatActivity {
 
-    private EditText etEmail;
-    private Button btResetPassword;
+    EditText etEmail;
+    Button btResetPassword;
+    ImageView backIcon;
 
     FirebaseAuth mAuth;
     
@@ -29,15 +31,25 @@ public class CommonForgotPasswordActivity extends AppCompatActivity {
         
         etEmail = (EditText)findViewById(R.id.etEmail);
 
+        // get and set button reset password
         btResetPassword = (Button) findViewById(R.id.btResetPassword);
         btResetPassword.setOnClickListener((View v) -> {
             resetPassword();
         });
+
+        backIcon = (ImageView) findViewById(R.id.left_icon);
+        backIcon.setOnClickListener((View v) -> {
+            this.finish();
+        });
     }
 
+    /**
+     * Reset password
+     */
     private void resetPassword() {
         String email = etEmail.getText().toString().trim();
-        
+
+        // Validate email
         if(!doValidate(email)){
             return;
         }
@@ -57,6 +69,11 @@ public class CommonForgotPasswordActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Validate email
+     * @param email
+     * @return true if email is correct
+     */
     private boolean doValidate(String email) {
         if (email.isEmpty()){
             etEmail.setError("Chưa nhập Email!");

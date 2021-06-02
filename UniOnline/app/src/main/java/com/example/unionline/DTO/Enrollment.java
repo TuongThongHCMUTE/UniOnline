@@ -107,14 +107,6 @@ public class Enrollment implements Serializable {
         this.finalScore = finalScore;
     }
 
-    public int getState() {
-        return stateMark;
-    }
-
-    public void setState(int stateMark) {
-        this.stateMark = stateMark;
-    }
-
     public int getStateMark() {
         return stateMark;
     }
