@@ -167,7 +167,7 @@ public class TeacherMarkFragment extends Fragment {
 
         // Set text
         tvStudentName.setText(score.getStudentName());
-        tvStudentId.setText(score.getStudentId());
+        tvStudentId.setText(score.getStudentCode());
 
         int stateMark = score.getStateMark();
         if(stateMark == 1) {

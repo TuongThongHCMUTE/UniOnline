@@ -12,6 +12,7 @@ public class AbsenceApplication implements Serializable {
     private String classTime;
     private String studentId;
     private String studentName;
+    private String studentCode;
     private String reason;
     private String dateOff;
     private String dateCreate;
@@ -119,5 +120,13 @@ public class AbsenceApplication implements Serializable {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(String studentCode) {
+        this.studentCode = studentCode;
     }
 }

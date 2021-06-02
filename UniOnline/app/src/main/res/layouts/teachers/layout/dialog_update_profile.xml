@@ -86,7 +86,7 @@
 
                 <EditText
                     android:id="@+id/edName"
-                    android:layout_width="280dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/input_bg"
@@ -98,7 +98,7 @@
 
                 <EditText
                     android:id="@+id/edPhone"
-                    android:layout_width="280dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/input_bg"
@@ -111,15 +111,16 @@
 
                 <EditText
                     android:id="@+id/edEmail"
-                    android:layout_width="280dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/input_bg"
                     android:enabled="false"
                     android:inputType="textEmailAddress"
                     android:padding="8dp"
-                    android:paddingStart="24dp"
-                    android:textSize="18sp"
+                    android:text="18110207@student.hcmute.edu.vn"
+                    android:textSize="14sp"
+                    android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/edPhone" />
 
@@ -129,7 +130,10 @@
                 android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/button_blue_outline"
                 android:text="Cập nhật"
                 android:textStyle="bold"/>

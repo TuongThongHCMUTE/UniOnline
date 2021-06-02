@@ -45,6 +45,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         int refuseColor = context.getColor(R.color.errorColor);
 
         String studentId = application.getStudentId();
+        String studentCode = application.getStudentCode();
         String studentName = application.getStudentName();
         int status = application.getState();
 
@@ -67,7 +68,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
                 break;
         }
 
-        holder.txtStudentId.setText(studentId);
+        holder.txtStudentId.setText(studentCode);
         holder.txtStudentName.setText(studentName);
 
         holder.txtState.setText(strStatus);
