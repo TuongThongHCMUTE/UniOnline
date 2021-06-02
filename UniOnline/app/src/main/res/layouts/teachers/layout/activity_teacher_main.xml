@@ -26,7 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/teacher_bottom_navigation"
-        android:layout_below="@id/topbar">
+        android:layout_below="@id/topbar"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="-1dp">
 
     </FrameLayout>
 

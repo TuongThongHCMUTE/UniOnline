@@ -45,7 +45,7 @@ public class StudentMarkActivity extends AppCompatActivity  {
 
         // Set activity name on toolbar
         tvActivityName = (TextView) findViewById(R.id.activity_name);
-        tvActivityName.setText("Lớp học");
+        tvActivityName.setText("Điểm số");
 
         tvAvgMark = findViewById(R.id.tvAvgMark);
         tvRate = findViewById(R.id.tvRate);
@@ -96,13 +96,31 @@ public class StudentMarkActivity extends AppCompatActivity  {
                     Enrollment enrollment = dataSnapshot.getValue(Enrollment.class);
                     enrollments.add(enrollment);
 
-                    avgMark += (enrollment.getMidScore() + enrollment.getFinalScore())/2;
-                    count++;
+                    if(enrollment.getStateMark() == 1){
+                        avgMark += (enrollment.getMidScore() + enrollment.getFinalScore())/2;
+                        count++;
+                    }
                 }
                 adapter.notifyDataSetChanged();
 
                 avgMark = avgMark/count;
-                tvAvgMark.setText(String.valueOf((Math.round(avgMark * 100) / 100)));
+                tvAvgMark.setText(String.valueOf((Math.round(avgMark * 100.0) / 100.0)));
+
+                String rate;
+                if(avgMark >= 9.0){
+                    rate = "Xuất sắc";
+                } else if(avgMark >= 8.0){
+                    rate = "Giỏi";
+                } else if(avgMark >= 6.5){
+                    rate = "Khá";
+                } else if(avgMark >= 5.0){
+                    rate = "Trung bình";
+                } else if(avgMark >= 0){
+                    rate = "Yếu";
+                } else {
+                    rate = "Không xếp loại";
+                }
+                tvRate.setText(rate);
             }
 
             @Override

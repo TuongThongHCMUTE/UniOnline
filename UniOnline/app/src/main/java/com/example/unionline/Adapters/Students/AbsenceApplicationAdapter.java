@@ -1,12 +1,15 @@
 package com.example.unionline.Adapters.Students;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unionline.Common;
@@ -39,12 +42,12 @@ public class AbsenceApplicationAdapter extends RecyclerView.Adapter<AbsenceAppli
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AbsenceApplication absenceApplication = absenceApplications.get(position);
 
-        holder.tvStudentName.setText(absenceApplication.getStudentName());
-        holder.tvCreateDate.setText(absenceApplication.getDateCreate());
+        holder.tvCreateDate.setText("Ngày gửi: " + absenceApplication.getDateCreate());
         holder.tvReasonAbsent.setText(absenceApplication.getReason());
         holder.tvClassName.setText(absenceApplication.getClassName());
         holder.tvClassTime.setText(absenceApplication.getClassTime());
         holder.tvAbsentState.setText(Common.aaNames.get(absenceApplication.getState()));
+        holder.tvDateOff.setText(absenceApplication.getDateOff());
     }
 
     @Override
@@ -52,30 +55,41 @@ public class AbsenceApplicationAdapter extends RecyclerView.Adapter<AbsenceAppli
         return absenceApplications.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
 
-        TextView tvStudentName, tvCreateDate, tvReasonAbsent, tvClassName, tvClassTime, tvAbsentState;
+        TextView tvCreateDate, tvReasonAbsent, tvClassName, tvClassTime, tvAbsentState, tvDateOff;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            ConstraintLayout itemAA;
 
-            tvStudentName = itemView.findViewById(R.id.tvStudentName);
+
             tvCreateDate = itemView.findViewById(R.id.tvCreateDate);
             tvReasonAbsent = itemView.findViewById(R.id.tvReasonAbsent);
             tvClassName = itemView.findViewById(R.id.tvClassName);
             tvClassTime = itemView.findViewById(R.id.tvClassTime);
             tvAbsentState = itemView.findViewById(R.id.tvAbsentState);
+            tvDateOff = itemView.findViewById(R.id.tvDateOff);
 
             itemView.setOnClickListener(this);
+
+            itemAA = itemView.findViewById(R.id.itemAbcenceApp);
+            itemAA.setOnCreateContextMenuListener(this);
         }
 
         @Override
         public void onClick(View v) {
             listener.onCLick(itemView, getAdapterPosition());
         }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            listener.onCreateContextMenu(menu, getAdapterPosition());
+        }
     }
 
     public interface RecyclerViewClickListener {
         void onCLick(View v, int position);
+        void onCreateContextMenu(ContextMenu menu, int position);
     }
 }

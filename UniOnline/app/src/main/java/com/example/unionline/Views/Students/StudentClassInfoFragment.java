@@ -69,7 +69,6 @@ public class StudentClassInfoFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-
                 }
                 else {
                     Class aClass = task.getResult().getValue(Class.class);

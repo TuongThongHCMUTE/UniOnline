@@ -60,19 +60,20 @@ public class StudentTuitionActivity extends AppCompatActivity {
         tvActivityName = (TextView) findViewById(R.id.activity_name);
         tvActivityName.setText("Học phí");
 
-        tvPaidTuition = findViewById(R.id.tvMuchPaidTuition);
+        tvPaidTuition = findViewById(R.id.tvPaidTuition);
         tvMuchPaidTuition = findViewById(R.id.tvMuchPaidTuition);
 
         cvPaidTuition = findViewById(R.id.cvPaidTuition);
         cvPaidTuition.setOnClickListener((View v) -> {
-
+            isPayClassTuition = true;
+            setDataForRecyclerView();
         });
 
         cvMuchPaidTuition = findViewById(R.id.cvMuchPaidTuition);
         cvMuchPaidTuition.setOnClickListener((View v) -> {
+            isPayClassTuition = false;
+            setDataForRecyclerView();
         });
-
-
 
         // Set event click for backIcon on toolbar
         // When click backIcon: finish this activity
@@ -100,6 +101,8 @@ public class StudentTuitionActivity extends AppCompatActivity {
 
         enrollments  = new ArrayList<>();
 
+        setDataForRecyclerView();
+
         adapter = new TuitionAdapter(this, enrollments, listener);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
@@ -107,7 +110,9 @@ public class StudentTuitionActivity extends AppCompatActivity {
 
         // Set adapter for recycler view
         recyclerView.setAdapter(adapter);
+    }
 
+    private void setDataForRecyclerView(){
         // Fill data from Firebase
         mDatabase = FirebaseDatabase.getInstance().getReference("Enrollments").child(Common.semester.getSemesterId());
         Query query = mDatabase.orderByChild("studentId").equalTo(Common.user.getUserId());
@@ -120,7 +125,9 @@ public class StudentTuitionActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Enrollment enrollment = dataSnapshot.getValue(Enrollment.class);
 
-                    enrollments.add(enrollment);
+                    if(enrollment.isPayClassTuition() == isPayClassTuition){
+                        enrollments.add(enrollment);
+                    }
 
                     if(enrollment.isPayClassTuition()){
                         totalPaidTuition+=enrollment.getClassTuition();

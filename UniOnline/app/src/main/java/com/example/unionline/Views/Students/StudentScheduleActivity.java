@@ -43,7 +43,7 @@ import java.util.Map;
 public class StudentScheduleActivity extends AppCompatActivity implements OnNavigationButtonClickedListener {
 
     ImageView backIcon, ivBackDate, ivNextDate;
-    TextView tvDate;
+    TextView tvActivityName, tvDate;
     Date date, calendarDate;
     String strDate;
 
@@ -71,6 +71,10 @@ public class StudentScheduleActivity extends AppCompatActivity implements OnNavi
 
         setOnClickListener();
         setRecyclerView();
+
+        // Set activity name on toolbar
+        tvActivityName = (TextView) findViewById(R.id.activity_name);
+        tvActivityName.setText("Thời khóa biểu");
 
         //Set event click for back icon
         backIcon = (ImageView) findViewById(R.id.left_icon);
@@ -156,6 +160,7 @@ public class StudentScheduleActivity extends AppCompatActivity implements OnNavi
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Attendance attendance = dataSnapshot.getValue(Attendance.class);
 
+                    assert attendance != null;
                     if(attendance.getFullDate()!=null){
                         if(attendance.getFullDate().equals(strDate)){
                             attendances.add(attendance);
@@ -218,12 +223,6 @@ public class StudentScheduleActivity extends AppCompatActivity implements OnNavi
         presentProperty.dateTextViewResource = R.id.text_view;
         desHashMap.put("present", presentProperty);
 
-        //For choose
-        Property chooseProperty = new Property();
-        chooseProperty.layoutResource = R.layout.calendar_choose_view;
-        chooseProperty.dateTextViewResource = R.id.text_view;
-        desHashMap.put("choose", chooseProperty);
-
         //Set desc hash map on custom calender
         customCalendar.setMapDescToProp(desHashMap);
 
@@ -245,7 +244,6 @@ public class StudentScheduleActivity extends AppCompatActivity implements OnNavi
 
                     dateHashMap.put(cal.get(Calendar.DAY_OF_MONTH), "present");
                 } catch (ParseException ex){
-
                 }
 
             }

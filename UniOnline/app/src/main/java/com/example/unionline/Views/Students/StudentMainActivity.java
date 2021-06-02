@@ -33,14 +33,17 @@ public class StudentMainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
-                        case R.id.nav_home:
+                        case R.id.nav_student_home:
                             selectedFragment = new StudentHomeFragment();
                             break;
-                        case R.id.nav_interaction:
+                        case R.id.nav_student_interaction:
                             selectedFragment = new StudentInteractionFragment();
                             break;
-                        case R.id.nav_notification:
+                        case R.id.nav_student_notification:
                             selectedFragment = new StudentNotificationFragment();
+                            break;
+                        case R.id.nav_student_account:
+                            selectedFragment = new StudentAccountFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction()

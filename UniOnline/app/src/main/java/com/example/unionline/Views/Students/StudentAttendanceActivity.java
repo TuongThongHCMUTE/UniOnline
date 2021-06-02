@@ -69,7 +69,7 @@ public class StudentAttendanceActivity extends AppCompatActivity {
 
     private void mapViewValue(){
 
-        tvActivityName.setText("Lớp học");
+        tvRoom.setText(attendance.getClassRoom());
 
         if(attendance.getState() == Common.ATTENDANCE_NOT_YET) {
             tvState.setText("Chưa học");
@@ -84,29 +84,26 @@ public class StudentAttendanceActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-
                 }
                 else {
                     Class aClass = task.getResult().getValue(Class.class);
 
                     tvClassName.setText(aClass.getClassName());
                     tvRoom.setText(aClass.getRoom());
-                }
-            }
-        });
 
-        // Get teacher
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Users").child("18110234").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-
-                }
-                else {
-                    User user = task.getResult().getValue(User.class);
-
-                    tvTeacherName.setText(user.getName());
+                    // Get teacher from id
+                    mDatabase = FirebaseDatabase.getInstance().getReference();
+                    mDatabase.child("Users").child(aClass.getTeacherId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if (!task.isSuccessful()) {
+                            }
+                            else {
+                                User user = task.getResult().getValue(User.class);
+                                tvTeacherName.setText(user.getName());
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -117,13 +114,13 @@ public class StudentAttendanceActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-
                 }
                 else {
                     Lesson lesson = task.getResult().getValue(Lesson.class);
 
                     tvLessonName.setText(lesson.getName());
                     tvLessonDescription.setText(lesson.getDescription());
+                    tvActivityName.setText("Buổi học thứ " + lesson.getWeek());
                 }
             }
         });

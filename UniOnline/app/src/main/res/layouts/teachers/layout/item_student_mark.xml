@@ -30,7 +30,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="Lập trình di động"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvMidMark"
@@ -40,7 +40,7 @@
             <!-- Midterm mark -->
             <TextView
                 android:id="@+id/tvMidMark"
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/input_bg"
@@ -49,7 +49,7 @@
                 android:paddingRight="8dp"
                 android:paddingBottom="4dp"
                 android:textAlignment="center"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tvFinalMark"
@@ -58,7 +58,7 @@
             <!-- Final mark -->
             <TextView
                 android:id="@+id/tvFinalMark"
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/input_bg"
@@ -67,7 +67,7 @@
                 android:paddingRight="8dp"
                 android:paddingBottom="4dp"
                 android:textAlignment="center"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

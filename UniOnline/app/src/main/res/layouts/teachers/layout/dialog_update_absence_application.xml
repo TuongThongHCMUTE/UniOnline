@@ -19,9 +19,8 @@
             android:id="@+id/activity_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Tạo đơn xin nghỉ"
+            android:layout_centerInParent="true"
+            android:text="Cập nhật lý do xin nghỉ"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -39,50 +38,8 @@
         app:layout_constraintEnd_toEndOf="@+id/relativeLayout2"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtTittle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Tới:"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtContent" />
-
-    <TextView
-        android:id="@+id/txtContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Ngày:"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTittle" />
-
 
     <!-- Footer -->
-
-    <TextView
-        android:id="@+id/tvDateOff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="30/05/2021"
-        android:textColor="@color/main_color"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:layout_constraintBottom_toBottomOf="@+id/txtContent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtContent"
-        app:layout_constraintTop_toTopOf="@+id/txtContent" />
 
     <EditText
         android:id="@+id/edtContent"
@@ -104,26 +61,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
-    <Spinner
-        android:id="@+id/spClassNames"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtTittle"
-        app:layout_constraintTop_toTopOf="@+id/txtTittle" />
-
     <Button
         android:id="@+id/btSave"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Lưu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtContent" />
+        app:layout_constraintTop_toBottomOf="@+id/edtContent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

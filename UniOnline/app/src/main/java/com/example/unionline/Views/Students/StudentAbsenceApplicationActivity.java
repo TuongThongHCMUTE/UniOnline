@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.format.DateFormat;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.unionline.Adapters.Students.AbsenceApplicationAdapter;
 import com.example.unionline.Common;
@@ -76,7 +79,7 @@ public class StudentAbsenceApplicationActivity extends AppCompatActivity {
         fabAddNAA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialog();
+                openAddDialog();
             }
         });
 
@@ -86,7 +89,7 @@ public class StudentAbsenceApplicationActivity extends AppCompatActivity {
         getListClasses();
     }
 
-    private void openDialog() {
+    private void openAddDialog() {
         EditText edtContent;
         Spinner spClassNames;
         TextView tvDateOff;
@@ -103,6 +106,10 @@ public class StudentAbsenceApplicationActivity extends AppCompatActivity {
         tvDateOff = view.findViewById(R.id.tvDateOff);
         ivClose = view.findViewById(R.id.iv_close);
         btSave = view.findViewById(R.id.btSave);
+
+        Calendar calendar = Calendar.getInstance();
+        String date = DateFormat.format("dd/MM/yyyy", calendar).toString();
+        tvDateOff.setText(date);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, classNames);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -129,6 +136,11 @@ public class StudentAbsenceApplicationActivity extends AppCompatActivity {
                 Enrollment enrollment = enrollments.get(spClassNames.getSelectedItemPosition());
                 String content = edtContent.getText().toString();
 
+                if(content.trim().isEmpty()){
+                    edtContent.setError("Không được để trống nội dung");
+                    edtContent.requestFocus();
+                    return;
+                }
                 // Add absence application
                 mDatabase = FirebaseDatabase.getInstance().getReference().child("AbsenceApplications").child(Common.semester.getSemesterId());
                 String key = mDatabase.push().getKey();
@@ -139,14 +151,15 @@ public class StudentAbsenceApplicationActivity extends AppCompatActivity {
 
                 mDatabase.child(aa.getId()).setValue(aa);
                 alertDialog.cancel();
-
+                Toast.makeText(StudentAbsenceApplicationActivity.this, "Thêm đơn thành công!", Toast.LENGTH_LONG).show();
             }
         });
-
 
         alertDialog.show();
     }
     private void openCalendar(TextView tvDate) {
+        tvDate.setError(null);
+
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DATE);
         int month = calendar.get(Calendar.MONTH);
@@ -160,11 +173,69 @@ public class StudentAbsenceApplicationActivity extends AppCompatActivity {
 
                 String date = DateFormat.format("dd/MM/yyyy", calendar_date).toString();
 
-                tvDate.setText(date);
+                if(calendar_date.before(calendar)){
+                    tvDate.setError("Ngày đã qua");
+                    tvDate.requestFocus();
+                } else {
+                    tvDate.setText(date);
+                }
             }
         }, year, month, day);
 
         datePickerDialog.show();
+    }
+
+    private void openUpdateDialog(AbsenceApplication aa) {
+        EditText edtContent;
+        ImageView ivClose;
+        Button btSave;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_update_absence_application, null);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setView(view);
+
+        edtContent = view.findViewById(R.id.edtContent);
+        edtContent.setText(aa.getReason());
+
+        ivClose = view.findViewById(R.id.iv_close);
+        btSave = view.findViewById(R.id.btSave);
+
+        ivClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.cancel();
+            }
+        });
+
+        btSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = edtContent.getText().toString();
+
+                if(content.trim().isEmpty()){
+                    edtContent.setError("Không được để trống nội dung");
+                    return;
+                }
+                // Add absence application
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("AbsenceApplications").child(Common.semester.getSemesterId());
+
+                aa.setReason(content);
+
+                mDatabase.child(aa.getId()).setValue(aa);
+                alertDialog.cancel();
+                Toast.makeText(StudentAbsenceApplicationActivity.this, "Cập nhật thành công!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    private void deleteAbsenceApplication(AbsenceApplication aa) {
+        mDatabase = FirebaseDatabase.getInstance().getReference("AbsenceApplications");
+        mDatabase.child(Common.semester.getSemesterId()).child(aa.getId()).removeValue();
+        Toast.makeText(StudentAbsenceApplicationActivity.this, "Xóa đơn thành công!", Toast.LENGTH_LONG).show();
+
     }
 
     private void getListClasses() {
@@ -197,15 +268,36 @@ public class StudentAbsenceApplicationActivity extends AppCompatActivity {
         listener = new AbsenceApplicationAdapter.RecyclerViewClickListener() {
             @Override
             public void onCLick(View v, int position) {
-                /*Intent intent = new Intent(StudentAbsenceApplicationActivity.this, StudentClassDetailActivity.class);
+                Intent intent = new Intent(StudentAbsenceApplicationActivity.this, StudentAbcenceAppDetailActivity.class);
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("enrollment", (Serializable) absenceApplications.get(position));
+                bundle.putSerializable("absenceApplication", (Serializable) absenceApplications.get(position));
                 intent.putExtras(bundle);
 
-                startActivity(intent);*/
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, int position) {
+                menu.add(position,0,0,"Cập nhật lý do xin ngỉ");
+                menu.add(position,1,1,"Xóa đơn");
             }
         };
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        int position = item.getGroupId();
+        AbsenceApplication aa = absenceApplications.get(position);
+        switch (item.getItemId()){
+            case 0:
+                openUpdateDialog(aa);
+                return true;
+            case 1:
+                deleteAbsenceApplication(aa);
+                return true;
+        }
+        return super.onContextItemSelected(item);
     }
 
     private void setRecyclerView() {
