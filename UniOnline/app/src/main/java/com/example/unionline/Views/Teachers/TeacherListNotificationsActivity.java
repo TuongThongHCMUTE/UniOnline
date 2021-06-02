@@ -62,16 +62,20 @@ public class TeacherListNotificationsActivity extends AppCompatActivity {
         });
     }
 
+    // Toolbar on the top of screen
     private void setToolbar() {
+        // Finish activity when clicking on back item
         ImageView backIcon = findViewById(R.id.left_icon);
         backIcon.setOnClickListener((View v) -> {
             this.finish();
         });
 
+        // Set name for activity
         TextView txtToolbarName = findViewById(R.id.activity_name);
         txtToolbarName.setText("Gửi thông báo");
     }
 
+    // Open dialog to show notification detail when clicking on the notification
     private void setOnClickListener() {
         listener = new NotificationAdapter.RecyclerViewClickListener() {
             @Override
@@ -95,6 +99,7 @@ public class TeacherListNotificationsActivity extends AppCompatActivity {
         recyclerView.setAdapter(notificationAdapter);
 
         // Get data from firebase
+        // Data is list notification sent by current user
         mDatabase = FirebaseDatabase.getInstance().getReference("Notifications");
         Query query = mDatabase.orderByChild("sentFrom").equalTo(Common.user.getUserId());
         query.addValueEventListener(new ValueEventListener() {

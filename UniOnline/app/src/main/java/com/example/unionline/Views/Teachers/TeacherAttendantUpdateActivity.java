@@ -75,6 +75,7 @@ public class TeacherAttendantUpdateActivity extends AppCompatActivity {
         setRecyclerView();
     }
 
+    // Mapping
     private void mappingView(){
         setToolbar();
 
@@ -100,26 +101,34 @@ public class TeacherAttendantUpdateActivity extends AppCompatActivity {
         });
     }
 
+    // Event when teacher click on one of radio buttons
     private void setOnClickListener() {
         listener = new UpdateAttendantAdapter.RecyclerViewClickListener() {
             @Override
             public void onCLick(View itemView, int adapterPosition) {
+                // Get selected attendance
                 Attendance attendance = lisAttendances.get(adapterPosition);
 
+                // Mapping
                 rbOnTime = (RadioButton) itemView.findViewById(R.id.rbOnTime);
                 rbLate = (RadioButton) itemView.findViewById(R.id.rbLate);
                 rbWithPermission = (RadioButton) itemView.findViewById(R.id.rbWithPermission);
                 rbWithoutPermission = (RadioButton) itemView.findViewById(R.id.rbWithoutPermission);
 
                 if (rbOnTime.isChecked()) {
+                    // On time
                     attendance.setState(Common.ATTENDANCE_ON_TIME);
                 } else if (rbLate.isChecked()) {
+                    // Late
                     attendance.setState(Common.ATTENDANCE_LATE);
                 } else if (rbWithPermission.isChecked()) {
+                    // Absent with permission
                     attendance.setState(Common.ATTENDANCE_WITH_PERMISSION);
                 } else if (rbWithoutPermission.isChecked()) {
+                    // Absent without permission
                     attendance.setState(Common.ATTENDANCE_WITHOUT_PERMISSION);
                 } else {
+                    // Haven't checked yet
                     attendance.setState(Common.ATTENDANCE_NOT_YET);
                 }
 
@@ -131,9 +140,7 @@ public class TeacherAttendantUpdateActivity extends AppCompatActivity {
 
     private void setRecyclerView(){
         recyclerView = findViewById(R.id.rvAttendance);
-
         lisAttendances = new ArrayList<>();
-
         adapter = new UpdateAttendantAdapter(this, lisAttendances, listener);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
@@ -142,6 +149,7 @@ public class TeacherAttendantUpdateActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Get data from firebase
+        // Data is list attendances that have lessonId = current lesson id
         mDatabase = FirebaseDatabase.getInstance().getReference("Attendances").child(Common.semester.getSemesterId());
         Query query = mDatabase.orderByChild("lessonId").equalTo(currentLessonId);
         query.addValueEventListener(new ValueEventListener() {
@@ -164,19 +172,24 @@ public class TeacherAttendantUpdateActivity extends AppCompatActivity {
     }
 
     private void updateStatistic() {
+        // #Late
         lateCount = lisAttendances
                 .stream().filter(attendance -> attendance.getState() == Common.ATTENDANCE_LATE)
                 .collect(Collectors.toList()).size();
+        // #Absent with permission
         withPermissionCount = lisAttendances
                 .stream().filter(attendance -> attendance.getState() == Common.ATTENDANCE_WITH_PERMISSION)
                 .collect(Collectors.toList()).size();
+        // #Absent without permission
         withoutPermissionCount = lisAttendances
                 .stream().filter(attendance -> attendance.getState() == Common.ATTENDANCE_WITHOUT_PERMISSION)
                 .collect(Collectors.toList()).size();
+        // sum = #ontime + #late
         sum = lisAttendances
                 .stream().filter(attendance -> attendance.getState() == Common.ATTENDANCE_ON_TIME)
                 .collect(Collectors.toList()).size() + lateCount;
 
+        // Set value to summary header
         tvSum.setText(String.valueOf(sum) + "/" + String.valueOf(lisAttendances.size()));
         tvLate.setText(String.valueOf(lateCount));
         tvWithPermission.setText(String.valueOf(withPermissionCount));

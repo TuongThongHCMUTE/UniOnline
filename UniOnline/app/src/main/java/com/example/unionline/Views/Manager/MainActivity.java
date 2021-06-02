@@ -114,18 +114,18 @@ public class MainActivity extends AppCompatActivity {
         mDatabase.child(key).setValue(enrollment);
 
         //Add lesson
-        Lesson lesson = new Lesson();
-        lesson.setLessonId("1");
-        lesson.setName("Web API");
+//        Lesson lesson = new Lesson();
+//        lesson.setLessonId("1");
+//        lesson.setName("Web API");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Lessons").child(semester.getSemesterId());
         key = mDatabase.push().getKey();
-        lesson.setClassId(key);
-        mDatabase.child(key).setValue(lesson);
+//        lesson.setClassId(key);
+//        mDatabase.child(key).setValue(lesson);
 
         // Add attendance
         Attendance attendance = new Attendance();
         attendance.setClassId(class_s.getClassId());
-        attendance.setLessonId(lesson.getLessonId());
+//        attendance.setLessonId(lesson.getLessonId());
         attendance.setStudentId(user.getUserId());
         attendance.setState(1);
 

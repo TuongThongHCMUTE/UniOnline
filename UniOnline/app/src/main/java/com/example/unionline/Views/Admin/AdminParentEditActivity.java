@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.unionline.R;
 
-public class ActivityAdminMain extends AppCompatActivity {
+public class AdminParentEditActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_main);
+        setContentView(R.layout.activity_admin_parent_edit);
     }
 }

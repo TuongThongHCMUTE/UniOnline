@@ -64,6 +64,7 @@ public class TeacherListLessonsActivity extends AppCompatActivity {
         setRecyclerView();
     }
 
+    // Open activity attendant when clicking on lesson
     private void setOnClickListener() {
         listener = new ClassProcessAdapter.RecyclerViewClickListener() {
 
@@ -77,7 +78,7 @@ public class TeacherListLessonsActivity extends AppCompatActivity {
                 Lesson lesson = lessons.get(adapterPosition);
 
                 Intent intent = new Intent(TeacherListLessonsActivity.this, TeacherAttendantUpdateActivity.class);
-
+                // Put lessonId and week to bundle
                 Bundle bundle = new Bundle();
                 bundle.putString("lessonId", lesson.getLessonId());
                 bundle.putInt("week", lesson.getWeek());

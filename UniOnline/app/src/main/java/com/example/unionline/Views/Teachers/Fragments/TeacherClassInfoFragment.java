@@ -56,6 +56,7 @@ public class TeacherClassInfoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            // Get selected class object from Bundle
             aClass = (Class) getArguments().getSerializable(ARG_CLASS);
         }
     }
@@ -66,7 +67,9 @@ public class TeacherClassInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_teacher_class_info, container, false);
 
+        // Map variables with view
         mapView(root);
+        // Set value
         setValueForView();
 
         return root;
@@ -85,6 +88,8 @@ public class TeacherClassInfoFragment extends Fragment {
     }
 
     private void setValueForView() {
+        // Get values from selected class
+        // Set values for view
         tvClassName.setText(aClass.getClassName());
         tvClassId.setText(aClass.getClassId());
         tvStartDate.setText(aClass.getStartDate());
@@ -93,8 +98,7 @@ public class TeacherClassInfoFragment extends Fragment {
         tvStatus.setText(aClass.getState());
         tvTime.setText("Từ tiết " + aClass.getStartTime() + " đến tiết " + aClass.getEndTime());
 
-        //List<Lesson> lessons = LessonDAO.getInstance().getAllLessonByClass(aClass);
-
+        // Get list lessons in selected class
         mDataBase = FirebaseDatabase.getInstance().getReference("Lessons").child(aClass.getSemesterId());
         Query query = mDataBase.orderByChild("classId").equalTo(aClass.getClassId());
         query.addValueEventListener(new ValueEventListener() {
@@ -106,6 +110,8 @@ public class TeacherClassInfoFragment extends Fragment {
                     lessons.add(lesson);
                 }
 
+                // Set class process info
+                // process = #learnedLesson/#totalLessons
                 int totalLesson = lessons.size();
                 long learnedLesson = lessons.stream().filter(c -> c.isStatus() == true).count();
                 tvProcess.setText(learnedLesson + "/" + totalLesson + " buổi");

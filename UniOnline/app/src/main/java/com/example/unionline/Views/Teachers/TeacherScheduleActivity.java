@@ -62,6 +62,11 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_schedule);
 
+        // Set current date
+        Date createDate = new Date();
+        tvCurrentDate.setText(formatter.format(createDate));
+
+        // Open calendar when clicking on "Chọn ngày khác"
         tvCurrentDate = findViewById(R.id.txtDate);
         tvChooseOtherDate = findViewById(R.id.txtOtherDate);
         tvChooseOtherDate.setOnClickListener((View v) -> {
@@ -72,9 +77,6 @@ public class TeacherScheduleActivity extends AppCompatActivity {
             }
         });
 
-        Date createDate = new Date();
-        tvCurrentDate.setText(formatter.format(createDate));
-
         setToolbar();
         setRecyclerView();
     }
@@ -83,6 +85,7 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         // Initialize
         recyclerView = findViewById(R.id.rvListLessons);
 
+        // Some list to save data
         filterLessons  = new ArrayList<>();
         allLessons = new ArrayList<>();
         classes = new ArrayList<>();
@@ -97,6 +100,7 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Fill data from Firebase
+        // Data is list classes that current teacher is teaching
         mDatabase = FirebaseDatabase.getInstance().getReference("Classes").child(Common.semester.getSemesterId());
         Query query = mDatabase.orderByChild("teacherId").equalTo(Common.user.getUserId());
         query.addValueEventListener(new ValueEventListener() {
@@ -118,6 +122,8 @@ public class TeacherScheduleActivity extends AppCompatActivity {
             }
         });
 
+        // Fill data from Firebase
+        // Data is list lessons in classes above
         mDatabase = FirebaseDatabase.getInstance().getReference("Lessons").child(Common.semester.getSemesterId());
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -130,8 +136,8 @@ public class TeacherScheduleActivity extends AppCompatActivity {
                     }
                 }
 
+                // Only get lessons in selected date
                 filtLessons();
-
                 Log.e("#lesson", String.valueOf(allLessons.size()));
             }
 
@@ -167,16 +173,19 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         calendarView = (CompactCalendarView) dialog.findViewById(R.id.compactcalendar_view);
         calendarView.setUseThreeLetterAbbreviation(true);
 
+        // Month on the top of calendar
         tvMonth = dialog.findViewById(R.id.txtMonth);
         tvMonth.setText(dateFormatMonth.format(new Date()));
 
         for(Lesson lesson : allLessons) {
+            // For each lessons, add an event on calendar
             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(lesson.getDate());
             int greenColor = this.getColor(R.color.successColor);
             Event event = new Event(greenColor, date.getTime(), lesson.getName());
             calendarView.addEvent(event);
         }
 
+        // When selecting a date --> set current date is selected date
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
@@ -194,6 +203,7 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    // Only get lesson of current date
     private void filtLessons() {
         String date = tvCurrentDate.getText().toString();
 

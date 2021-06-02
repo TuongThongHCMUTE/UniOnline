@@ -72,11 +72,14 @@ public class TeacherHomeFragment extends Fragment {
         return root;
     }
 
+    // Event when user click on a news
     private void setOnClickListener() {
         listener = new  TeacherNewsAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
+                // Get selected news
                 News news = newss.get(position);
+                // Open dialog to show detail of news
                 openDialog(news);
             }
         };
@@ -84,17 +87,15 @@ public class TeacherHomeFragment extends Fragment {
 
     private void setRecyclerView(View root){
         recyclerView = root.findViewById(R.id.rvNewsList);
-
         newss = new ArrayList<>();
-
         adapter = new TeacherNewsAdapter(getContext(), newss, listener);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         recyclerView.setAdapter(adapter);
 
         // Get data from firebase
+        // Data are list news sent to teachers
         mDatabase = FirebaseDatabase.getInstance().getReference("News");
         mDatabase.orderByChild("createDate").addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,6 +104,7 @@ public class TeacherHomeFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     News news = dataSnapshot.getValue(News.class);
 
+                    // Only add news sent to teachers
                     if(news.getSentTo().contains("Giảng viên") || news.getSentTo() == "Toàn trường"){
                         newss.add(news);
                     }
@@ -117,21 +119,31 @@ public class TeacherHomeFragment extends Fragment {
         });
     }
 
+    // Set dialog show detail of news
     private void setDialog() {
+        // Create view for dialog
         View view = getLayoutInflater().inflate(R.layout.dialog_news, null);
         dialog = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         dialog.setContentView(view);
 
+        // Mapping
         tvTittle = dialog.findViewById(R.id.tvTitle);
         tvContent = dialog.findViewById(R.id.tvContent);
         tvSendTo = dialog.findViewById(R.id.tvSentTo);
         tvSendDate = dialog.findViewById(R.id.tvSendDate);
         imgNews = dialog.findViewById(R.id.ivImageNews);
 
+        // Toolbar on the top of dialog
         setToolbar();
     }
 
+    /**
+     * Show detail news dialog
+     * @param news: selected dialog
+     */
     private void openDialog(News news) {
+        // Set values to views
+        // Values from news
         tvTittle.setText(news.getTitle());
         tvContent.setText(news.getContent());
         tvSendDate.setText(news.getCreateDate());
@@ -141,12 +153,15 @@ public class TeacherHomeFragment extends Fragment {
         dialog.show();
     }
 
+    // Set top toolbar
     private void setToolbar() {
+        // Dismiss the dialog when clicking on back icon
         ImageView backIcon = dialog.findViewById(R.id.left_icon);
         backIcon.setOnClickListener((View v) -> {
             dialog.dismiss();
         });
 
+        // Set dialog name
         TextView txtToolbarName = dialog.findViewById(R.id.activity_name);
         txtToolbarName.setText("Tin tức");
     }

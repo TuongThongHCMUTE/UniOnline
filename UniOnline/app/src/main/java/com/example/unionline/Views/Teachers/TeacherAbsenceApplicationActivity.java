@@ -39,9 +39,12 @@ public class TeacherAbsenceApplicationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_absence_application);
 
+        // Tool bar on the top of screen
         setToolbar();
+        // Get list classId that teacher is teaching
         getClassIdsFromFirebase();
 
+        // Mapping Tab layout, tab items and view pager
         tabLayout   = (TabLayout) findViewById(R.id.teacher_absenceApplication_tabLayout);
         tabPending  = (TabItem) findViewById(R.id.tab_pending);
         tabDone     = (TabItem) findViewById(R.id.tab_done);
@@ -50,6 +53,7 @@ public class TeacherAbsenceApplicationActivity extends AppCompatActivity {
         pagerAdapter = new ApplicationPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), classIds);
         viewPager.setAdapter(pagerAdapter);
 
+        // Change page when selecting tab
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -73,9 +77,11 @@ public class TeacherAbsenceApplicationActivity extends AppCompatActivity {
         });
     }
 
+    // Get list classId of classes that teacher is teaching
     private void getClassIdsFromFirebase() {
         classIds = new ArrayList<>();
         // Fill data from Firebase
+        // Only get class that have teacherId == id of current user
         mDataBase = FirebaseDatabase.getInstance().getReference("Classes").child(Common.semester.getSemesterId());
         Query query = mDataBase.orderByChild("teacherId").equalTo(Common.user.getUserId());
         query.addValueEventListener(new ValueEventListener() {
@@ -96,11 +102,13 @@ public class TeacherAbsenceApplicationActivity extends AppCompatActivity {
     }
 
     private void setToolbar() {
+        // Finish activity when clicking on back icon
         ImageView backIcon = findViewById(R.id.left_icon);
         backIcon.setOnClickListener((View v) -> {
             this.finish();
         });
 
+        // Set name for activity
         TextView txtToolbarName = findViewById(R.id.activity_name);
         txtToolbarName.setText("Duyệt đơn xin nghỉ");
     }

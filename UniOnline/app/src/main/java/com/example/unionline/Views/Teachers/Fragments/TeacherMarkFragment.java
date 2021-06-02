@@ -116,6 +116,7 @@ public class TeacherMarkFragment extends Fragment {
         recyclerView.setAdapter(classMarkAdapter);
 
         // Fill data from Firebase
+        // Get enrollments in selected class
         mData = FirebaseDatabase.getInstance().getReference("Enrollments").child(Common.semester.getSemesterId());
         Query query = mData.orderByChild("classId").equalTo(aClass.getClassId());
         query.addValueEventListener(new ValueEventListener() {
@@ -167,8 +168,12 @@ public class TeacherMarkFragment extends Fragment {
         // Set text
         tvStudentName.setText(score.getStudentName());
         tvStudentId.setText(score.getStudentId());
-        edMidTerm.setText(String.valueOf(score.getMidScore()));
-        edFinal.setText(String.valueOf(score.getFinalScore()));
+
+        int stateMark = score.getStateMark();
+        if(stateMark == 1) {
+            edMidTerm.setText(String.valueOf(score.getMidScore()));
+            edFinal.setText(String.valueOf(score.getFinalScore()));
+        }
 
         // Dismiss dialog when click btnClose
         btnClose.setOnClickListener((View v) -> {
@@ -178,8 +183,17 @@ public class TeacherMarkFragment extends Fragment {
         // Save mark when click btnSave
         btnSave.setOnClickListener((View v) -> {
             try {
-                score.setMidScore(Double.parseDouble(edMidTerm.getText().toString()));
-                score.setFinalScore(Double.parseDouble(edFinal.getText().toString()));
+                String midScoreStr = edMidTerm.getText().toString();
+                String finalScoreStr = edFinal.getText().toString();
+
+                if((!midScoreStr.equals("")) && (!finalScoreStr.equals(""))){
+                    score.setMidScore(Double.parseDouble(midScoreStr));
+                    score.setFinalScore(Double.parseDouble(finalScoreStr));
+                    score.setStateMark(1);
+                } else {
+                    score.setStateMark(0);
+                }
+
                 EnrollmentDAO.getInstance().update(score);
                 Toast.makeText(getContext(), "Cập nhật điểm thành công", Toast.LENGTH_LONG).show();
                 dialog.dismiss();

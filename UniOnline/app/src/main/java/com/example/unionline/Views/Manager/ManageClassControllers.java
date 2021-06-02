@@ -27,14 +27,9 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unionline.Adapters.Managers.ClassAdapter;
-import com.example.unionline.DAO.AttendanceDAO;
 import com.example.unionline.DAO.ClassDAO;
-import com.example.unionline.DAO.EnrollmentDAO;
-import com.example.unionline.DAO.LessonDAO;
-import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.Lesson;
 import com.example.unionline.DTO.Semester;
-import com.example.unionline.DTO.User;
 import com.example.unionline.R;
 //import com.example.implementproject.DAO.ClassDAO;
 //import com.example.implementproject.R;
@@ -76,10 +71,7 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
     {
 
         View root=inflater.inflate(R.layout.fragment_manager_class,container,false);
-        //Set onclick to view menu.
         setOnClickListener();
-
-        //Set recyclerView to view Class.
         setRecyclerView(root);
         btnOpen =  root.findViewById(R.id.imageButton2);
         btnOpen.setOnClickListener(new View.OnClickListener() {
@@ -133,23 +125,23 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
             @Override
             public void onCreateContextMenu(ContextMenu menu, int position) {
                 menu.add(position,0,0,"Add student to class");
-                menu.add(position,1,1,"Detail class");
-                menu.add(position,2,2,"Delete");
+                menu.add(position,1,1,"Delete");
             }
 
             @Override
             public void onTouch(View v, int position) {
+//                Intent intent=new Intent(getContext(),ManageStudentControllers.class);
+//                startActivity(intent);
+//                FragmentTransaction fragmentTransaction=getParentFragmentManager().beginTransaction();
+//                ManageStudentControllers manageStudentControllers=new ManageStudentControllers();
+//                Bundle bundle=new Bundle();
+//                fragmentTransaction.addToBackStack()
 
             }
         };
 
 
     }
-
-
-    //Set recycleview for this view.
-
-
     private void setRecyclerView(View root)
     {
         recyclerView=root.findViewById(R.id.recyclerViewChiTietMonHoc);
@@ -204,11 +196,10 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
         btSetDateStart=view.findViewById(R.id.btDateStart);
         btSetDateEnd=view.findViewById(R.id.btDateEnd);
 
-
-
-        //Set data for dialog.
         if(isAddNew == false)
         {
+            btSetDateStart.setVisibility(View.INVISIBLE);
+            btSetDateEnd.setVisibility(View.INVISIBLE);
             textView2=view.findViewById(R.id.textView2);
             textView2.setText("Cập nhập lớp học");
             textView2.setTextSize(30);
@@ -255,133 +246,97 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
                 alertDialog.cancel();
             }
         });
-
-
-        //When click add you have two state in this. State one is add new you will add class.
-        //State two is update class. You will have update enrollment, attendences, lesson of class.
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean error = true;
-                String message = "";
-                String classId = tvClassID.getText().toString();
-                String className = tvClassName.getText().toString();
-                String teacher = spTeacher.getSelectedItem().toString();
-                String capacity = spCapacity.getSelectedItem().toString();
-                String semester = spSemester.getSelectedItem().toString();
-                String room = tvRoom.getText().toString();
-                String timeStart = spTimeFrom.getSelectedItem().toString();
-                String timeEnd = spTimeTo.getSelectedItem().toString();
-                String dateStart = tvDateStart.getText().toString();
-                String dateEnd = tvDateEnd.getText().toString();
-                String state = "Active";
-                Boolean status = true;
-                if (isAddNew == true) {
-                    ClassModel1 classModel = new ClassModel1(classId, semester, teacher, className, Integer.parseInt(capacity), room, timeStart, timeEnd, dateStart, dateEnd, state, status);
-                    error = validationDate(classId, className, room, dateStart, dateEnd, message,semester);
-                    if (!error) {
+                boolean error=true;
+                String message="";
+                String classId=tvClassID.getText().toString();
+                String className=tvClassName.getText().toString();
+                String teacher=spTeacher.getSelectedItem().toString();
+                String capacity=spCapacity.getSelectedItem().toString();
+                String semester=spSemester.getSelectedItem().toString();
+                String room=tvRoom.getText().toString();
+                String timeStart=spTimeFrom.getSelectedItem().toString();
+                String timeEnd=spTimeTo.getSelectedItem().toString();
+                String dateStart=tvDateStart.getText().toString();
+                String dateEnd=tvDateEnd.getText().toString();
+                Boolean status=true;
+                if(isAddNew == true){
+                    ClassModel1 classModel=new ClassModel1(classId,semester,teacher,className,Integer.parseInt(capacity),room,timeStart,timeEnd,dateStart,dateEnd,status);
+                    error=validationDate(classId,className,room,dateStart,dateEnd,message);
+                    if(!error)
+                    {
                         ClassDAO.getInstance().setValude(classModel);
                         AddLessonForClass(classModel);
                     }
 
 
-                } else {
+                }
+                else
+                {
+//                    ClassModel classModel=classModels.get(position);
+//                    ClassDAO.getInstance().deleteClass(classModel.getClassId());
+//                    //classModel.setClassId(classId);
+//                    classModel.setClassInfor(classDate);
+//                    classModel.setStart(Integer.parseInt(timeFrom));
+//                    classModel.setEnd(Integer.parseInt(timeTo));
+//                    classModel.setClassCapacity(Integer.parseInt(capacity));
+//                    classModel.setClassTeacher(teacher);
+//                    classModel.setDateStart(dateStart);
+//                    classModel.setDateStart(dateEnd);
+//
+//                    ClassDAO.getInstance().setClassValue(classModel);
+                    ClassModel1 classModel1=new ClassModel1(classId,semester,teacher,className,Integer.parseInt(capacity),room,timeStart,timeEnd,dateStart,dateEnd,status);
+                    //error=validationDate(classId,className,room,dateStart,dateEnd,message);
+                    error=false;
+                    if(!error)
+                    {
+                        if(ClassDAO.getInstance().deleteClass(classModel1)) {
 
-                        ClassModel1 classModelOld = classModels.get(position);
-                        ClassModel1 classModel = classModelOld;
-                        classModel.setClassId(classId);
-                        classModel.setClassName(className);
-                        classModel.setTeacherId(teacher);
-                        classModel.setCapacity(Integer.parseInt(capacity));
-                        classModel.setSemesterId(semester);
-                        classModel.setRoom(room);
-                        classModel.setStartTime(timeStart);
-                        classModel.setEndTime(timeEnd);
-                        classModel.setStartDate(dateStart);
-                        classModel.setEndDate(dateEnd);
-
-
-                            boolean temp=true;
-                            //Update Class
-                            ClassDAO.getInstance().setValude(classModel);
-                            //Update Enrollment
-                            EnrollmentDAO.getInstance().UpdateEnrollmentByClassModel(classModelOld, classModel);
-
-                            LessonDAO.getInstance().UpdateLessonByClassModel(classModelOld, classModel);
-
-
-                            List<Lesson> lessonList=new ArrayList<>();
-                            LessonDAO.getInstance().GetAllLessonByClass(lessonList,classModel);
-
-                            List<Attendance> attendances=new ArrayList<>();
-
-                            AttendanceDAO.getInstance().UpdateAttendenceByClassModel(classModelOld, classModel,attendances,lessonList);
-                            message = "Bạn đã cập nhật thành công";
-                            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-
-
-
+                            System.out.println("Da xoa thanh cong");
+                            Toast.makeText(getContext(), "Bạn đã cập nhật thành công", Toast.LENGTH_SHORT).show();
+                            ClassDAO.getInstance().setValude(classModel1);
+                        }
+                        //AddLessonForClass(classModel);
+                    }
                 }
                 if(!error)
                     alertDialog.cancel();
             }
-
         });
     }
-
-
-    //Develop action in context menu. This function include change fragment to add students for class.
-    //Fragment show student in class and lesson of class.
-    //Delete class include enrollment, lesson, attendences.
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int position = item.getGroupId();
         switch (item.getItemId()){
             case 0:
                 ClassModel1 classModel1=classModels.get(position);
+//                Intent intent=new Intent(getContext(),ManageStudentControllers.class);
+//                intent.putExtra("classChose",classModel1);
+//                startActivity(intent);
                 FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
                 ManageStudentControllers manageStudentControllers=new ManageStudentControllers();
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("classChose",classModel1);
                 manageStudentControllers.setArguments(bundle);
-                fragmentTransaction.replace(R.id.manager_container,manageStudentControllers);
+                fragmentTransaction.replace(R.id.content_frame,manageStudentControllers);
                 fragmentTransaction.addToBackStack(ManageStudentControllers.TAG);
                 fragmentTransaction.commit();
 
                 return true;
             case 1:
                 ClassModel1 classModel = classModels.get(position);
-                FragmentTransaction fragmentTransaction1=getFragmentManager().beginTransaction();
-
-                ManagerClassDetail classDetail=new ManagerClassDetail();
-                Bundle bundleDetail=new Bundle();
-                bundleDetail.putSerializable("classChose",classModel);
-                classDetail.setArguments(bundleDetail);
-                fragmentTransaction1.replace(R.id.manager_container,classDetail);
-                fragmentTransaction1.addToBackStack(ManageStudentControllers.TAG);
-                fragmentTransaction1.commit();
+//                if(ClassDAO.getInstance().deleteClass(classModel.getClassId())){
+//                    Toast.makeText(this.getContext(), "Xóa lớp học thành công!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(this.getContext(), "Lỗi khí xóa lớp học!", Toast.LENGTH_SHORT).show();
+//                }
                 return true;
-            case 2:
-
-                ClassModel1 classModel2 = classModels.get(position);
-                List<Lesson> lessons=new ArrayList<>();
-                //Delete Class
-                ClassDAO.getInstance().deleteClass(classModel2);
-                //Delete lesson
-                LessonDAO.getInstance().DeleteAllLessonByClassModel(classModel2);
-                //Delete EnrollMent
-                EnrollmentDAO.getInstance().DeleteAllAllEnrollMentByClassModel(classModel2);
-                //Delete Attendances
-                AttendanceDAO.getInstance().DeleteAllAllAtendenceByClassModel(classModel2);
-
-                String message="Bạn đã xóa lớp học!!!!";
-                Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
         }
         return super.onContextItemSelected(item);
     }
 
-    //Chose time to start and end class
     public void ChooseTime(View view, String timeFrom,String timeTo){
         //Category
         spTimeFrom=(Spinner) view.findViewById(R.id.spTimeStart);
@@ -394,6 +349,7 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
         }
 
 
+        //List<String> listDates = Arrays.asList(listDate);
         Object[] objecTime = list.toArray();
 
         ArrayAdapter adapterDate = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item, objecTime);
@@ -404,35 +360,19 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
         spTimeFrom.setSelection(adapterDate.getPosition(timeFrom));
         spTimeTo.setSelection(adapterDate.getPosition(timeTo));
     }
-
-    //Get teacher in firebase to add spinner
     public void ChooseTeacher(View view, String teacher)
     {
         spTeacher=(Spinner) view.findViewById(R.id.spTeacher);
+        String[] listTeacher = {"18110092","18110132","18110234","T1811000"};
 
-        List<String> listTeachers = new ArrayList<>();
-        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listTeachers.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    User user = dataSnapshot.getValue(User.class);
-                    if(user.getRole()==2)
-                        listTeachers.add(user.getUserId());
-                }
+        List<String> listTeachers = Arrays.asList(listTeacher);
         Object[] objecTeacher = listTeachers.toArray();
+
         ArrayAdapter adapterDate = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item, objecTeacher);
         adapterDate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spTeacher.setAdapter(adapterDate);
         spTeacher.setSelection(adapterDate.getPosition(teacher));
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
     public void ChooseSemester(View view, String semester){
         //Semester
@@ -459,7 +399,7 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
 
             }
         });
-
+        //List<String> listSemesterObj = Arrays.asList(listSemsesters );
 
     }
     public void ChooseCapacity(View view, String capacity){
@@ -480,8 +420,6 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
         spCapacity.setAdapter(adapterDate);
         spCapacity.setSelection(adapterDate.getPosition(capacity));
     }
-
-    // Chose Date start
     public void ChooseDateStart(View view)
     {
         tvDateStart=view.findViewById(R.id.textDateFrom);
@@ -506,8 +444,6 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
 
         datePickerDialog.show();
     }
-
-    //Chose date end of class
     public void ChooseDateEnd(View view)
     {
         tvDateEnd=view.findViewById(R.id.textDateTo);
@@ -537,88 +473,75 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
     {
         String key;
         String name="Lesson 1";
-        Date date=convertStringToDate(classModel1.getStartDate());
-        Calendar calendar=dateToCalendar(date);
-        calendar.setTime(date);
         for(int i=1;i<16;i++)
         {
 
-            Date dateAdd=calendar.getTime();
-            String dateAddString=convertDateToString(dateAdd);
-            Lesson lesson = new Lesson();
+//            Lesson lesson = new Lesson();
 
-            lesson.setName(name);
-            lesson.setClassId(classModel1.getClassId());
-            lesson.setWeek(i);
-            lesson.setDate(dateAddString);
-            lesson.setStatus(false);
+//            lesson.setName(name);
+//            lesson.setClassId(classModel1.getClassId());
+//            lesson.setWeek(i);
+//            lesson.setStatus(false);
             mDatabase = FirebaseDatabase.getInstance().getReference().child("Lessons").child(classModel1.getSemesterId());
             key = mDatabase.push().getKey();
-            lesson.setLessonId(key);
-            mDatabase.child(key).setValue(lesson);
+//            lesson.setLessonId(key);
+//            mDatabase.child(key).setValue(lesson);
             name="Lesson "+String.valueOf(i+1);
-            calendar.add(Calendar.DATE,7);
         }
     }
-    //Validation data before add to class
-    public boolean validationDate(String mahocphan,String name,String room,String dateStart,String dateEnd,String message,String semester)
+    public boolean validationDate(String mahocphan,String name,String room,String dateStart,String dateEnd,String message)
     {
 
         boolean error=false;
         List<ClassModel1> classModelListCheck=new ArrayList<>();
-        getList(classModelListCheck,semester);
+        getList(classModelListCheck);
         if(mahocphan.trim().equals("")||name.trim().equals("")||room.trim().equals("")||dateStart.equals("")||dateEnd.equals(""))
         {
-            message="Bạn đã nhập giá trị rỗng";
+            //System.out.println("Null value");
+            message="Null value";
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             error = true;
         }
         else {
-            if(dateStart.equals("start")||dateEnd.equals("end"))
+            Date dateStartValue = convertStringToDate(dateStart);
+            Date dateEndValue = convertStringToDate(dateEnd);
+            Date dateNow= Calendar.getInstance().getTime();
+            long numberDate=(dateEndValue.getTime()-dateStartValue.getTime())/(24 * 3600 * 1000);
+            long numberDateNow=dateStartValue.getTime()-dateNow.getTime();
+            System.out.println(String.valueOf(numberDate));
+
+            System.out.println("Number of list"+classModels.size());
+            for(ClassModel1 model1: classModels)
             {
-                message="Bạn chưa nhập thời điểm bắt đầu kết thúc";
+                if(model1.getClassId().equals(mahocphan))
+                {
+                    message="Mã học phần này đã tồn tại trong bảng";
+                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                    error = true;
+                }
+            }
+
+            if(numberDate<105)
+            {
+                message="Bạn nên chọn thời gian đủ 15 tuần";
                 Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                 error = true;
-
             }
-            else {
-                Date dateStartValue = convertStringToDate(dateStart);
-                Date dateEndValue = convertStringToDate(dateEnd);
-                Date dateNow = Calendar.getInstance().getTime();
-                long numberDate = (dateEndValue.getTime() - dateStartValue.getTime()) / (24 * 3600 * 1000);
-                long numberDateNow = dateStartValue.getTime() - dateNow.getTime();
-
-                for (ClassModel1 model1 : classModels) {
-                    if (model1.getClassId().equals(mahocphan)) {
-                        message = "Mã học phần này đã tồn tại trong bảng";
-                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                        error = true;
-                    }
-                }
-
-                if (numberDate < 105) {
-                    message = "Bạn nên chọn thời gian đủ 15 tuần";
-                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                    error = true;
-                } else if (numberDate > 112) {
-                    message = "Thời gian môn học quá dài";
-                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                    error = true;
-                } else if (numberDateNow < 0) {
-                    message = "Bạn nên chọn thời gian lớn hơn thời gian hiện tại";
-                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                    System.out.print("Bạn nên chọn thời gian lớn hơn thời gian hiện tại");
-                    error = true;
-                }
+            else if(numberDateNow<0)
+            {
+                message="Bạn nên chọn thời gian lớn hơn thời gian hiện tại";
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                System.out.print("Bạn nên chọn thời gian lớn hơn thời gian hiện tại");
+                error = true;
             }
+
 
         }
         return error;
     }
-    // Get list class in semester to check have value in database.
-    public void getList(List<ClassModel1> classModelListCheck, String semester)
+    public void getList(List<ClassModel1> classModelListCheck)
     {
-        mDatabase = FirebaseDatabase.getInstance().getReference("Classes").child(semester);
+        mDatabase = FirebaseDatabase.getInstance().getReference("Classes").child("2020_2021_HK1");
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -650,25 +573,4 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
         return date;
     }
 
-    public Calendar dateToCalendar(Date date) {
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        return calendar;
-
-    }
-    public String convertDateToString(Date date){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String dateString = simpleDateFormat.format(date);
-        return dateString;
-    }
 }
-//attendances.get(index).setClassId(classModel.getClassId());
-//        attendances.get(index).setClassName(classModel.getClassName());
-//        attendances.get(index).setClassRoom(classModel.getRoom());
-//        String fulldate=lessonList.get(i).getDate()+" | "+"Tiết "+classModel.getStartTime()+" - "+classModel.getEndTime();
-//        attendances.get(index).setFullDate(fulldate);
-//        attendances.get(index).setLessonName(lessonList.get(i).getName());
-//        attendances.get(index).setFullDate(lessonList.get(i).getDate());
-//        AttendanceDAO.getInstance().setValude(attendances.get(i), classModel);
-//
