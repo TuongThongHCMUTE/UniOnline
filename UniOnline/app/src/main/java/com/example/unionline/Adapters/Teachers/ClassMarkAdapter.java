@@ -38,7 +38,7 @@ public class ClassMarkAdapter extends RecyclerView.Adapter<ClassMarkAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Enrollment score = scoreList.get(position);
 
-        holder.tvStudentId.setText(score.getStudentId());
+        holder.tvStudentId.setText(score.getStudentCode());
         holder.tvStudentName.setText(score.getStudentName());
         holder.edMidTermScore.setText(String.valueOf(score.getMidScore()));
         holder.edFinalScore.setText(String.valueOf(score.getFinalScore()));

@@ -131,7 +131,6 @@ public class Enrollment implements Serializable {
         isPayClassTuition = payClassTuition;
     }
 
-
     public String getStudentCode() {
         return studentCode;
     }

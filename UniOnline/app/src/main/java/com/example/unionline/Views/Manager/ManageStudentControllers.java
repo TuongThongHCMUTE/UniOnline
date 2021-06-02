@@ -200,7 +200,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         enrollment.setClassName(classModel1.getClassName());
         enrollment.setClassRoom(classModel1.getRoom());
         enrollment.setStudentId(user.getUserId());
-        //enrollment.setStudentCode(user.getEmail().substring(0,8));
+        enrollment.setStudentCode(user.getEmail().substring(0,8));
         enrollment.setStudentName(user.getName());
 //        enrollment.setFinalScore(0);
 //        enrollment.setMidScore(0);
