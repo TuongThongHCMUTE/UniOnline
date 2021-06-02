@@ -17,8 +17,6 @@ import com.google.android.material.tabs.TabLayout;
 
 public class StudentClassDetailActivity extends AppCompatActivity {
 
-    private TextView txtActivityName;
-    private ImageView backIcon;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabItem tabClassInfo, tabLesson;
@@ -28,7 +26,7 @@ public class StudentClassDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_detail_lesson);
+        setContentView(R.layout.activity_student_detail_class);
 
         // Get data from intent
         Intent intent = getIntent();
@@ -37,14 +35,7 @@ public class StudentClassDetailActivity extends AppCompatActivity {
             currentEnrollment = (Enrollment) bundle.getSerializable("enrollment");
         }
 
-        // Set event click for backIcon on toolbar
-        // When click backIcon: finish this activity
-        backIcon = (ImageView) findViewById(R.id.left_icon);
-        backIcon.setOnClickListener((View v) -> {
-            this.finish();
-        });
-
-        txtActivityName = (TextView) findViewById(R.id.activity_name);
+        setToolBar(currentEnrollment.getClassName());
 
         // Mapping TabLayout, TabItem and ViewPager
         tabLayout = (TabLayout) findViewById(R.id.student_class_tabLayout);
@@ -80,5 +71,18 @@ public class StudentClassDetailActivity extends AppCompatActivity {
 
         // Set event onPageChange
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    }
+
+    private void setToolBar(String name){
+        // Set activity name on toolbar
+        TextView tvActivityName = (TextView) findViewById(R.id.activity_name);
+        tvActivityName.setText(name);
+
+        // Set event click for backIcon on toolbar
+        // When click backIcon: finish this activity
+        ImageView backIcon = (ImageView) findViewById(R.id.left_icon);
+        backIcon.setOnClickListener((View v) -> {
+            this.finish();
+        });
     }
 }

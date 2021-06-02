@@ -45,7 +45,7 @@ public class StudentMarkActivity extends AppCompatActivity  {
 
         // Set activity name on toolbar
         tvActivityName = (TextView) findViewById(R.id.activity_name);
-        tvActivityName.setText("Lớp học");
+        tvActivityName.setText("Điểm số");
 
         tvAvgMark = findViewById(R.id.tvAvgMark);
         tvRate = findViewById(R.id.tvRate);
@@ -70,6 +70,7 @@ public class StudentMarkActivity extends AppCompatActivity  {
         };
     }
 
+    // Set data for recyc\erView
     private void setRecyclerView() {
         recyclerView = findViewById(R.id.rvListMark);
 
@@ -83,26 +84,51 @@ public class StudentMarkActivity extends AppCompatActivity  {
         // Set adapter for recycler view
         recyclerView.setAdapter(adapter);
 
-        // Fill data from Firebase
+        /**
+         *
+         *Fill data from Firebase
+         * With student id
+        */
         mDatabase = FirebaseDatabase.getInstance().getReference("Enrollments").child(Common.semester.getSemesterId());
         Query query = mDatabase.orderByChild("studentId").equalTo(Common.user.getUserId());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 enrollments.clear();
+                // avgMark to calculate mark form enrollment
                 double avgMark = 0;
                 int count = 0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Enrollment enrollment = dataSnapshot.getValue(Enrollment.class);
                     enrollments.add(enrollment);
 
-                    avgMark += (enrollment.getMidScore() + enrollment.getFinalScore())/2;
-                    count++;
+                    // If mask is entered, add to avgMark
+                    if(enrollment.getStateMark() == 1){
+                        avgMark += (enrollment.getMidScore() + enrollment.getFinalScore())/2;
+                        count++;
+                    }
                 }
                 adapter.notifyDataSetChanged();
 
                 avgMark = avgMark/count;
-                tvAvgMark.setText(String.valueOf((Math.round(avgMark * 100) / 100)));
+                tvAvgMark.setText(String.valueOf((Math.round(avgMark * 100.0) / 100.0)));
+
+                // Set rate by avrMark
+                String rate;
+                if(avgMark >= 9.0){
+                    rate = "Xuất sắc";
+                } else if(avgMark >= 8.0){
+                    rate = "Giỏi";
+                } else if(avgMark >= 6.5){
+                    rate = "Khá";
+                } else if(avgMark >= 5.0){
+                    rate = "Trung bình";
+                } else if(avgMark >= 0){
+                    rate = "Yếu";
+                } else {
+                    rate = "Không xếp loại";
+                }
+                tvRate.setText(rate);
             }
 
             @Override

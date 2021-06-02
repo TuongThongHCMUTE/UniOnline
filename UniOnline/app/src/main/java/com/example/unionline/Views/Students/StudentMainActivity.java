@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.unionline.R;
+import com.example.unionline.Views.Common.CommonAccountFragment;
+import com.example.unionline.Views.Students.Fragments.StudentHomeFragment;
+import com.example.unionline.Views.Students.Fragments.StudentInteractionFragment;
+import com.example.unionline.Views.Students.Fragments.StudentNotificationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class StudentMainActivity extends AppCompatActivity {
@@ -26,6 +30,9 @@ public class StudentMainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
     }
 
+    /**
+     * Set navigation click
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -33,14 +40,17 @@ public class StudentMainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
-                        case R.id.nav_home:
+                        case R.id.nav_student_home:
                             selectedFragment = new StudentHomeFragment();
                             break;
-                        case R.id.nav_interaction:
+                        case R.id.nav_student_interaction:
                             selectedFragment = new StudentInteractionFragment();
                             break;
-                        case R.id.nav_notification:
+                        case R.id.nav_student_notification:
                             selectedFragment = new StudentNotificationFragment();
+                            break;
+                        case R.id.nav_student_account:
+                            selectedFragment = new CommonAccountFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction()

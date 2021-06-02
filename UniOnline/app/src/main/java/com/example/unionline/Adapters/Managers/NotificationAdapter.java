@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //import com.example.implementproject.R;
 //import com.example.implementproject.model.Notification;
+import com.example.unionline.DTO.News;
 import com.example.unionline.R;
 import com.example.unionline.DTO.Notification;
 
@@ -21,12 +22,12 @@ import java.util.ArrayList;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
     Context context;
-    ArrayList<Notification> notifications;
+    ArrayList<News> newsArrayList;
     private RecyclerViewClickListener listener;
 
-    public NotificationAdapter(Context context, ArrayList<Notification> notifications, RecyclerViewClickListener listener) {
+    public NotificationAdapter(Context context, ArrayList<News> newsArrayList, RecyclerViewClickListener listener) {
         this.context = context;
-        this.notifications = notifications;
+        this.newsArrayList = newsArrayList;
         this.listener = listener;
     }
 
@@ -40,17 +41,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Notification notification =notifications.get(position);
-        holder.tvIdNotify.setText(notification.getId());
-        holder.tvContentNotify.setText(notification.getContent());
-        holder.tvSentFromNotify.setText(notification.getSentFrom());
-        holder.tvTitleNotify.setText(notification.getTitle());
-        holder.tvDateCreate.setText(notification.getCreateDate());
+        News news=newsArrayList.get(position);
+        holder.tvIdNotify.setText(news.getId());
+        holder.tvContentNotify.setText(news.getContent());
+        holder.tvSentFromNotify.setText(news.getSentFrom());
+        holder.tvTitleNotify.setText(news.getTitle());
+        holder.tvDateCreate.setText(news.getCreateDate());
     }
 
     @Override
     public int getItemCount() {
-        return notifications.size();
+        return newsArrayList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener, View.OnTouchListener {
@@ -66,6 +67,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             tvContentNotify=itemView.findViewById(R.id.tvContent);
             tvSentFromNotify=itemView.findViewById(R.id.tvSentFrom);
             tvDateCreate=itemView.findViewById(R.id.tvDateCreateNotify);
+            itemView.setOnClickListener(this);
+            itemNotification=itemView.findViewById(R.id.item_news);
+            itemNotification.setOnCreateContextMenuListener(this);
         }
 
         @Override

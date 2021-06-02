@@ -2,9 +2,10 @@ package com.example.unionline.DTO;
 
 import android.text.format.DateFormat;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class AbsenceApplication {
+public class AbsenceApplication implements Serializable {
     private String id;
     private String classId;
     private String className;
@@ -14,6 +15,7 @@ public class AbsenceApplication {
     private String reason;
     private String dateOff;
     private String dateCreate;
+    private String teacherRespond;
     private int state;
 
     public AbsenceApplication(){}
@@ -27,7 +29,7 @@ public class AbsenceApplication {
         this.studentName = studentName;
         this.reason = reason;
         this.dateOff = dateOff;
-        this.dateCreate = DateFormat.format("mm:hh dd/MM/yyyy", Calendar.getInstance()).toString();;
+        this.dateCreate = DateFormat.format("hh:mm dd/MM/yyyy", Calendar.getInstance()).toString();;
         this.state = state;
     }
 
@@ -101,6 +103,14 @@ public class AbsenceApplication {
 
     public void setDateCreate(String dateCreate) {
         this.dateCreate = dateCreate;
+    }
+
+    public String getTeacherRespond() {
+        return teacherRespond;
+    }
+
+    public void setTeacherRespond(String teacherRespond) {
+        this.teacherRespond = teacherRespond;
     }
 
     public int getState() {

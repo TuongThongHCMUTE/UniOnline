@@ -10,13 +10,17 @@ public class Enrollment implements Serializable {
     private String fullDate;
     private String studentId;
     private String studentName;
+    private String studentCode;
     private double midScore;
     private double finalScore;
     private int stateMark;
-
+    private int classTuition;
+    private boolean isPayClassTuition;
     public Enrollment(){};
 
-    public Enrollment(String id, String classId, String className, String classRoom, String fullDate, String studentId, String studentName, double midScore, double finalScore, int stateMark) {
+    public Enrollment(String id, String classId, String className, String classRoom,
+                      String fullDate, String studentId, String studentName, double midScore,
+                      double finalScore, int stateMark, int classTuition, boolean isPayClassTuition) {
         this.id = id;
         this.classId = classId;
         this.className = className;
@@ -27,6 +31,8 @@ public class Enrollment implements Serializable {
         this.midScore = midScore;
         this.finalScore = finalScore;
         this.stateMark = stateMark;
+        this.classTuition = classTuition;
+        this.isPayClassTuition = isPayClassTuition;
     }
 
     public String getId() {
@@ -101,11 +107,36 @@ public class Enrollment implements Serializable {
         this.finalScore = finalScore;
     }
 
-    public int getState() {
+    public int getStateMark() {
         return stateMark;
     }
 
-    public void setState(int stateMark) {
+    public void setStateMark(int stateMark) {
         this.stateMark = stateMark;
+    }
+
+    public int getClassTuition() {
+        return classTuition;
+    }
+
+    public void setClassTuition(int classTuition) {
+        this.classTuition = classTuition;
+    }
+
+    public boolean isPayClassTuition() {
+        return isPayClassTuition;
+    }
+
+    public void setPayClassTuition(boolean payClassTuition) {
+        isPayClassTuition = payClassTuition;
+    }
+
+
+    public String getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(String studentCode) {
+        this.studentCode = studentCode;
     }
 }

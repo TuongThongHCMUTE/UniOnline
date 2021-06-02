@@ -13,11 +13,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"><![CDATA[>
-
-
-
-        ]]>
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/activity_name"
@@ -76,10 +72,13 @@
         android:id="@+id/tvDateOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="30/05/2021"
         android:textColor="@color/main_color"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="@+id/txtContent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtContent"

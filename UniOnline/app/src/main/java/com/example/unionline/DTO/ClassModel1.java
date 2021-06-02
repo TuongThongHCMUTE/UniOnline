@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class ClassModel1 implements Serializable {
 
+
     private String classId;
     private String semesterId;
     private String teacherId;
@@ -14,12 +15,13 @@ public class ClassModel1 implements Serializable {
     private String endTime;
     private String startDate;
     private String endDate;
+    private String state;
     private boolean isActive;
 
     public ClassModel1() {
     }
 
-    public ClassModel1(String classId, String semesterId, String teacherId, String className, Integer capacity, String room, String startTime, String endTime, String startDate, String endDate, boolean isActive) {
+    public ClassModel1(String classId, String semesterId, String teacherId, String className, Integer capacity, String room, String startTime, String endTime, String startDate, String endDate, String state, boolean isActive) {
         this.classId = classId;
         this.semesterId = semesterId;
         this.teacherId = teacherId;
@@ -30,10 +32,11 @@ public class ClassModel1 implements Serializable {
         this.endTime = endTime;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.state = state;
         this.isActive = isActive;
     }
 
-    public ClassModel1(String classId, String semesterId, String teacherId, String className, Integer capacity, String room, String startTime, String endTime, boolean isActive) {
+    public ClassModel1(String classId, String semesterId, String teacherId, String className, Integer capacity, String room, String startTime, String endTime, String state, boolean isActive) {
         this.classId = classId;
         this.semesterId = semesterId;
         this.teacherId = teacherId;
@@ -42,9 +45,21 @@ public class ClassModel1 implements Serializable {
         this.room = room;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.state = state;
         this.isActive = isActive;
     }
 
+//    public ClassModel1(String classId, String semesterId, String teacherId, String className, Integer capacity, String room, String startTime, String endTime, boolean isActive) {
+//        this.classId = classId;
+//        this.semesterId = semesterId;
+//        this.teacherId = teacherId;
+//        this.className = className;
+//        this.capacity = capacity;
+//        this.room = room;
+//        this.startTime = startTime;
+//        this.endTime = endTime;
+//        this.isActive = isActive;
+//    }
 
     public String getClassId() {
         return classId;
@@ -126,12 +141,19 @@ public class ClassModel1 implements Serializable {
         this.endDate = endDate;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
-
 }

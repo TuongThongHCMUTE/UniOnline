@@ -9,7 +9,7 @@ public class Lesson {
     private int week;
     private boolean status;
 
-    private Lesson(){}
+    public Lesson(){}
 
     public Lesson(String lessonId, String classId, String name, String description, String date, int week, boolean status) {
         this.lessonId = lessonId;

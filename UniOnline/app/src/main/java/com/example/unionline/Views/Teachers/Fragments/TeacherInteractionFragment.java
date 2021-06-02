@@ -17,11 +17,12 @@ import com.example.unionline.Views.Teachers.TeacherAddNotificationActivity;
 import com.example.unionline.Views.Teachers.TeacherAttendantActivity;
 import com.example.unionline.Views.Teachers.TeacherListClassesActivity;
 import com.example.unionline.Views.Teachers.TeacherListNotificationsActivity;
+import com.example.unionline.Views.Teachers.TeacherScheduleActivity;
 
 public class TeacherInteractionFragment extends Fragment {
 
     View view;
-    CardView cvSchedule, cvClass, cvAttendant, cvApplication, cvNotification, cvProfile;
+    CardView cvSchedule, cvClass, cvAttendant, cvApplication;
 
 
     public TeacherInteractionFragment() {
@@ -47,9 +48,9 @@ public class TeacherInteractionFragment extends Fragment {
         mapView(view);
 
         cvClass.setOnClickListener(onClickListener);
-        cvNotification.setOnClickListener(onClickListener);
         cvAttendant.setOnClickListener(onClickListener);
         cvApplication.setOnClickListener(onClickListener);
+        cvSchedule.setOnClickListener(onClickListener);
 
         return view;
     }
@@ -63,8 +64,6 @@ public class TeacherInteractionFragment extends Fragment {
         cvClass         = (CardView) view.findViewById(R.id.cvTeacherClass);
         cvAttendant     = (CardView) view.findViewById(R.id.cvTeacherAttendant);
         cvApplication   = (CardView) view.findViewById(R.id.cvTeacherApplication);
-        cvNotification  = (CardView) view.findViewById(R.id.cvTeacherNotification);
-        cvProfile       = (CardView) view.findViewById(R.id.cvTeacherAccount);
     }
 
     private View.OnClickListener onClickListener = (View v) -> {
@@ -72,7 +71,7 @@ public class TeacherInteractionFragment extends Fragment {
 
         switch (v.getId()) {
             case R.id.cvTeacherSchedule:
-                intent = new Intent(this.getActivity(), TeacherListClassesActivity.class);
+                intent = new Intent(this.getActivity(), TeacherScheduleActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cvTeacherClass:
@@ -85,14 +84,6 @@ public class TeacherInteractionFragment extends Fragment {
                 break;
             case R.id.cvTeacherApplication:
                 intent = new Intent(this.getActivity(), TeacherAbsenceApplicationActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.cvTeacherNotification:
-                intent = new Intent(this.getActivity(), TeacherListNotificationsActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.cvTeacherAccount:
-                intent = new Intent(this.getActivity(), TeacherListClassesActivity.class);
                 startActivity(intent);
                 break;
         }

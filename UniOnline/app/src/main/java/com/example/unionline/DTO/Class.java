@@ -15,6 +15,7 @@ public class Class implements Serializable {
     private String startDate;
     private String endDate;
     private String state;
+    private int tuition;
     private boolean isActive;
 
     public Class() {
@@ -29,6 +30,20 @@ public class Class implements Serializable {
         this.room = room;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.state = state;
+        this.isActive = isActive;
+    }
+    public Class(String classId, String semesterId, String teacherId, String className, Integer capacity, String room, String startTime, String endTime, String startDate, String endDate, String state, boolean isActive) {
+        this.classId = classId;
+        this.semesterId = semesterId;
+        this.teacherId = teacherId;
+        this.className = className;
+        this.capacity = capacity;
+        this.room = room;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.state = state;
         this.isActive = isActive;
     }
@@ -129,4 +144,11 @@ public class Class implements Serializable {
         isActive = active;
     }
 
+    public int getTuition() {
+        return tuition;
+    }
+
+    public void setTuition(int tuition) {
+        this.tuition = tuition;
+    }
 }

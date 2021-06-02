@@ -1,8 +1,11 @@
 package com.example.unionline.Views.Manager;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 //import com.example.implementproject.controllers.ManageClassControllers;
@@ -20,27 +23,53 @@ import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.ClassModel1;
 import com.example.unionline.DTO.Enrollment;
 import com.example.unionline.DTO.Lesson;
-import com.example.unionline.DTO.Notification;
 import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
+import com.example.unionline.Views.Common.CommonAccountFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.example.unionline.R;
 public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
+    private BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_main);
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.content_frame,new ManageClassControllers());
+        fragmentTransaction.add(R.id.manager_container,new ManageClassControllers());
         fragmentTransaction.commit();
+        bottomNav = findViewById(R.id.manager_bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         //mDatabase.child("HoTen").setValue("Nguyen Duong Dat");
         //mDatabase.child("Classes").child("OPP2021").setValue("classModel");
         //addDataV2();
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = (@NonNull MenuItem item) -> {
+        Fragment selectedFragment = null;
+
+        // Set selected fragment by corresponding fragment
+        switch (item.getItemId()) {
+            case R.id.nav_manager_home:
+                selectedFragment = new ManageClassControllers();
+                break;
+            case R.id.nav_manager_notification:
+
+                selectedFragment = new ManageNotificationControllers();
+                break;
+            case R.id.nav_manager_account:
+                selectedFragment = new CommonAccountFragment();
+                break;
+
+        }
+        // Replace fragment container with selected fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.manager_container, selectedFragment).commit();
+        return true;
+    };
     private void addDataV2(){
         DatabaseReference mDatabase;
         String key;

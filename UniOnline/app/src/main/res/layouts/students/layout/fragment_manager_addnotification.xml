@@ -17,8 +17,8 @@
         <ImageButton
             android:id="@+id/imageButton15"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/x_icon"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/icon_back_admin"
             tools:layout_editor_absoluteX="7dp"
             tools:layout_editor_absoluteY="1dp" />
 
@@ -55,6 +55,7 @@
         android:text="Thông báo đến:"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar7" />
@@ -64,13 +65,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="280dp"
-        android:layout_marginRight="280dp"
         android:text="Tiêu đề:"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
@@ -80,11 +80,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="5dp"
         android:text="Nội dung:"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTieuDe" />
 

@@ -1,5 +1,6 @@
 package com.example.unionline.Views.Teachers.Fragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,9 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.unionline.Adapters.Teachers.ApplicationAdapter;
 import com.example.unionline.Common;
+import com.example.unionline.DAO.AbsenceApplicationDAO;
 import com.example.unionline.DTO.AbsenceApplication;
 import com.example.unionline.R;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +47,11 @@ public class TeacherPendingApplicationFragment extends Fragment {
     DatabaseReference mData;
 
     private ApplicationAdapter.RecyclerViewClickListener listener;
+    private TextView tvStudentName, tvStudentId, tvDateOff, tvReason;
+    private RadioButton rbApprove, rbRefuse;
+    private Button btnSend;
+    private EditText edResponse;
+    Dialog dialog;
 
     public TeacherPendingApplicationFragment() {
         // Required empty public constructor
@@ -66,6 +79,7 @@ public class TeacherPendingApplicationFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_teacher_application, container, false);
 
+        setDialog();
         setOnClickListener();
         setRecyclerView(root);
 
@@ -83,6 +97,7 @@ public class TeacherPendingApplicationFragment extends Fragment {
             @Override
             public void onCLick(View itemView, int adapterPosition) {
                 AbsenceApplication application = applications.get(adapterPosition);
+                openDialog(application);
             }
         };
     }
@@ -122,6 +137,80 @@ public class TeacherPendingApplicationFragment extends Fragment {
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
             }
+
+
         });
+    }
+
+    private void setDialog() {
+        View view = getLayoutInflater().inflate(R.layout.dialog_application, null);
+        dialog = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar);
+        dialog.setContentView(view);
+
+        tvStudentId = dialog.findViewById(R.id.txtStudentIdValue);
+        tvStudentName = dialog.findViewById(R.id.txtStudentNameValue);
+        tvDateOff = dialog.findViewById(R.id.txtDateOffValue);
+        tvReason = dialog.findViewById(R.id.txtReason);
+        rbApprove = dialog.findViewById(R.id.rbApprove);
+        rbRefuse = dialog.findViewById(R.id.rbRefuse);
+        edResponse = dialog.findViewById(R.id.txtRespond);
+
+        btnSend = dialog.findViewById(R.id.btnSend);
+
+        setToolbar();
+    }
+
+    private void setToolbar() {
+        ImageView backIcon = dialog.findViewById(R.id.left_icon);
+        backIcon.setOnClickListener((View v) -> {
+            dialog.dismiss();
+        });
+
+        TextView txtToolbarName = dialog.findViewById(R.id.activity_name);
+        txtToolbarName.setText("Duyệt đơn xin nghỉ");
+    }
+
+    private void openDialog(AbsenceApplication application) {
+        tvStudentId.setText(application.getStudentId());
+        tvStudentName.setText(application.getStudentName());
+        tvReason.setText(application.getReason());
+        tvDateOff.setText(application.getDateOff());
+        edResponse.setText(application.getTeacherRespond());
+
+
+        switch (application.getState()) {
+            case Common.AA_APPROVED:
+                rbApprove.setChecked(true);
+                break;
+            case Common.AA_NOT_APPROVED:
+                rbRefuse.setChecked(true);
+                break;
+            default:
+                rbApprove.setChecked(false);
+                rbRefuse.setChecked(false);
+                break;
+        }
+
+        btnSend.setOnClickListener((View v) -> {
+            if(rbApprove.isChecked()) {
+                application.setState(Common.AA_APPROVED);
+            } else if(rbRefuse.isChecked()) {
+                application.setState(Common.AA_NOT_APPROVED);
+            } else {
+                application.setState(Common.AA_WAIT_FOR_APPROVAL);
+            }
+
+            application.setTeacherRespond(edResponse.getText().toString());
+
+            try {
+                AbsenceApplicationDAO.getInstance().update(application);
+                Toast.makeText(getContext(), "Đã duyệt đơn", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "Đã xảy ra lỗi, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
     }
 }

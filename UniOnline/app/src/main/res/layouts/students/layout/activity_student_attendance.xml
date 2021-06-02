@@ -96,7 +96,8 @@
         android:layout_marginStart="8dp"
         android:text="Lê Hồng Kỳ"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ivTeacherAvatar"
         app:layout_constraintStart_toEndOf="@+id/ivTeacherAvatar"
         app:layout_constraintTop_toTopOf="@+id/ivTeacherAvatar" />

@@ -1,4 +1,4 @@
-package com.example.unionline.Views.Students;
+package com.example.unionline.Views.Students.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.R;
+import com.example.unionline.Views.Students.StudentAttendanceActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,20 +46,29 @@ public class StudentHomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_student_home, container, false);
 
+        // Set for activity
         setOnClickListener();
         setRecyclerView(root);
+
+        // Get current date to set for text view
         currentDate = android.text.format.DateFormat.format("dd/MM/yyyy", new java.util.Date()).toString();
 
+        // Set current date for text view
         TextView tvCurrentDate = root.findViewById(R.id.tvCurrentDate);
         tvCurrentDate.setText(currentDate);
 
         return root;
     }
 
+    /**
+     *
+     * Set on click for item RecyclerView
+     */
     private void setOnClickListener() {
         listener = new AttendanceAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
+                // Start attendance
                 Intent intent = new Intent(getActivity(), StudentAttendanceActivity.class);
 
                 Bundle bundle = new Bundle();
@@ -70,23 +80,11 @@ public class StudentHomeFragment extends Fragment {
         };
     }
 
+    /**
+     * Initial data for recyclerview and set data
+     * @param root
+     */
     private void setRecyclerView(View root){
-        /*Attendance attendance = new Attendance();
-        attendance.setClassId("-Mah1bXNZ1gVfLAtjT7w");
-        attendance.setClassName("Lập trình di động");
-        attendance.setClassRoom("E1 - 503");
-        attendance.setFullTime("27/05/2021");
-        attendance.setLessonId("-MahEe2hO7lHBigxxGhT");
-        attendance.setLessonName("Web API");
-        attendance.setStudentId("18110234");
-        attendance.setState("Chưa học");
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Attendances").child(Common.semester.getSemesterId());
-        String key = mDatabase.push().getKey();
-        attendance.setId(key);
-        mDatabase.child(key).setValue(attendance);*/
-
-
         recyclerView = root.findViewById(R.id.rvAttendance);
 
         listAttendance = new ArrayList<>();
@@ -108,6 +106,7 @@ public class StudentHomeFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Attendance attendance = dataSnapshot.getValue(Attendance.class);
 
+                    // Compare date attendance with current date to add to list attendance
                     if(attendance.getFullDate()!=null){
                         if(attendance.getFullDate().equals(currentDate)){
                             listAttendance.add(attendance);

@@ -1,6 +1,8 @@
 package com.example.unionline.DTO;
 
-public class News {
+import java.io.Serializable;
+
+public class News implements Serializable {
     private String id;
     private String title;
     private String content;

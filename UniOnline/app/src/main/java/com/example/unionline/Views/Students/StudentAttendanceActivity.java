@@ -54,6 +54,9 @@ public class StudentAttendanceActivity extends AppCompatActivity {
         mapViewValue();
     }
 
+    /**
+     * Map view to variable
+     */
     private void mapView(){
         tvActivityName = (TextView) findViewById(R.id.activity_name);
         tvClassName = (TextView) findViewById(R.id.tvClassName);
@@ -69,13 +72,8 @@ public class StudentAttendanceActivity extends AppCompatActivity {
 
     private void mapViewValue(){
 
-        tvActivityName.setText("Lớp học");
+        tvRoom.setText(attendance.getClassRoom());
 
-        if(attendance.getState() == Common.ATTENDANCE_NOT_YET) {
-            tvState.setText("Chưa học");
-        } else {
-            tvState.setText("Đã học");
-        }
         tvFullTime.setText(attendance.getFullDate()  + " | " + attendance.getFullTime());
 
         // Get class
@@ -84,46 +82,56 @@ public class StudentAttendanceActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-
                 }
                 else {
                     Class aClass = task.getResult().getValue(Class.class);
 
+                    // Set class Name and class room
                     tvClassName.setText(aClass.getClassName());
                     tvRoom.setText(aClass.getRoom());
+
+                    // Get teacher from id
+                    mDatabase = FirebaseDatabase.getInstance().getReference();
+                    mDatabase.child("Users").child(aClass.getTeacherId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if (!task.isSuccessful()) {
+                            }
+                            else {
+                                User user = task.getResult().getValue(User.class);
+                                if(user!=null){
+                                    tvTeacherName.setText(user.getName());
+                                }
+                            }
+                        }
+                    });
                 }
             }
         });
 
-        // Get teacher
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Users").child("18110234").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-
-                }
-                else {
-                    User user = task.getResult().getValue(User.class);
-
-                    tvTeacherName.setText(user.getName());
-                }
-            }
-        });
-
-        // Get lesson
+        // Get lesson from id
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Lessons").child(Common.semester.getSemesterId()).child(attendance.getLessonId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-
                 }
                 else {
                     Lesson lesson = task.getResult().getValue(Lesson.class);
 
+                    // Set lesson name, lesson description
                     tvLessonName.setText(lesson.getName());
                     tvLessonDescription.setText(lesson.getDescription());
+                    tvActivityName.setText("Buổi học thứ " + lesson.getWeek());
+
+                    /**
+                     * Set lesson state
+                     */
+                    if(lesson.isStatus()) {
+                        tvState.setText("Đã học");
+                    } else {
+                        tvState.setText("Chưa học");
+                    }
                 }
             }
         });

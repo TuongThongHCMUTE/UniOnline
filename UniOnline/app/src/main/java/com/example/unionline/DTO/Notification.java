@@ -1,10 +1,5 @@
 package com.example.unionline.DTO;
 
-import com.example.unionline.DAO.Dao;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Notification {
     private String id;
     private String title;
