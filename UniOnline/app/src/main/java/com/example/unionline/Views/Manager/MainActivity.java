@@ -23,14 +23,9 @@ import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.ClassModel1;
 import com.example.unionline.DTO.Enrollment;
 import com.example.unionline.DTO.Lesson;
-import com.example.unionline.DTO.Notification;
 import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
-import com.example.unionline.Views.Teachers.Fragments.TeacherAccountFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherHomeFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherInteractionFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherNotificationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -68,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 //selectedFragment = new TeacherNotificationFragment();
                 break;
 //            case R.id.nav_teacher_account:
-//                //selectedFragment = new TeacherAccountFragment();
+//                //selectedFragment = new CommonAccountFragment();
 //                break;
         }
         // Replace fragment container with selected fragment

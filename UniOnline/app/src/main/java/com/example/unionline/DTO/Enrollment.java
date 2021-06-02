@@ -18,7 +18,9 @@ public class Enrollment implements Serializable {
 
     public Enrollment(){};
 
-    public Enrollment(String id, String classId, String className, String classRoom, String fullDate, String studentId, String studentName, double midScore, double finalScore, int stateMark) {
+    public Enrollment(String id, String classId, String className, String classRoom,
+                      String fullDate, String studentId, String studentName, double midScore,
+                      double finalScore, int stateMark, int classTuition, boolean isPayClassTuition) {
         this.id = id;
         this.classId = classId;
         this.className = className;
@@ -29,6 +31,8 @@ public class Enrollment implements Serializable {
         this.midScore = midScore;
         this.finalScore = finalScore;
         this.stateMark = stateMark;
+        this.classTuition = classTuition;
+        this.isPayClassTuition = isPayClassTuition;
     }
 
     public String getId() {

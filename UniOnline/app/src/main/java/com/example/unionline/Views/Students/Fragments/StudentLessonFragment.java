@@ -1,4 +1,4 @@
-package com.example.unionline.Views.Students;
+package com.example.unionline.Views.Students.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;

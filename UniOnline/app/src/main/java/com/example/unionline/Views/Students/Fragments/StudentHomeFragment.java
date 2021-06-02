@@ -1,4 +1,4 @@
-package com.example.unionline.Views.Students;
+package com.example.unionline.Views.Students.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.R;
+import com.example.unionline.Views.Students.StudentAttendanceActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

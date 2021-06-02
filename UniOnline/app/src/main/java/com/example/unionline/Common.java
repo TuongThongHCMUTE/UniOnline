@@ -39,6 +39,13 @@ public class Common {
     public static ArrayList<String> aaNames;
 
     public Common(){
+        semester = new Semester();
+        semester.setSemesterId("2020_2021_HK1");
+        semester.setSemesterName("Học kỳ 1, năm học 2020-2021");
+
+        /*user = new User();
+        user.setUserId("18110234");*/
+
         //Set user role
         userRoles = new ArrayList<String>();
         userRoles.add("Admin");

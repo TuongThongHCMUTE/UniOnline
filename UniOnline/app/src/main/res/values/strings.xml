@@ -6,6 +6,7 @@
     <string name="vn_password">Mật khẩu</string>
     <string name="vn_role">Vai trò</string>
     <string name="vn_forgot_password">Quên mật khẩu</string>
+    <string name="vn_reset_password">Lấy lại mật khẩu</string>
     <string name="vn_login">Đăng nhập</string>
 
     <!-- TODO: Remove or change this placeholder text -->

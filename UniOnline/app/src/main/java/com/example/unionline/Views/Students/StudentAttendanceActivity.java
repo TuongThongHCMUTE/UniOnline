@@ -100,7 +100,9 @@ public class StudentAttendanceActivity extends AppCompatActivity {
                             }
                             else {
                                 User user = task.getResult().getValue(User.class);
-                                tvTeacherName.setText(user.getName());
+                                if(user!=null){
+                                    tvTeacherName.setText(user.getName());
+                                }
                             }
                         }
                     });

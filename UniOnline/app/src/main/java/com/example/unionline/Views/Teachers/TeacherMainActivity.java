@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.example.unionline.DAO.Dao;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.R;
-import com.example.unionline.Views.Teachers.Fragments.TeacherAccountFragment;
+import com.example.unionline.Views.Common.CommonAccountFragment;
 import com.example.unionline.Views.Teachers.Fragments.TeacherHomeFragment;
 import com.example.unionline.Views.Teachers.Fragments.TeacherInteractionFragment;
 import com.example.unionline.Views.Teachers.Fragments.TeacherNotificationFragment;
@@ -61,7 +61,7 @@ public class TeacherMainActivity extends AppCompatActivity {
                         selectedFragment = new TeacherNotificationFragment();
                         break;
                     case R.id.nav_teacher_account:
-                        selectedFragment = new TeacherAccountFragment();
+                        selectedFragment = new CommonAccountFragment();
                         break;
                 }
                 // Replace fragment container with selected fragment

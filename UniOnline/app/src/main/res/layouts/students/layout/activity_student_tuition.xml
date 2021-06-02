@@ -98,7 +98,7 @@
 
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="1.000.000 VND"
+                android:text="0 VND"
                 android:textAlignment="center"
                 android:textColor="@color/holo_red_light"
                 android:textSize="20sp"
