@@ -75,6 +75,7 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         Date createDate = new Date();
         tvCurrentDate.setText(formatter.format(createDate));
 
+        setToolbar();
         setRecyclerView();
     }
 
@@ -205,13 +206,13 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private void setToolbar(Dialog dialog, int Type) {
-        ImageView backIcon = dialog.findViewById(R.id.left_icon);
+    private void setToolbar() {
+        ImageView backIcon = findViewById(R.id.left_icon);
         backIcon.setOnClickListener((View v) -> {
             this.finish();
         });
 
-        TextView txtToolbarName = dialog.findViewById(R.id.activity_name);
+        TextView txtToolbarName = findViewById(R.id.activity_name);
         txtToolbarName.setText("Thời khóa biểu");
     }
 }

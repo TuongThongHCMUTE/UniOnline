@@ -74,6 +74,6 @@ public class TeacherClassInfoFragment extends Fragment {
         tvEndDate.setText(aClass.getEndDate());
         tvRoom.setText(aClass.getRoom());
         tvStatus.setText(aClass.getState());
-        tvTime.setText("Từ " + aClass.getStartTime() + " đến " + aClass.getEndTime());
+        tvTime.setText("Từ tiết " + aClass.getStartTime() + " đến tiết " + aClass.getEndTime());
     }
 }

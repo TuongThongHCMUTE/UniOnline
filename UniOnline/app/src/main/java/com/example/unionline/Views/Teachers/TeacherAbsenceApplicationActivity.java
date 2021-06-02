@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.unionline.Adapters.Teachers.ApplicationPagerAdapter;
 import com.example.unionline.Common;
@@ -36,6 +39,7 @@ public class TeacherAbsenceApplicationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_absence_application);
 
+        setToolbar();
         getClassIdsFromFirebase();
 
         tabLayout   = (TabLayout) findViewById(R.id.teacher_absenceApplication_tabLayout);
@@ -89,5 +93,15 @@ public class TeacherAbsenceApplicationActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setToolbar() {
+        ImageView backIcon = findViewById(R.id.left_icon);
+        backIcon.setOnClickListener((View v) -> {
+            this.finish();
+        });
+
+        TextView txtToolbarName = findViewById(R.id.activity_name);
+        txtToolbarName.setText("Duyệt đơn xin nghỉ");
     }
 }
