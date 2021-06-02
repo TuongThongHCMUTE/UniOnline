@@ -35,41 +35,6 @@ public class ClassDAO {
         path = "Classes";
     }
 
-    public Class getClassById(String id) {
-        final Class[] aClass = {new Class()};
-
-        mDataBase = FirebaseDatabase.getInstance().getReference(path).child(id);
-        mDataBase.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChildName) {
-                if (snapshot.getKey() == id) {
-                    aClass[0] = snapshot.getValue(Class.class);
-                    return;
-                }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return aClass[0];
-    }
     public void setValude(ClassModel1 classModel1)
     {
         mDataBase = FirebaseDatabase.getInstance().getReference();

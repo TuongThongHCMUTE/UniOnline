@@ -205,6 +205,8 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
 //        enrollment.setFinalScore(0);
 //        enrollment.setMidScore(0);
         String fulldate=classModel1.getStartDate()+" | Từ tiết "+classModel1.getStartTime()+" - "+classModel1.getEndTime();
+        //enrollment.setStudentCode(user.getEmail().substring(0,8));
+//        String fulldate=classModel1.getStartDate()+" | "+changeTime(classModel1.getStartTime())+" - "+changeTime(classModel1.getEndTime());
         enrollment.setFullDate(fulldate);
         enrollment.setState(1);
         String key;

@@ -10,12 +10,12 @@ public class Enrollment implements Serializable {
     private String fullDate;
     private String studentId;
     private String studentName;
+    private String studentCode;
     private double midScore;
     private double finalScore;
     private int stateMark;
     private int classTuition;
     private boolean isPayClassTuition;
-    private String studentCode;
     public Enrollment(){};
 
     public Enrollment(String id, String classId, String className, String classRoom,
@@ -139,11 +139,12 @@ public class Enrollment implements Serializable {
         isPayClassTuition = payClassTuition;
     }
 
-//    public String getStudentCode() {
-//        return studentCode;
-//    }
-//
-//    public void setStudentCode(String studentCode) {
-//        this.studentCode = studentCode;
-//    }
+
+    public String getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(String studentCode) {
+        this.studentCode = studentCode;
+    }
 }

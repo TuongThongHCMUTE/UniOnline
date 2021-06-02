@@ -3,6 +3,7 @@ package com.example.unionline.DAO;
 import androidx.annotation.NonNull;
 
 import com.example.unionline.Common;
+import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.ClassModel1;
 import com.example.unionline.DTO.Enrollment;
 import com.example.unionline.DTO.Lesson;
@@ -200,5 +201,30 @@ public class LessonDAO {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String dateString = simpleDateFormat.format(date);
         return dateString;
+    }
+
+    public List<Lesson> getAllLessonByClass(Class classObject)
+    {
+        List<Lesson> lessons=new ArrayList<>();
+        mDataBase = FirebaseDatabase.getInstance().getReference("Lessons").child(classObject.getSemesterId());
+        mDataBase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lessons.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Lesson lesson= dataSnapshot.getValue(Lesson.class);
+                    if(lesson.getClassId().equals(classObject.getClassId()))
+                        lessons.add(lesson);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return lessons;
     }
 }
