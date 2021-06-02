@@ -38,7 +38,7 @@ public class TeacherClassInfoFragment extends Fragment {
     private Class aClass;
     private TextView tvClassName, tvClassId, tvStartDate, tvEndDate, tvStatus, tvRoom, tvTime, tvProcess;
 
-    List<Lesson> lessons=new ArrayList<>();
+    List<Lesson> lessons = new ArrayList<>();
 
     public TeacherClassInfoFragment() {
         // Required empty public constructor
@@ -95,7 +95,6 @@ public class TeacherClassInfoFragment extends Fragment {
 
         //List<Lesson> lessons = LessonDAO.getInstance().getAllLessonByClass(aClass);
 
-
         mDataBase = FirebaseDatabase.getInstance().getReference("Lessons").child(aClass.getSemesterId());
         Query query = mDataBase.orderByChild("classId").equalTo(aClass.getClassId());
         query.addValueEventListener(new ValueEventListener() {
@@ -106,6 +105,10 @@ public class TeacherClassInfoFragment extends Fragment {
                     Lesson lesson = dataSnapshot.getValue(Lesson.class);
                     lessons.add(lesson);
                 }
+
+                int totalLesson = lessons.size();
+                long learnedLesson = lessons.stream().filter(c -> c.isStatus() == true).count();
+                tvProcess.setText(learnedLesson + "/" + totalLesson + " buổi");
             }
 
             @Override
@@ -113,9 +116,5 @@ public class TeacherClassInfoFragment extends Fragment {
 
             }
         });
-
-        int totalLesson = lessons.size();
-        long learnedLesson = lessons.stream().filter(c -> c.isStatus() == true).count();
-        tvProcess.setText(learnedLesson + "/" + totalLesson + " buổi");
     }
 }

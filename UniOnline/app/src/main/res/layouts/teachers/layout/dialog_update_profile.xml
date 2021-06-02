@@ -86,7 +86,7 @@
 
                 <EditText
                     android:id="@+id/edName"
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/input_bg"
@@ -98,7 +98,7 @@
 
                 <EditText
                     android:id="@+id/edPhone"
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/input_bg"
@@ -111,7 +111,7 @@
 
                 <EditText
                     android:id="@+id/edEmail"
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/input_bg"

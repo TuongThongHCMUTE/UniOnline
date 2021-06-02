@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ public class TeacherPendingApplicationFragment extends Fragment {
     private TextView tvStudentName, tvStudentId, tvDateOff, tvReason;
     private RadioButton rbApprove, rbRefuse;
     private Button btnSend;
+    private EditText edResponse;
     Dialog dialog;
 
     public TeacherPendingApplicationFragment() {
@@ -151,6 +153,8 @@ public class TeacherPendingApplicationFragment extends Fragment {
         tvReason = dialog.findViewById(R.id.txtReason);
         rbApprove = dialog.findViewById(R.id.rbApprove);
         rbRefuse = dialog.findViewById(R.id.rbRefuse);
+        edResponse = dialog.findViewById(R.id.txtRespond);
+
         btnSend = dialog.findViewById(R.id.btnSend);
 
         setToolbar();
@@ -171,6 +175,8 @@ public class TeacherPendingApplicationFragment extends Fragment {
         tvStudentName.setText(application.getStudentName());
         tvReason.setText(application.getReason());
         tvDateOff.setText(application.getDateOff());
+        edResponse.setText(application.getTeacherRespond());
+
 
         switch (application.getState()) {
             case Common.AA_APPROVED:
@@ -193,6 +199,8 @@ public class TeacherPendingApplicationFragment extends Fragment {
             } else {
                 application.setState(Common.AA_WAIT_FOR_APPROVAL);
             }
+
+            application.setTeacherRespond(edResponse.getText().toString());
 
             try {
                 AbsenceApplicationDAO.getInstance().update(application);

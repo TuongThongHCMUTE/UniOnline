@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class TeacherDoneApplicationFragment extends Fragment {
     Dialog dialog;
     private TextView tvStudentName, tvStudentId, tvDateOff, tvReason;
     private RadioButton rbApprove, rbRefuse;
+    private EditText edResponse;
     private Button btnSend;
 
     public TeacherDoneApplicationFragment() {
@@ -153,6 +155,7 @@ public class TeacherDoneApplicationFragment extends Fragment {
         rbApprove = dialog.findViewById(R.id.rbApprove);
         rbRefuse = dialog.findViewById(R.id.rbRefuse);
         btnSend = dialog.findViewById(R.id.btnSend);
+        edResponse = dialog.findViewById(R.id.txtRespond);
 
         ImageView backIcon = dialog.findViewById(R.id.left_icon);
         backIcon.setOnClickListener((View v) -> {
@@ -199,6 +202,8 @@ public class TeacherDoneApplicationFragment extends Fragment {
             } else {
                 application.setState(Common.AA_WAIT_FOR_APPROVAL);
             }
+
+            application.setTeacherRespond(edResponse.getText().toString());
 
             try {
                 AbsenceApplicationDAO.getInstance().update(application);

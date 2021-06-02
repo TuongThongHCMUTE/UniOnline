@@ -198,6 +198,7 @@
             </RadioGroup>
 
             <EditText
+                android:id="@+id/txtRespond"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg_one_line_shadow"
