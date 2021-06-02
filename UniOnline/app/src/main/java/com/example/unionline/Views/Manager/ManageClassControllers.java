@@ -266,7 +266,7 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
                 String timeEnd = spTimeTo.getSelectedItem().toString();
                 String dateStart = tvDateStart.getText().toString();
                 String dateEnd = tvDateEnd.getText().toString();
-                String state = "0";
+                String state = "Active";
                 Boolean status = true;
                 if (isAddNew == true) {
                     ClassModel1 classModel = new ClassModel1(classId, semester, teacher, className, Integer.parseInt(capacity), room, timeStart, timeEnd, dateStart, dateEnd, state, status);

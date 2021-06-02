@@ -137,7 +137,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),1,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(studentAdapter);
-
+        List<User> userListToRemove=new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance().getReference("Users");
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -154,10 +154,11 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
                 {
                     for(Enrollment enrollment: enrollments)
                     {
-                        if(enrollment.getStudentId().equals(user.getUserId()))
-                            classUsers.remove(user);
+                            if(enrollment.getStudentId().equals(user.getUserId()))
+                                userListToRemove.add(user);
                     }
                 }
+                classUsers.removeAll(userListToRemove);
                 System.out.println("Size of User"+classUsers.size());
                 studentAdapter.notifyDataSetChanged();
             }
@@ -200,6 +201,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         enrollment.setClassName(classModel1.getClassName());
         enrollment.setClassRoom(classModel1.getRoom());
         enrollment.setStudentId(user.getUserId());
+        enrollment.setClassTuition(classModel1.getTuition());
         enrollment.setStudentCode(user.getEmail().substring(0,8));
         enrollment.setStudentName(user.getName());
 //        enrollment.setFinalScore(0);
@@ -253,8 +255,9 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
                     attendance.setClassName(classModel1.getClassName());
                     attendance.setClassRoom(classModel1.getRoom());
                     attendance.setState(1);
-                    String fulldate=dateAddString+" | "+"Tiết "+classModel1.getStartTime()+" - "+classModel1.getEndTime();
-                    attendance.setFullDate(fulldate);
+                    String fulltime="Tiết "+classModel1.getStartTime()+" - "+classModel1.getEndTime();
+                    attendance.setFullDate(lesson.getDate());
+                    attendance.setFullTime(fulltime);
                     String key = mDatabase.push().getKey();
                     attendance.setId(key);
                     mDatabase.child(key).setValue(attendance);
