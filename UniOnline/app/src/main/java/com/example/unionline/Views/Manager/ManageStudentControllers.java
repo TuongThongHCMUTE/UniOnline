@@ -140,7 +140,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(studentAdapter);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Users").child("Student");
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -148,7 +148,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
                 for(DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
                     User user= dataSnapshot.getValue(User.class);
-                    //if(user.getRole()=="Students")
+                    if(user.getRole()==3)
                                 classUsers.add(user);
 
                 }
@@ -210,11 +210,10 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         mDatabase.child(key).setValue(enrollment);
         AddStudentToAttendce(enrollment,classModel1);
     }
-    //Con loi add atendence
+
     public void AddStudentToAttendce(Enrollment enrollment,ClassModel1 classModel1)
     {
         List<Lesson> lessonList=new ArrayList<>();
-
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Lessons").child(classModel1.getSemesterId());
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -226,7 +225,6 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
                     Lesson lesson= dataSnapshot.getValue(Lesson.class);
                     if(lesson.getClassId().equals(classModel1.getClassId())) {
                         lessonList.add(lesson);
-                        //System.out.println("Class lesson Id" + lesson.getClassId());
                     }
                 }
                 Date date=convertStringToDate(classModel1.getStartDate());
@@ -250,8 +248,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
                     String key = mDatabase.push().getKey();
                     attendance.setId(key);
                     mDatabase.child(key).setValue(attendance);
-                    System.out.println("Model attendance"+attendance);
-                    calendar.roll(Calendar.DATE,7);
+                    calendar.add(Calendar.DATE,7);
                 }
             }
 

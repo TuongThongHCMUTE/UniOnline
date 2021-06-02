@@ -23,7 +23,7 @@
             android:layout_marginLeft="0dp"
             app:layout_constraintStart_toStartOf="@+id/space"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/x_icon" />
+            app:srcCompat="@drawable/ic_close" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -37,37 +37,24 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-    <Spinner
-        android:id="@+id/spTietBatDau3"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="375dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Thông báo"
         android:textColor="@color/black"
         android:textSize="50sp"
-        app:layout_constraintEnd_toStartOf="@+id/spTietBatDau3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewThongBao"
-        android:layout_width="430dp"
-        android:layout_height="500dp"
+        android:layout_width="413dp"
+        android:layout_height="480dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
         app:layout_constraintBottom_toTopOf="@+id/toolbar3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +64,7 @@
         android:id="@+id/toolbar3"
         android:layout_width="0dp"
         android:layout_height="78dp"
-        android:background="#C5BBBB"
+        android:background="@drawable/bg_while_corner_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,8 +74,10 @@
             android:id="@+id/imageButton10"
             android:layout_width="120dp"
             android:layout_height="78dp"
+            android:layout_gravity="right"
             android:layout_marginLeft="150dp"
-            android:background="@drawable/plus"
+            android:background="@android:drawable/ic_input_add"
+            app:backgroundTint="@color/teal_200"
             tools:layout_editor_absoluteX="159dp"
             tools:layout_editor_absoluteY="775dp" />
 
