@@ -155,7 +155,6 @@ public class TeacherAccountFragment extends Fragment {
         } else if(Type == CHANGE_PASSWORD) {
             txtToolbarName.setText("Thay đổi mật khẩu");
         }
-
     }
 
     private void updateProfile(String name, String phone) {
