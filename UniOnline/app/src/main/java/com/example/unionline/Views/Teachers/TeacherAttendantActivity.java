@@ -55,16 +55,16 @@ public class TeacherAttendantActivity extends AppCompatActivity {
         // Set event click for item in list classes
         setOnClickListener();
 
-        //
         setRecyclerView();
     }
 
+    // When teacher click on a class in list classes --> Create a activity to show list lessons
     private void setOnClickListener() {
         listener = new ClassAdapter.RecyclerViewClickListener() {
             @Override
             public void onCLick(View v, int position) {
                 Intent intent = new Intent(TeacherAttendantActivity.this, TeacherListLessonsActivity.class);
-
+                // Pun classId and className of selected class to bundle
                 Bundle bundle = new Bundle();
                 bundle.putString("classId", classes.get(position).getClassId());
                 bundle.putString("className", classes.get(position).getClassName());
@@ -91,6 +91,7 @@ public class TeacherAttendantActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Fill data from Firebase
+        // Data is list classes that teacher is teaching
         mData = FirebaseDatabase.getInstance().getReference("Classes").child(Common.semester.getSemesterId());
         Query query = mData.orderByChild("teacherId").equalTo(Common.user.getUserId());
         query.addValueEventListener(new ValueEventListener() {

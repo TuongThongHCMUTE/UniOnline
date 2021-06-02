@@ -69,20 +69,25 @@ public class TeacherInteractionFragment extends Fragment {
     private View.OnClickListener onClickListener = (View v) -> {
         Intent intent;
 
+        // Open activity when clicking on card view
         switch (v.getId()) {
             case R.id.cvTeacherSchedule:
+                // Schedule
                 intent = new Intent(this.getActivity(), TeacherScheduleActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cvTeacherClass:
+                // List classes
                 intent = new Intent(this.getActivity(), TeacherListClassesActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cvTeacherAttendant:
+                // Attendant
                 intent = new Intent(this.getActivity(), TeacherAttendantActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cvTeacherApplication:
+                // Absent applications
                 intent = new Intent(this.getActivity(), TeacherAbsenceApplicationActivity.class);
                 startActivity(intent);
                 break;

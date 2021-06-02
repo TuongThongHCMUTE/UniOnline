@@ -18,6 +18,7 @@ public class TeacherAddNotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_add_notification);
 
+        // Replace with fragment choose class to send notification
         getSupportFragmentManager().beginTransaction().replace(R.id.main, new TeacherChooseClassFragment())
                 .addToBackStack(null)
                 .commit();

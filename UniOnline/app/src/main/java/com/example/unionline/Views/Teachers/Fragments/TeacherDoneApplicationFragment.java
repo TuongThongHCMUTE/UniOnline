@@ -75,6 +75,7 @@ public class TeacherDoneApplicationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            // Get list class ids from bundle
             classIds = (ArrayList<String>) getArguments().getSerializable(ARG_CLASS_IDS);
         }
     }
@@ -85,7 +86,10 @@ public class TeacherDoneApplicationFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_teacher_application, container, false);
 
+        // Full screen dialog to approve the application
         setDialog();
+
+        // Catch event when click or touch on item in list application
         setOnClickListener();
         setRecyclerView(root);
 
@@ -102,6 +106,7 @@ public class TeacherDoneApplicationFragment extends Fragment {
 
             @Override
             public void onCLick(View itemView, int adapterPosition) {
+                // Get selected application
                 AbsenceApplication application = applications.get(adapterPosition);
                 openDialog(application);
             }
@@ -122,6 +127,7 @@ public class TeacherDoneApplicationFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // Fill data from Firebase
+        // Get list waiting applications of classes that teacher teaches
         mData = FirebaseDatabase.getInstance().getReference("AbsenceApplications").child(Common.semester.getSemesterId());
         mData.addValueEventListener(new ValueEventListener() {
             @Override
@@ -129,6 +135,9 @@ public class TeacherDoneApplicationFragment extends Fragment {
                 applications.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     AbsenceApplication application = dataSnapshot.getValue(AbsenceApplication.class);
+                    // Condition to add the application
+                    // Class Id of the application must be in classIds and state of application is waiting
+                    // classIds is list id of class that teacher is teaching
                     if((classIds.contains(application.getClassId())) && (application.getState() != Common.AA_WAIT_FOR_APPROVAL)) {
                         applications.add(application);
                     }
@@ -144,10 +153,12 @@ public class TeacherDoneApplicationFragment extends Fragment {
     }
 
     private void setDialog() {
+        // Create view of full screen layout
         View view = getLayoutInflater().inflate(R.layout.dialog_application, null);
         dialog = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         dialog.setContentView(view);
 
+        // Mapping
         tvStudentId = dialog.findViewById(R.id.txtStudentIdValue);
         tvStudentName = dialog.findViewById(R.id.txtStudentNameValue);
         tvDateOff = dialog.findViewById(R.id.txtDateOffValue);
@@ -157,37 +168,44 @@ public class TeacherDoneApplicationFragment extends Fragment {
         btnSend = dialog.findViewById(R.id.btnSend);
         edResponse = dialog.findViewById(R.id.txtRespond);
 
-        ImageView backIcon = dialog.findViewById(R.id.left_icon);
-        backIcon.setOnClickListener((View v) -> {
-            dialog.dismiss();
-        });
-
+        // Toolbar on top of the dialog
         setToolbar();
     }
 
     private void setToolbar() {
+        // Dismiss the dialog when clicking on back icon
         ImageView backIcon = dialog.findViewById(R.id.left_icon);
         backIcon.setOnClickListener((View v) -> {
             dialog.dismiss();
         });
 
+        // Name of the dialog show on toolbar
         TextView txtToolbarName = dialog.findViewById(R.id.activity_name);
         txtToolbarName.setText("Duyệt đơn xin nghỉ");
     }
 
+    /**
+     * Open dialog when user clicking on any applications in recycler view
+     * @param application: selected application
+     */
     private void openDialog(AbsenceApplication application) {
+        // Set value for view with data from application
         tvStudentId.setText(application.getStudentId());
         tvStudentName.setText(application.getStudentName());
         tvReason.setText(application.getReason());
         tvDateOff.setText(application.getDateOff());
 
+        // Set check for radio buttons
         switch (application.getState()) {
+            // Application is approved
             case Common.AA_APPROVED:
                 rbApprove.setChecked(true);
                 break;
+            // Application is not approved
             case Common.AA_NOT_APPROVED:
                 rbRefuse.setChecked(true);
                 break;
+            // Application has never been checked
             default:
                 rbApprove.setChecked(false);
                 rbRefuse.setChecked(false);
@@ -195,17 +213,26 @@ public class TeacherDoneApplicationFragment extends Fragment {
         }
 
         btnSend.setOnClickListener((View v) -> {
+            // Change state for application when teacher check on radio buttons
             if(rbApprove.isChecked()) {
+                // Approved
                 application.setState(Common.AA_APPROVED);
-            } else if(rbRefuse.isChecked()) {
+            }
+            else if(rbRefuse.isChecked()) {
+                // Refused
                 application.setState(Common.AA_NOT_APPROVED);
-            } else {
+            }
+            else {
+                // Waiting
                 application.setState(Common.AA_WAIT_FOR_APPROVAL);
             }
 
+            // Response from teacher
             application.setTeacherRespond(edResponse.getText().toString());
 
+            // Update to databse
             try {
+                // If success
                 AbsenceApplicationDAO.getInstance().update(application);
                 Toast.makeText(getContext(), "Đã duyệt đơn", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
