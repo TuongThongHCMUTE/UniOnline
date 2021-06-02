@@ -2,21 +2,30 @@ package com.example.unionline.Views.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.unionline.Adapters.Admin.AccountAdapter;
+import com.example.unionline.Adapters.Admin.RecyclerViewItemTouchHelper;
+import com.example.unionline.Common;
+import com.example.unionline.DAO.AdminDAO;
+import com.example.unionline.DTO.Lesson;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,6 +33,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
@@ -38,10 +48,10 @@ public class AdminQlkAccountActivity extends AppCompatActivity {
     ImageButton btnBack, btnAddNewQlkAccount, btnSearch;
     ImageView btnEditQlk;
     EditText editTextSearching;
-    Intent intent;
     RelativeLayout qlkRootView;
     DatabaseReference adminDatabase;
     LinearLayoutManager linearLayoutManager;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +65,9 @@ public class AdminQlkAccountActivity extends AppCompatActivity {
         editTextSearching = findViewById(R.id.et_box_search_qlk);
         recyclerViewQlk = findViewById(R.id.rv_admin_qlkhoa_account);
         linearLayoutManager = new LinearLayoutManager(this);
+        qlkRootView = findViewById(R.id.qlk_rootview);
 
-        adminDatabase = FirebaseDatabase.getInstance().getReference("Users/Qlkhoa");
+        adminDatabase = FirebaseDatabase.getInstance().getReference("Users/Department Manager");
         recyclerViewQlk.setHasFixedSize(true);
         recyclerViewQlk.setLayoutManager(new LinearLayoutManager(this));
 
@@ -64,10 +75,13 @@ public class AdminQlkAccountActivity extends AppCompatActivity {
         accountAdapter = new AccountAdapter(this, userList);
         recyclerViewQlk.setAdapter(accountAdapter);
 
-        adminDatabase.addValueEventListener(new ValueEventListener() {
+        adminDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        Query query = adminDatabase.orderByChild("role").equalTo(Common.roleManager);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
                     userList.add(user);
                 }
@@ -75,7 +89,7 @@ public class AdminQlkAccountActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -95,13 +109,13 @@ public class AdminQlkAccountActivity extends AppCompatActivity {
             }
         });
 
-//        btnEditQlk.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AdminQlkEditFragment adminQlkEditFragment = new AdminQlkEditFragment();
-//                adminQlkEditFragment.show(getSupportFragmentManager(), "Sửa Quản lý khoa");
-//            }
-//        });
+        btnEditQlk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminQlkAccountActivity.this, AdminQlkEditActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,25 +155,4 @@ public class AdminQlkAccountActivity extends AppCompatActivity {
         AccountAdapter.filterList(userList);
     }
 
-    public void onSwipeListener(RecyclerView.ViewHolder viewHolder) {
-        if (viewHolder instanceof AccountAdapter.AccountViewHolder) {
-            String nameQlk = userList.get(viewHolder.getAdapterPosition()).getName();
-
-            User qlkDelete = userList.get(viewHolder.getAdapterPosition());
-            int indexDelete = viewHolder.getAdapterPosition();
-
-            accountAdapter.removeItem(indexDelete);
-
-            Snackbar snackbar = Snackbar.make(qlkRootView, nameQlk + " removed!", Snackbar.LENGTH_LONG);
-
-            snackbar.setAction("UNDO", new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    accountAdapter.undoItem(qlkDelete, indexDelete);
-                }
-            });
-            snackbar.setActionTextColor(Color.GREEN);
-            snackbar.show();
-        }
-    }
 }

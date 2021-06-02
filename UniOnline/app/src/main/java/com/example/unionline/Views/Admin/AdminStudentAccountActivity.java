@@ -2,6 +2,7 @@ package com.example.unionline.Views.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.unionline.Adapters.Admin.AccountAdapter;
+import com.example.unionline.Adapters.Admin.RecyclerViewItemTouchHelper;
+import com.example.unionline.Common;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,11 +52,11 @@ public class AdminStudentAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_student_account);
 
-        btnBack = findViewById(R.id.ib_back_quanly_phuhuynh);
-        btnAddNewStudentAccount = findViewById(R.id.btn_add_quanly_phuhuynh);
+        btnBack = findViewById(R.id.btn_back_quanly_sinhvien);
+        btnAddNewStudentAccount = findViewById(R.id.btn_add_quanly_sinhvien);
         btnSearch = findViewById(R.id.btn_admin_student_search);
-        btnEditStudent = findViewById(R.id.btn_admin_student_edit);
-        editTextSearching = findViewById(R.id.et_box_search_sinhvien);
+        btnEditStudent = findViewById(R.id.btn_edit_student);
+        editTextSearching = findViewById(R.id.et_box_search_student);
         recyclerViewStudent = findViewById(R.id.rv_admin_student_account);
         linearLayoutManager = new LinearLayoutManager(this);
 
@@ -64,10 +68,16 @@ public class AdminStudentAccountActivity extends AppCompatActivity {
         accountAdapter = new AccountAdapter(this, userList);
         recyclerViewStudent.setAdapter(accountAdapter);
 
-        adminDatabase.addValueEventListener(new ValueEventListener() {
+        ItemTouchHelper.SimpleCallback simpleCallback = new RecyclerViewItemTouchHelper(0, ItemTouchHelper.LEFT, this::onSwipeListener);
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(recyclerViewStudent);
+
+        adminDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        Query query = adminDatabase.orderByChild("role").equalTo(Common.roleStudent);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
                     userList.add(user);
                 }
@@ -148,7 +158,7 @@ public class AdminStudentAccountActivity extends AppCompatActivity {
             User StudentDelete = userList.get(viewHolder.getAdapterPosition());
             int indexDelete = viewHolder.getAdapterPosition();
 
-            accountAdapter.removeItem(indexDelete);
+            accountAdapter.removeItem(indexDelete, nameStudent);
 
             Snackbar snackbar = Snackbar.make(StudentRootView, nameStudent + " removed!", Snackbar.LENGTH_LONG);
 

@@ -8,9 +8,10 @@
     android:paddingTop="7dp"
     android:paddingBottom="7dp">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="53dp"
+        android:layout_height="wrap_content"
         android:background="@android:color/holo_red_light">
 
         <TextView
@@ -44,13 +45,6 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/linearlayout_email"
-            android:layout_marginTop="10dp"
-            android:background="@color/black" />
 
         <LinearLayout
             android:id="@+id/manager_name"
@@ -94,18 +88,8 @@
                 android:fontFamily="@font/roboto_light"
                 android:text="hongntt@hcmute.eduvn"
                 android:textColor="#777777"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/btn_edit_qlk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/icon_admin_button_edit" />
 
     </RelativeLayout>
 

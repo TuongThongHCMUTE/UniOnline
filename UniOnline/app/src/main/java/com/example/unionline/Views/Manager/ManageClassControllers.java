@@ -476,16 +476,16 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
         for(int i=1;i<16;i++)
         {
 
-            Lesson lesson = new Lesson();
+//            Lesson lesson = new Lesson();
 
-            lesson.setName(name);
-            lesson.setClassId(classModel1.getClassId());
-            lesson.setWeek(i);
-            lesson.setStatus(false);
+//            lesson.setName(name);
+//            lesson.setClassId(classModel1.getClassId());
+//            lesson.setWeek(i);
+//            lesson.setStatus(false);
             mDatabase = FirebaseDatabase.getInstance().getReference().child("Lessons").child(classModel1.getSemesterId());
             key = mDatabase.push().getKey();
-            lesson.setLessonId(key);
-            mDatabase.child(key).setValue(lesson);
+//            lesson.setLessonId(key);
+//            mDatabase.child(key).setValue(lesson);
             name="Lesson "+String.valueOf(i+1);
         }
     }
