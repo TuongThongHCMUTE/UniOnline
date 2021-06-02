@@ -169,13 +169,13 @@ public class TeacherMarkFragment extends Fragment {
         tvStudentName.setText(score.getStudentName());
         tvStudentId.setText(score.getStudentCode());
 
-        if(score.getMidScore() != 0) {
+        if(score.getMidScore() != -1) {
             edMidTerm.setText(String.valueOf(score.getMidScore()));
         } else {
             edMidTerm.setText("");
         }
 
-        if(score.getFinalScore() != 0) {
+        if(score.getFinalScore() != -1) {
             edFinal.setText(String.valueOf(score.getFinalScore()));
         } else {
             edFinal.setText("");
@@ -195,13 +195,13 @@ public class TeacherMarkFragment extends Fragment {
                 if(!midScoreStr.equals("")){
                     score.setMidScore(Double.parseDouble(midScoreStr));
                 } else {
-                    score.setMidScore(0);
+                    score.setMidScore(-1);
                 }
 
                 if(!finalScoreStr.equals("")){
                     score.setFinalScore(Double.parseDouble(finalScoreStr));
                 } else {
-                    score.setFinalScore(0);
+                    score.setFinalScore(-1);
                 }
 
                 if((!midScoreStr.equals("")) && (!finalScoreStr.equals(""))){
