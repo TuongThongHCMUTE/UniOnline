@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,12 +42,16 @@ public class CommonLoginActivity extends AppCompatActivity implements View.OnCli
     private FirebaseAuth mAuth;
     DatabaseReference mDatabase;
 
+    CheckBox checkBox;
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common_login);
         
         mapAndSetView();
+        rememberUser();
     }
 
     @Override
@@ -80,6 +86,16 @@ public class CommonLoginActivity extends AppCompatActivity implements View.OnCli
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Common.userRoles);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spRoles.setAdapter(arrayAdapter);
+
+        //Shared Preferences
+        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+        checkBox = findViewById(R.id.checkBox);
+    }
+
+    public void rememberUser(){
+        etEmail.setText(sharedPreferences.getString("email",""));
+        etPassword.setText(sharedPreferences.getString("password",""));
+        checkBox.setChecked(sharedPreferences.getBoolean("checked",false));
     }
 
     /**
@@ -105,6 +121,7 @@ public class CommonLoginActivity extends AppCompatActivity implements View.OnCli
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if(user.isEmailVerified()){
                         chooseRole(user.getUid());
+                        addRememberMe(email, password);
                     }
                     else{
                         // Send email to validate
@@ -118,7 +135,6 @@ public class CommonLoginActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
-
     }
 
     /**
@@ -136,6 +152,10 @@ public class CommonLoginActivity extends AppCompatActivity implements View.OnCli
                     // Get user from realtime database to check role
                     Common.user = task.getResult().getValue(User.class);
 
+                    if(Common.user == null){
+                        Toast.makeText(CommonLoginActivity.this, "Tài khoản của bạn đã bị xóa!", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     // Check is active account
                     if(!Common.user.isActive()){
                         Toast.makeText(CommonLoginActivity.this, "Tài khoản của bạn đang tạm khóa!", Toast.LENGTH_LONG).show();
@@ -165,6 +185,20 @@ public class CommonLoginActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
+    }
+
+    private void addRememberMe(String emailLogin, String passLogin){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (checkBox.isChecked()) {
+            editor.putString("email", emailLogin);
+            editor.putString("password", passLogin);
+            editor.putBoolean("checked", true);
+        } else {
+            editor.remove("email");
+            editor.remove("password");
+            editor.remove("checked");
+        }
+        editor.commit();
     }
 
     /**

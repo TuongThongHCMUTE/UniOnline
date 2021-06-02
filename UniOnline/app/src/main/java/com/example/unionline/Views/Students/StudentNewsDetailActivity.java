@@ -41,7 +41,7 @@ public class StudentNewsDetailActivity extends AppCompatActivity {
         tvActivityName.setText("Tin tức");
 
         ivImageNews = findViewById(R.id.ivImageNews);
-        ivImageNews.setImageResource(R.drawable.image_no_image);
+        ivImageNews.setImageResource(R.drawable.new_image);
 
         tvSentTo = findViewById(R.id.tvSentTo);
         tvSentTo.setText(currentNews.getSentTo());

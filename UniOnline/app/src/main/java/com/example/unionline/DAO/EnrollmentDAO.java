@@ -116,7 +116,6 @@ public class EnrollmentDAO {
 
                     error=false;
                 }
-
             }
 
             @Override
@@ -126,5 +125,4 @@ public class EnrollmentDAO {
         });
         return  error;
     }
-
 }
