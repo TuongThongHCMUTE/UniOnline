@@ -94,16 +94,6 @@
                 android:textSize="14sp"/>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/btn_admin_edit_phuhuynh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/icon_admin_button_edit" />
-
     </RelativeLayout>
 
 </FrameLayout>

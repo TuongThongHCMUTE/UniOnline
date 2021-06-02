@@ -10,10 +10,10 @@ public class User {
     private String address;
     private boolean isActive;
     private int role;
+    private String gender;
 
-    public User(String userId, String password, String name, String email, String phone, String major, boolean isActive, int role, String address) {
+    public User(String userId, String name, String email, String phone, String major, boolean isActive, int role, String address, String gender) {
         this.userId = userId;
-        this.password = password;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -21,11 +21,16 @@ public class User {
         this.major = major;
         this.role = role;
         this.address = address;
+        this.gender = gender;
     }
 
     public User() {
 
     }
+
+    public String getGender() { return gender; }
+
+    public void setGender(String gender) { this.gender = gender; }
 
     public String getAddress() { return address; }
 

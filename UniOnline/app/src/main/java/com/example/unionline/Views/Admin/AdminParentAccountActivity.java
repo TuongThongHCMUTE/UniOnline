@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.unionline.Adapters.Admin.AccountAdapter;
+import com.example.unionline.Common;
 import com.example.unionline.DTO.User;
 import com.example.unionline.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
@@ -51,8 +53,8 @@ public class AdminParentAccountActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.ib_back_quanly_phuhuynh);
         btnAddNewParentAccount = findViewById(R.id.btn_add_quanly_phuhuynh);
         btnSearch = findViewById(R.id.btn_admin_parent_search);
-        btnEditParent = findViewById(R.id.btn_admin_edit_phuhuynh);
-        editTextSearching = findViewById(R.id.et_box_search_phuhuynh);
+        btnEditParent = findViewById(R.id.btn_edit_parent);
+        editTextSearching = findViewById(R.id.et_box_search_parent);
         recyclerViewParent = findViewById(R.id.rv_admin_parent_account);
         linearLayoutManager = new LinearLayoutManager(this);
 
@@ -64,10 +66,13 @@ public class AdminParentAccountActivity extends AppCompatActivity {
         accountAdapter = new AccountAdapter(this, userList);
         recyclerViewParent.setAdapter(accountAdapter);
 
-        adminDatabase.addValueEventListener(new ValueEventListener() {
+        adminDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        Query query = adminDatabase.orderByChild("role").equalTo(Common.roleParent);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
                     userList.add(user);
                 }
@@ -75,7 +80,7 @@ public class AdminParentAccountActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -98,8 +103,8 @@ public class AdminParentAccountActivity extends AppCompatActivity {
         btnEditParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                AdminParentEditFragment adminParentEditFragment = new AdminParentEditFragment();
-//                adminParentEditFragment.show(getSupportFragmentManager(), "Chỉnh sửa Phụ huynh");
+                Intent intent = new Intent(AdminParentAccountActivity.this, AdminParentEditActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -148,7 +153,7 @@ public class AdminParentAccountActivity extends AppCompatActivity {
             User ParentDelete = userList.get(viewHolder.getAdapterPosition());
             int indexDelete = viewHolder.getAdapterPosition();
 
-            accountAdapter.removeItem(indexDelete);
+            accountAdapter.removeItem(indexDelete, nameParent);
 
             Snackbar snackbar = Snackbar.make(parentRootView, nameParent + " removed!", Snackbar.LENGTH_LONG);
 

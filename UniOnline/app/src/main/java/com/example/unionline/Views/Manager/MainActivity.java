@@ -26,6 +26,7 @@ import com.example.unionline.DTO.Lesson;
 import com.example.unionline.DTO.Parent_Student;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.DTO.User;
+import com.example.unionline.Views.Common.CommonAccountFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -60,11 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new ManageNotificationControllers();
                 break;
             case R.id.nav_manager_account:
-                //selectedFragment = new TeacherNotificationFragment();
+                selectedFragment = new CommonAccountFragment();
                 break;
-//            case R.id.nav_teacher_account:
-//                //selectedFragment = new CommonAccountFragment();
-//                break;
+
         }
         // Replace fragment container with selected fragment
         getSupportFragmentManager().beginTransaction()
@@ -115,18 +114,18 @@ public class MainActivity extends AppCompatActivity {
         mDatabase.child(key).setValue(enrollment);
 
         //Add lesson
-        Lesson lesson = new Lesson();
-        lesson.setLessonId("1");
-        lesson.setName("Web API");
+//        Lesson lesson = new Lesson();
+//        lesson.setLessonId("1");
+//        lesson.setName("Web API");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Lessons").child(semester.getSemesterId());
         key = mDatabase.push().getKey();
-        lesson.setClassId(key);
-        mDatabase.child(key).setValue(lesson);
+//        lesson.setClassId(key);
+//        mDatabase.child(key).setValue(lesson);
 
         // Add attendance
         Attendance attendance = new Attendance();
         attendance.setClassId(class_s.getClassId());
-        attendance.setLessonId(lesson.getLessonId());
+//        attendance.setLessonId(lesson.getLessonId());
         attendance.setStudentId(user.getUserId());
         attendance.setState(1);
 

@@ -42,33 +42,47 @@ public class StudentInteractionFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Map view form fragment with variable
+     * @param view
+     */
     private void mapView(View view){
+        // CardView open Schedule
         cvSchedule = view.findViewById(R.id.cvStudentSchedule);
         cvSchedule.setOnClickListener(onClickListener);
 
+        // CardView open Class
         cvClass = view.findViewById(R.id.cvStudentClass);
         cvClass.setOnClickListener(onClickListener);
 
+        // CardView open Student Mark
         cvMark = view.findViewById(R.id.cvStudentMark);
         cvMark.setOnClickListener(onClickListener);
 
+        // CardView open student application
         cvStudentApplication = view.findViewById(R.id.cvStudentApplication);
         cvStudentApplication.setOnClickListener(onClickListener);
 
+        // CardView open news from manager
         cvNews = view.findViewById(R.id.cvStudentNews);
         cvNews.setOnClickListener(onClickListener);
 
+        // CardView open Tuition
         cvStudentTuition = view.findViewById(R.id.cvStudentTuition);
         cvStudentTuition.setOnClickListener(onClickListener);
 
+        // CardView open Notification for student
         cvStudentNotification = view.findViewById(R.id.cvStudentNotification);
         cvStudentNotification.setOnClickListener(onClickListener);
 
+        // // CardView open account
         cvStudentAccount = view.findViewById(R.id.cvStudentAccount);
         cvStudentAccount.setOnClickListener(onClickListener);
-
     }
 
+    /**
+     * Open activity with CardView click
+     */
     private View.OnClickListener onClickListener = (View v) -> {
         Intent intent;
         switch (v.getId()) {
@@ -97,9 +111,11 @@ public class StudentInteractionFragment extends Fragment {
                 startActivity(intent);
                 break;
             case R.id.cvStudentNotification:
+                // Select navigation notification
                 ((StudentMainActivity)getActivity()).bottomNav.setSelectedItemId(R.id.nav_student_notification);
                 break;
             case R.id.cvStudentAccount:
+                // Select navigation account
                 ((StudentMainActivity)getActivity()).bottomNav.setSelectedItemId(R.id.nav_student_account);
                 break;
         }

@@ -70,6 +70,7 @@ public class StudentMarkActivity extends AppCompatActivity  {
         };
     }
 
+    // Set data for recyc\erView
     private void setRecyclerView() {
         recyclerView = findViewById(R.id.rvListMark);
 
@@ -83,19 +84,25 @@ public class StudentMarkActivity extends AppCompatActivity  {
         // Set adapter for recycler view
         recyclerView.setAdapter(adapter);
 
-        // Fill data from Firebase
+        /**
+         *
+         *Fill data from Firebase
+         * With student id
+        */
         mDatabase = FirebaseDatabase.getInstance().getReference("Enrollments").child(Common.semester.getSemesterId());
         Query query = mDatabase.orderByChild("studentId").equalTo(Common.user.getUserId());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 enrollments.clear();
+                // avgMark to calculate mark form enrollment
                 double avgMark = 0;
                 int count = 0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Enrollment enrollment = dataSnapshot.getValue(Enrollment.class);
                     enrollments.add(enrollment);
 
+                    // If mask is entered, add to avgMark
                     if(enrollment.getStateMark() == 1){
                         avgMark += (enrollment.getMidScore() + enrollment.getFinalScore())/2;
                         count++;
@@ -106,6 +113,7 @@ public class StudentMarkActivity extends AppCompatActivity  {
                 avgMark = avgMark/count;
                 tvAvgMark.setText(String.valueOf((Math.round(avgMark * 100.0) / 100.0)));
 
+                // Set rate by avrMark
                 String rate;
                 if(avgMark >= 9.0){
                     rate = "Xuất sắc";

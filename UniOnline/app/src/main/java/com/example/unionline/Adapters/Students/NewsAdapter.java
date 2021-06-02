@@ -43,7 +43,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
         News news = newses.get(position);
 
-        holder.ivImageNews.setImageResource(R.drawable.image_no_image);
+        holder.ivImageNews.setImageResource(R.drawable.new_image);
         holder.tvSentTo.setText(news.getSentTo());
         holder.tvSendDate.setText(news.getCreateDate());
         holder.tvTitle.setText(news.getTitle());

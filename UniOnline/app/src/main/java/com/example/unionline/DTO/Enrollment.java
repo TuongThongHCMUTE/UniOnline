@@ -16,7 +16,6 @@ public class Enrollment implements Serializable {
     private int stateMark;
     private int classTuition;
     private boolean isPayClassTuition;
-
     public Enrollment(){};
 
     public Enrollment(String id, String classId, String className, String classRoom,
@@ -108,14 +107,6 @@ public class Enrollment implements Serializable {
         this.finalScore = finalScore;
     }
 
-    public int getState() {
-        return stateMark;
-    }
-
-    public void setState(int stateMark) {
-        this.stateMark = stateMark;
-    }
-
     public int getStateMark() {
         return stateMark;
     }
@@ -139,6 +130,7 @@ public class Enrollment implements Serializable {
     public void setPayClassTuition(boolean payClassTuition) {
         isPayClassTuition = payClassTuition;
     }
+
 
     public String getStudentCode() {
         return studentCode;

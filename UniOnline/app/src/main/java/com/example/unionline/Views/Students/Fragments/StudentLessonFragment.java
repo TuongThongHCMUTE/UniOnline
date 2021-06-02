@@ -59,6 +59,7 @@ public class StudentLessonFragment extends Fragment {
         return view;
     }
 
+    // Set onclick for item recycler view
     private void setOnClickListener() {
         listener = new LessonAdapter.RecyclerViewClickListener() {
             @Override
@@ -88,7 +89,7 @@ public class StudentLessonFragment extends Fragment {
         // Set adapter for recycler view
         recyclerView.setAdapter(adapter);
 
-        // Fill data from Firebase
+        // Fill data from Firebase with list lesson of class
         mDatabase = FirebaseDatabase.getInstance().getReference("Lessons").child(Common.semester.getSemesterId());
         Query query = mDatabase.orderByChild("classId").equalTo(enrollment.getClassId());
         query.addValueEventListener(new ValueEventListener() {

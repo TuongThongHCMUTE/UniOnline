@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/layout_background"
     tools:context=".Views.Students.StudentMainActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topbar"
         android:layout_width="match_parent"

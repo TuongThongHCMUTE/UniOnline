@@ -29,7 +29,7 @@ public class AbsenceApplication implements Serializable {
         this.studentName = studentName;
         this.reason = reason;
         this.dateOff = dateOff;
-        this.dateCreate = DateFormat.format("mm:hh dd/MM/yyyy", Calendar.getInstance()).toString();;
+        this.dateCreate = DateFormat.format("hh:mm dd/MM/yyyy", Calendar.getInstance()).toString();;
         this.state = state;
     }
 

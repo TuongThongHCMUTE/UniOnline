@@ -62,7 +62,6 @@ public class ManagerClassDetail extends Fragment {
         View root = inflater.inflate(R.layout.fragment_manager_class_detail, container, false);
         Bundle bundleRecive=getArguments();
         ClassModel1 classModel1=(ClassModel1) bundleRecive.get("classChose");
-        //loadStudentEnrollClass(enrollments,classModel1);
         List<Attendance> attendances=new ArrayList<>();
         loadStudentAttendences(attendances,classModel1);
         StateOfRecycleview=0;
@@ -112,18 +111,7 @@ public class ManagerClassDetail extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 String message="";
                 if(StateOfRecycleview==0) {
-                    //Enrollment enrollmentFind=enrollments.get(viewHolder.getAdapterPosition());
                     message = "Do do want delete student in class ";
-                    //boolean status = EnrollmentDAO.getInstance().deleteEnrollMent(enrollmentFind,classModel1);;
-//                    if (status) {
-//                        boolean statusDeleteAttendence=deleteAtendencesStudent(attendances,enrollmentFind,classModel1);
-//                        if(statusDeleteAttendence)
-//                            Toast.makeText(getContext(), "Delete student of class completed", Toast.LENGTH_SHORT).show();
-//                        else
-//                            Toast.makeText(getContext(), "Delete Attendences Failed", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(getContext(), "Delete Student of class failed", Toast.LENGTH_SHORT).show();
-//                    }
                 }
                 else
                     message="Nothing there!!!";
@@ -206,6 +194,8 @@ public class ManagerClassDetail extends Fragment {
             }
         });
     }
+
+
     public void loadStudentEnrollClass(List<Enrollment> enrollments,ClassModel1 classModel1)
     {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Enrollments").child(classModel1.getSemesterId());
@@ -228,6 +218,7 @@ public class ManagerClassDetail extends Fragment {
         });
     }
 
+    //Load Attendences lesson of student  of class.
 
     public void loadStudentAttendences(List<Attendance> attendances,ClassModel1 classModel1)
     {
@@ -249,7 +240,7 @@ public class ManagerClassDetail extends Fragment {
             }
         });
     }
-
+//Set recycleView for tab lesson.
     private void setRecyclerViewForTabLesson(View root,ClassModel1 classModel1)
     {
         recyclerView=root.findViewById(R.id.recyleViewDetail);

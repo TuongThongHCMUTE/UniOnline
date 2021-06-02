@@ -1,5 +1,6 @@
 package com.example.unionline.Adapters.Admin;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,11 @@ import com.example.unionline.Views.Admin.AdminParentAccountActivity;
 import com.example.unionline.Views.Admin.AdminQlkAccountActivity;
 import com.example.unionline.Views.Admin.AdminStudentAccountActivity;
 import com.example.unionline.Views.Admin.AdminTeacherAccountActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -52,6 +58,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     public AccountViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_admin_manage_qlkhoaaccount, parent, false);
+
         return new AccountViewHolder(view);
     }
 
@@ -64,6 +71,8 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         holder.tvQlkName.setText(user.getName());
         holder.tvQlkEmail.setText(user.getEmail());
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -87,12 +96,36 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             tvQlkEmail = itemView.findViewById(R.id.tv_admin_qlk_email);
             btnQlkEdit = itemView.findViewById(R.id.btn_edit_qlk);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                }
+            });
         }
+
     }
+    public interface OnItemClickListener{
+        void onClick(View v, int position);
 
-    public void removeItem (int index) {
+
+    }
+    public void removeItem (int index, String usernameDelete) {
+        Query query = FirebaseDatabase.getInstance().getReference("User/Department Manager").orderByChild("name").equalTo(usernameDelete);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot qlkSnapshot: dataSnapshot.getChildren()) {
+                    qlkSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Cancel", "onCancelled", databaseError.toException());
+            }
+        });
         userList.remove(index);
-
         notifyItemRemoved(index);
     }
 
@@ -101,5 +134,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
 
         notifyItemInserted(index);
     }
+
+
 
 }
