@@ -38,13 +38,13 @@ public class MarkAdapter extends RecyclerView.Adapter<MarkAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Enrollment enrollment = enrollments.get(position);
 
-        //if(enrollment.getState() == Common.MARK_ENTER) {
-            holder.tvClassName.setText(enrollment.getClassName());
-            if(enrollment.getStateMark() == 1) {
-                holder.tvMidMark.setText(String.valueOf(enrollment.getMidScore()));
-                holder.tvFinalMark.setText(String.valueOf(enrollment.getFinalScore()));
-            }
-        //}
+        holder.tvClassName.setText(enrollment.getClassName());
+        if(enrollment.getMidScore()!=-1) {
+            holder.tvMidMark.setText(String.valueOf(enrollment.getMidScore()));
+        }
+        if(enrollment.getFinalScore()!=-1){
+            holder.tvFinalMark.setText(String.valueOf(enrollment.getFinalScore()));
+        }
     }
 
     @Override

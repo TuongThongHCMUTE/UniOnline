@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniOnline">
-        <activity android:name=".Views.Admin.AdminParentEditActivity"></activity>
+        <activity android:name=".Views.Students.StudentLessonActivity"></activity>
+        <activity android:name=".Views.Admin.AdminParentEditActivity" />
         <activity android:name=".Views.Admin.AdminTeacherEditActivity" />
         <activity android:name=".Views.Admin.AdminMainActivity" />
         <activity android:name=".Views.Admin.AdminTeacherAccountActivity" />
@@ -30,11 +31,15 @@
         <activity android:name=".Views.Students.StudentAttendanceActivity" />
         <activity android:name=".Views.Students.StudentEnrollmentActivity" />
         <activity android:name=".Views.Students.StudentScheduleActivity" />
+        <activity android:name=".Views.Students.StudentTuitionActivity" />
+        <activity android:name=".Views.Students.StudentNewsActivity" />
+        <activity android:name=".Views.Students.StudentNewsDetailActivity" />
         <activity android:name=".Views.Teachers.TeacherClassDetailActivity" />
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity" />
-        <activity android:name=".Views.Teachers.TeacherScheduleActivity"/>
-        <activity android:name=".Views.Teachers.TeacherAbsenceApplicationActivity"/>
+        <activity android:name=".Views.Students.StudentAbcenceAppDetailActivity" />
+        <activity android:name=".Views.Teachers.TeacherScheduleActivity" />
+        <activity android:name=".Views.Teachers.TeacherAbsenceApplicationActivity" />
         <activity android:name=".Views.Manager.MainActivity" />
         <activity android:name=".Views.Common.CommonLoginActivity">
             <intent-filter>
@@ -43,7 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.Common.CommonForgotPasswordActivity"/>
+        <activity android:name=".Views.Common.CommonForgotPasswordActivity" />
         <activity android:name=".Views.Students.StudentMainActivity" />
     </application>
 

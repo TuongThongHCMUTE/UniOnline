@@ -17,6 +17,9 @@ import com.example.unionline.Common;
 import com.example.unionline.DTO.Enrollment;
 import com.example.unionline.DTO.Lesson;
 import com.example.unionline.R;
+import com.example.unionline.Views.Students.StudentAttendanceActivity;
+import com.example.unionline.Views.Students.StudentLessonActivity;
+import com.example.unionline.Views.Students.StudentScheduleActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,13 +67,14 @@ public class StudentLessonFragment extends Fragment {
         listener = new LessonAdapter.RecyclerViewClickListener() {
             @Override
             public void onCLick(View v, int position) {
-                /*Intent intent = new Intent(StudentEnrollmentActivity.this, StudentClassDetailActivity.class);
+                // Click on RecyclerView item to see detail info
+                Intent intent = new Intent(getActivity(), StudentLessonActivity.class);
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("enrollment", (Serializable) lessons.get(position));
+                bundle.putSerializable("lesson", (Serializable) lessons.get(position));
                 intent.putExtras(bundle);
 
-                startActivity(intent);*/
+                startActivity(intent);
             }
         };
     }

@@ -20,6 +20,7 @@ import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.Semester;
 import com.example.unionline.R;
 import com.example.unionline.Views.Students.StudentAttendanceActivity;
+import com.example.unionline.Views.Students.StudentScheduleActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +39,7 @@ public class StudentHomeFragment extends Fragment {
     DatabaseReference mDatabase;
 
     String currentDate;
+    TextView tvSchedule;
 
     private AttendanceAdapter.RecyclerViewClickListener listener;
 
@@ -56,6 +58,13 @@ public class StudentHomeFragment extends Fragment {
         // Set current date for text view
         TextView tvCurrentDate = root.findViewById(R.id.tvCurrentDate);
         tvCurrentDate.setText(currentDate);
+
+        // Set schedule
+        tvSchedule = root.findViewById(R.id.tvSchedual);
+        tvSchedule.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this.getActivity(), StudentScheduleActivity.class);
+            startActivity(intent);
+        });
 
         return root;
     }

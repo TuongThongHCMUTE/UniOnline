@@ -192,7 +192,7 @@ public class StudentScheduleActivity extends AppCompatActivity implements OnNavi
                     // Select attendance have date equals to select date
                     assert attendance != null;
                     if(attendance.getFullDate()!=null){
-                        if(attendance.getFullDate().equals(strDate)){
+                        if(attendance.getFullDate().contains(strDate)){
                             attendances.add(attendance);
                         }
 
