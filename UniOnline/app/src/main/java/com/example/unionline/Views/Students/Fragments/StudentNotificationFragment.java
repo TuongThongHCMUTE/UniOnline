@@ -1,14 +1,21 @@
-package com.example.unionline.Views.Students;
+package com.example.unionline.Views.Students.Fragments;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -57,11 +64,45 @@ public class StudentNotificationFragment extends Fragment {
         listener = new NotificationAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                // Do something
+                Notification notification = listNotification.get(position);
+                openNotificationDiaLog(notification);
             }
         };
     }
 
+    private void openNotificationDiaLog(Notification notification) {
+        // Create and set some attributes for dialog
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.diaglog_show_notification);
+        dialog.setCancelable(true);
+
+        // Get dialog window and set some attributes for window
+        Window window = dialog.getWindow();
+        if(window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+
+        // Mapping variables with view in layout
+        TextView tvTittle = (TextView) dialog.findViewById(R.id.txtTittle);
+        TextView tvContent = (TextView) dialog.findViewById(R.id.txtContent);
+        TextView tvDate = (TextView) dialog.findViewById(R.id.txtDate);
+
+        // Set message content corresponding to type
+        tvTittle.setText(notification.getTitle());
+        tvContent.setText(notification.getContent());
+        tvDate.setText("Ngày gửi: " + notification.getCreateDate());
+
+        // Show dialog
+        dialog.show();
+    }
     private void setRecyclerView(View root){
         recyclerView = root.findViewById(R.id.rvNotifications);
 

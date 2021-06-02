@@ -38,6 +38,7 @@ public class LessonDAO {
 
     public LessonDAO() { path = "Lessons"; }
 
+
     public void changeStatusLesson(Lesson lesson, String semesterId) {
         mDataBase = FirebaseDatabase.getInstance().getReference();
         mDataBase.child(path)
@@ -45,6 +46,7 @@ public class LessonDAO {
                 .child(String.valueOf(lesson.getLessonId()))
                 .child("status").setValue(!lesson.isStatus());
     }
+
     public void DeleteAllLessonByClassModel(ClassModel1 classModel1)
     {
         boolean status=false;
@@ -122,6 +124,9 @@ public class LessonDAO {
                         Date dateAdd=calendar.getTime();
                         String dateAddString=convertDateToString(dateAdd);
                         lessons.get(i).setDate(dateAddString);
+                        lessons.get(i).setClassId(classModelNew.getClassId());
+
+                        setValude(lessons.get(i),classModelNew);
                     }
                     else {
                         calendar=dateToCalendar(date);
@@ -129,11 +134,12 @@ public class LessonDAO {
                         Date dateAdd = calendar.getTime();
                         String dateAddString = convertDateToString(dateAdd);
                         lessons.get(i).setDate(dateAddString);
+                        lessons.get(i).setClassId(classModelNew.getClassId());
+
+                        setValude(lessons.get(i),classModelNew);
 
                     }
-                    lessons.get(i).setClassId(classModelNew.getClassId());
 
-                    setValude(lessons.get(i),classModelNew);
                 }
                 error=false;
             }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:scrollbarSize="14dp"
-    tools:context=".Views.Common.LoginActivity">
+    tools:context=".Views.Common.CommonLoginActivity">
 
     <TextView
         android:id="@+id/tvBanner"

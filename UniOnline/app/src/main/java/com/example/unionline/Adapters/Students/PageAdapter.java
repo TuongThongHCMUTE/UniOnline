@@ -7,13 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.unionline.DTO.Class;
 import com.example.unionline.DTO.Enrollment;
-import com.example.unionline.Views.Students.StudentClassInfoFragment;
-import com.example.unionline.Views.Students.StudentLessonFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherClassInfoFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherMarkFragment;
-import com.example.unionline.Views.Teachers.Fragments.TeacherUpdateProcessFragment;
+import com.example.unionline.Views.Students.Fragments.StudentClassInfoFragment;
+import com.example.unionline.Views.Students.Fragments.StudentLessonFragment;
 
 import java.io.Serializable;
 

@@ -122,6 +122,7 @@ public class ManageNotificationControllers extends Fragment implements View.OnCl
     }
 
 
+    //Set data for reccyclerView news
     private void setRecyclerView(View root,String sortBy) {
         recyclerView=root.findViewById(R.id.recyclerViewThongBao);
         newsArrayList=new ArrayList<>();
@@ -146,7 +147,6 @@ public class ManageNotificationControllers extends Fragment implements View.OnCl
                        if(sortBy.equals(news.getSentTo().toString()))
                            newsArrayList.add(news);
                    }
-                   //System.out.println(notification.getContent());
 
 
                 }

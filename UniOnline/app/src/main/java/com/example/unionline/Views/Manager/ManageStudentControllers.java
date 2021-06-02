@@ -77,7 +77,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         tvClassID.setText(classModel1.getClassId());
         tvClassName.setText(classModel1.getClassName());
         tvTeacher.setText(classModel1.getTeacherId());
-        //tvCapicity.setText(classModel1.getCapacity());
+        tvCapicity.setText(String.valueOf(classModel1.getCapacity()));
         tvRoom.setText(classModel1.getRoom());
         imageButton=root.findViewById(R.id.imageButton16);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -97,11 +97,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
             }
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                //OpenNoteDialog(false,direction);
-                //StudentAdapter.notifyDataSetChanged();
-//                User user=classUsers.get(0);
-//                AddStudentToClass(classModel1,user);
-//                classUsers.remove(0);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(viewHolder.itemView.getContext());
                 // set Message là phương thức thiết lập câu thông báo
                 builder.setMessage("Do you want add student to class!!!")
@@ -129,6 +125,8 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         return root;
     }
 
+
+    //Set recyclerView of enrollment class. Have show userID student and name student.
     private void setRecyclerView(View root,List<Enrollment> enrollments)
     {
         recyclerView=root.findViewById(R.id.rycyclerview_themsinhvien);
@@ -170,6 +168,9 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
             }
         });
     }
+
+
+    //Set onClickListener
     private void setOnClickListener() {
         listener = new StudentAdapter.RecyclerViewClickListener() {
             @Override
@@ -190,6 +191,8 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         };
     }
 
+
+    //When add student to class we will add student to enrollment.This function reslove this problem
     public void AddStudentToClass(ClassModel1 classModel1,User user)
     {
         Enrollment enrollment=new Enrollment();
@@ -197,10 +200,11 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         enrollment.setClassName(classModel1.getClassName());
         enrollment.setClassRoom(classModel1.getRoom());
         enrollment.setStudentId(user.getUserId());
+        //enrollment.setStudentCode(user.getEmail().substring(0,8));
         enrollment.setStudentName(user.getName());
-        enrollment.setFinalScore(0);
-        enrollment.setMidScore(0);
-        String fulldate=classModel1.getStartDate()+" | "+changeTime(classModel1.getStartTime())+" - "+changeTime(classModel1.getEndTime());
+//        enrollment.setFinalScore(0);
+//        enrollment.setMidScore(0);
+        String fulldate=classModel1.getStartDate()+" | Từ tiết "+classModel1.getStartTime()+" - "+classModel1.getEndTime();
         enrollment.setFullDate(fulldate);
         enrollment.setState(1);
         String key;
@@ -211,6 +215,8 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         AddStudentToAttendce(enrollment,classModel1);
     }
 
+
+    //When add studnet to enrollment we will add student to class attendenes/
     public void AddStudentToAttendce(Enrollment enrollment,ClassModel1 classModel1)
     {
         List<Lesson> lessonList=new ArrayList<>();
@@ -239,12 +245,14 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
                     Attendance attendance=new Attendance();
                     attendance.setClassId(classModel1.getClassId());
                     attendance.setStudentId(enrollment.getStudentId());
+                    attendance.setStudentName(enrollment.getStudentName());
                     attendance.setLessonId(lesson.getLessonId());
                     attendance.setLessonName(lesson.getName());
                     attendance.setClassName(classModel1.getClassName());
                     attendance.setClassRoom(classModel1.getRoom());
                     attendance.setState(1);
-                    attendance.setFullDate(dateAddString);
+                    String fulldate=dateAddString+" | "+"Tiết "+classModel1.getStartTime()+" - "+classModel1.getEndTime();
+                    attendance.setFullDate(fulldate);
                     String key = mDatabase.push().getKey();
                     attendance.setId(key);
                     mDatabase.child(key).setValue(attendance);
@@ -259,6 +267,8 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         });
 
     }
+
+    //This function to load student enrollment class.
     public void loadStudentEnrollClass(List<Enrollment> enrollments,ClassModel1 classModel1)
     {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Enrollments").child(classModel1.getSemesterId());
@@ -273,7 +283,6 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
                         //System.out.println("Class lesson Id" + lesson.getClassId());
                     }
                 }
-                System.out.print("List student have enrollment"+enrollments.size());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -311,53 +320,5 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         return dateString;
     }
 
-    public String changeTime(String time)
-    {
-        String timeString="";
-        System.out.println("Number is "+time);
-        int convertString=Integer.parseInt(time);
-        switch (convertString)
-        {
-            case 1:
-                timeString="7:00";
-                break;
-            case 2:
-                timeString="7:50";
-                break;
-            case 3:
-                timeString="8:50";
-                break;
-            case 4:
-                timeString="9:40";
-                break;
-            case 5:
-                timeString="10:40";
-                break;
-            case 7:
-                timeString="12:30";
-                break;
-            case 8:
-                timeString="13:20";
-                break;
-            case 9:
-                timeString="14:20";
-                break;
-            case 10:
-                timeString="15:10";
-                break;
-            case 11:
-                timeString="16:10";
-                break;
-            case 12:
-                timeString="17:50";
-                break;
-            case 13:
-                timeString="6:00";
-                break;
-            default:
-                timeString="7:40";
-                break;
-        }
-        return timeString;
-        }
+
 }

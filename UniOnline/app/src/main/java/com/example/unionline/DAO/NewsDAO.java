@@ -22,7 +22,7 @@ public class NewsDAO {
         NewsDAO.instance = instance;
     }
 
-    public NewsDAO() { path = "Notifications"; }
+    public NewsDAO() { path = "News"; }
 
     public void insertNews(News news) {
         mDataBase = FirebaseDatabase.getInstance().getReference(path);

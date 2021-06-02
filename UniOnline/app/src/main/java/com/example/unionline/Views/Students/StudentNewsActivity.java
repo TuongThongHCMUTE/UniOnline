@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.unionline.Adapters.Students.NewsAdapter;
 import com.example.unionline.Adapters.Students.NotificationAdapter;
@@ -31,12 +33,25 @@ public class StudentNewsActivity extends AppCompatActivity {
     NewsAdapter newsAdapter;
     DatabaseReference mDatabase;
 
+    TextView tvActivityName;
+    ImageView backIcon;
+
     private NewsAdapter.RecyclerViewClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_news);
+
+        //Set event click for back icon
+        backIcon = (ImageView) findViewById(R.id.left_icon);
+        backIcon.setOnClickListener((View v) -> {
+            this.finish();
+        });
+
+        // Set activity name on toolbar
+        tvActivityName = (TextView) findViewById(R.id.activity_name);
+        tvActivityName.setText("Tin tức");
 
         setOnClickListener();
         setRecyclerView();
@@ -79,7 +94,7 @@ public class StudentNewsActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     News news = dataSnapshot.getValue(News.class);
 
-                    if(news.getSentTo().contains("Sinh viên")){
+                    if(news.getSentTo().contains("Sinh viên") || news.getSentTo().equals("Toàn trường")){
                         newss.add(news);
                     }
                 }

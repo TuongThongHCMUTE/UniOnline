@@ -1,4 +1,4 @@
-package com.example.unionline.Views.Students;
+package com.example.unionline.Views.Students.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,13 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.unionline.R;
+import com.example.unionline.Views.Students.StudentAbsenceApplicationActivity;
+import com.example.unionline.Views.Students.StudentEnrollmentActivity;
+import com.example.unionline.Views.Students.StudentMainActivity;
+import com.example.unionline.Views.Students.StudentMarkActivity;
+import com.example.unionline.Views.Students.StudentNewsActivity;
+import com.example.unionline.Views.Students.StudentScheduleActivity;
+import com.example.unionline.Views.Students.StudentTuitionActivity;
 
 import java.util.Calendar;
 
 
 public class StudentInteractionFragment extends Fragment {
 
-    CardView cvSchedule, cvClass, cvMark, cvStudentApplication, cvNews, cvStudentTuition;
+    CardView cvSchedule, cvClass, cvMark, cvStudentApplication,
+            cvNews, cvStudentTuition, cvStudentNotification, cvStudentAccount;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +61,12 @@ public class StudentInteractionFragment extends Fragment {
         cvStudentTuition = view.findViewById(R.id.cvStudentTuition);
         cvStudentTuition.setOnClickListener(onClickListener);
 
+        cvStudentNotification = view.findViewById(R.id.cvStudentNotification);
+        cvStudentNotification.setOnClickListener(onClickListener);
+
+        cvStudentAccount = view.findViewById(R.id.cvStudentAccount);
+        cvStudentAccount.setOnClickListener(onClickListener);
+
     }
 
     private View.OnClickListener onClickListener = (View v) -> {
@@ -81,6 +95,12 @@ public class StudentInteractionFragment extends Fragment {
             case R.id.cvStudentTuition:
                 intent = new Intent(this.getActivity(), StudentTuitionActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.cvStudentNotification:
+                ((StudentMainActivity)getActivity()).bottomNav.setSelectedItemId(R.id.nav_student_notification);
+                break;
+            case R.id.cvStudentAccount:
+                ((StudentMainActivity)getActivity()).bottomNav.setSelectedItemId(R.id.nav_student_account);
                 break;
         }
     };

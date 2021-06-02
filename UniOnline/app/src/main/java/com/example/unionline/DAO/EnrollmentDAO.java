@@ -89,6 +89,7 @@ public class EnrollmentDAO {
     public boolean UpdateEnrollmentByClassModel(ClassModel1 classModelOld,ClassModel1 classModelNew)
     {
         error=true;
+        List<Enrollment> enrollments=new ArrayList<>();
         mDataBase = FirebaseDatabase.getInstance().getReference("Enrollments").child(classModelOld.getSemesterId());
         mDataBase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -99,17 +100,23 @@ public class EnrollmentDAO {
                     Enrollment enrollment= dataSnapshot.getValue(Enrollment.class);
                     if(enrollment.getClassId().equals(classModelOld.getClassId()))
                     {
-                        enrollment.setClassId(classModelNew.getClassId());
-                        enrollment.setClassName(classModelNew.getClassName());
-                        enrollment.setClassRoom(classModelNew.getRoom());
-                        String fulldate=classModelNew.getStartDate()+" | "+changeTime(classModelNew.getStartTime())+" - "+changeTime(classModelNew.getEndTime());
-                        enrollment.setFullDate(fulldate);
-                        setValude(enrollment,classModelOld);
-
+                        enrollments.add(enrollment);
                     }
 
+
                 }
-                error=false;
+                for(Enrollment enrollment:enrollments)
+                {
+                    enrollment.setClassId(classModelNew.getClassId());
+                    enrollment.setClassName(classModelNew.getClassName());
+                    enrollment.setClassRoom(classModelNew.getRoom());
+                    String fulldate=classModelNew.getStartDate()+" |  Từ tiết "+classModelNew.getStartTime()+" - "+classModelNew.getEndTime();
+                    enrollment.setFullDate(fulldate);
+                    setValude(enrollment,classModelOld);
+
+                    error=false;
+                }
+
             }
 
             @Override
@@ -119,53 +126,5 @@ public class EnrollmentDAO {
         });
         return  error;
     }
-    public String changeTime(String time)
-    {
-        String timeString="";
-        System.out.println("Number is "+time);
-        int convertString=Integer.parseInt(time);
-        switch (convertString)
-        {
-            case 1:
-                timeString="7:00";
-                break;
-            case 2:
-                timeString="7:50";
-                break;
-            case 3:
-                timeString="8:50";
-                break;
-            case 4:
-                timeString="9:40";
-                break;
-            case 5:
-                timeString="10:40";
-                break;
-            case 7:
-                timeString="12:30";
-                break;
-            case 8:
-                timeString="13:20";
-                break;
-            case 9:
-                timeString="14:20";
-                break;
-            case 10:
-                timeString="15:10";
-                break;
-            case 11:
-                timeString="16:10";
-                break;
-            case 12:
-                timeString="17:50";
-                break;
-            case 13:
-                timeString="6:00";
-                break;
-            default:
-                timeString="7:40";
-                break;
-        }
-        return timeString;
-    }
+
 }

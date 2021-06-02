@@ -1,6 +1,7 @@
-package com.example.unionline.Views.Teachers.Fragments;
+package com.example.unionline.Views.Common;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,7 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
-public class TeacherAccountFragment extends Fragment {
+public class CommonAccountFragment extends Fragment {
 
     private static final int UPDATE_PROFILE = 1;
     private static final int CHANGE_PASSWORD = 2;
@@ -48,12 +49,12 @@ public class TeacherAccountFragment extends Fragment {
         wrong_renewPassword
     }
 
-    public TeacherAccountFragment() {
+    public CommonAccountFragment() {
         // Required empty public constructor
     }
 
-    public static TeacherAccountFragment newInstance() {
-        TeacherAccountFragment fragment = new TeacherAccountFragment();
+    public static CommonAccountFragment newInstance() {
+        CommonAccountFragment fragment = new CommonAccountFragment();
         return fragment;
     }
 
@@ -84,7 +85,9 @@ public class TeacherAccountFragment extends Fragment {
         });
 
         btnLogOut.setOnClickListener((View v) -> {
-
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this.getContext(), CommonLoginActivity.class));
+            this.getActivity().finish();
         });
 
         return root;
@@ -92,7 +95,7 @@ public class TeacherAccountFragment extends Fragment {
 
     private void setUpdateProfileDialog() {
         View view = getLayoutInflater().inflate(R.layout.dialog_update_profile, null);
-        dialogUpdateProfile = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+        dialogUpdateProfile = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         dialogUpdateProfile.setContentView(view);
 
         edName = dialogUpdateProfile.findViewById(R.id.edName);
@@ -123,7 +126,7 @@ public class TeacherAccountFragment extends Fragment {
 
     private void setChangePassworDialog() {
         View view = getLayoutInflater().inflate(R.layout.dialog_change_password, null);
-        dialogChangePassword = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+        dialogChangePassword = new Dialog(getContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         dialogChangePassword.setContentView(view);
 
         edCurrentPass = dialogChangePassword.findViewById(R.id.edCurrentPass);
@@ -155,7 +158,6 @@ public class TeacherAccountFragment extends Fragment {
         } else if(Type == CHANGE_PASSWORD) {
             txtToolbarName.setText("Thay đổi mật khẩu");
         }
-
     }
 
     private void updateProfile(String name, String phone) {

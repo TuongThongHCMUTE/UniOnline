@@ -40,8 +40,10 @@ public class MarkAdapter extends RecyclerView.Adapter<MarkAdapter.ViewHolder> {
 
         //if(enrollment.getState() == Common.MARK_ENTER) {
             holder.tvClassName.setText(enrollment.getClassName());
-            holder.tvMidMark.setText(String.valueOf(enrollment.getMidScore()));
-            holder.tvFinalMark.setText(String.valueOf(enrollment.getFinalScore()));
+            if(enrollment.getStateMark() == 1) {
+                holder.tvMidMark.setText(String.valueOf(enrollment.getMidScore()));
+                holder.tvFinalMark.setText(String.valueOf(enrollment.getFinalScore()));
+            }
         //}
     }
 

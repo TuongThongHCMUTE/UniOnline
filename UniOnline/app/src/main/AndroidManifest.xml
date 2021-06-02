@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniOnline">
-        <activity android:name=".Views.Students.StudentNewsDetailActivity"></activity>
+        <activity android:name=".Views.Common.CommonForgotPasswordActivity"></activity>
+        <activity android:name=".Views.Students.StudentAbcenceAppDetailActivity" />
+        <activity android:name=".Views.Teachers.TeacherScheduleActivity" />
+        <activity android:name=".Views.Students.StudentNewsDetailActivity" />
         <activity android:name=".Views.Students.StudentTuitionActivity" />
         <activity android:name=".Views.Students.StudentNewsActivity" />
         <activity android:name=".Views.Teachers.TeacherListLessonsActivity" />
@@ -25,27 +28,10 @@
         <activity android:name=".Views.Admin.AdminTeacherAddDelActivity" />
         <activity android:name=".Views.Admin.AdminStudentAddEditMainActivity" />
         <activity android:name=".Views.Admin.ActivityAdminMain" />
-        <activity android:name=".Views.Teachers.TeacherListLessonsActivity" />
-
-        <activity android:name=".Views.Students.StudentTuitionActivity"></activity>
-        <activity android:name=".Views.Students.StudentNewsActivity" />
-        <activity android:name=".Views.Teachers.TeacherListLessonsActivity" />
-        <activity android:name=".Views.Admin.AdminMainActivity"></activity>
-        <activity android:name=".Views.Admin.AdminTeacherAccountActivity"/>
-        <activity android:name=".Views.Admin.AdminStudentAccountActivity"/>
-        <activity android:name=".Views.Admin.AdminParentAccountActivity"/>
-        <activity android:name=".Views.Admin.AdminQlkAccountActivity"/>
-        <activity android:name=".Views.Admin.AdminChangePasswordActivity"/>
-        <activity android:name=".Views.Admin.AdminInfoUpdateActivity"/>
-        <activity android:name=".Views.Admin.AdminQlkAddDelMainActivity"/>
-        <activity android:name=".Views.Admin.AdminParentAddEditMainActivity"/>
-        <activity android:name=".Views.Admin.AdminTeacherAddDelActivity"/>
-        <activity android:name=".Views.Admin.AdminStudentAddEditMainActivity"/>
-        <activity android:name=".Views.Admin.ActivityAdminMain"/>
-        <activity android:name=".Views.Teachers.AccountActivity"></activity>
         <activity android:name=".Views.Students.StudentAbsenceApplicationActivity" />
         <activity android:name=".Views.Teachers.TeacherAttendantUpdateActivity" />
         <activity android:name=".Views.Teachers.TeacherAttendantActivity" />
+        <activity android:name=".Views.Teachers.TeacherAbsenceApplicationActivity" />
         <activity android:name=".Views.Students.StudentMarkActivity" />
         <activity android:name=".Views.Teachers.TeacherAddNotificationActivity" />
         <activity android:name=".Views.Teachers.TeacherListNotificationsActivity" />
@@ -57,7 +43,7 @@
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity" />
         <activity android:name=".Views.Manager.MainActivity" />
-        <activity android:name=".Views.Common.LoginActivity">
+        <activity android:name=".Views.Common.CommonLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
