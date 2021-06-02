@@ -86,4 +86,4 @@ public class EnrollmentApdapter extends RecyclerView.Adapter<EnrollmentApdapter.
 
         void onTouch(View v, int position);
     }
-    }
+}

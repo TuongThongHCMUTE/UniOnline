@@ -198,6 +198,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         enrollment.setClassRoom(classModel1.getRoom());
         enrollment.setStudentId(user.getUserId());
         enrollment.setStudentName(user.getName());
+        enrollment.setStudentCode(user.getEmail().substring(0,8));
         enrollment.setFinalScore(0);
         enrollment.setMidScore(0);
         String fulldate=classModel1.getStartDate()+" | "+changeTime(classModel1.getStartTime())+" - "+changeTime(classModel1.getEndTime());
