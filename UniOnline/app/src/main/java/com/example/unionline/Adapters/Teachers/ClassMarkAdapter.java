@@ -40,8 +40,17 @@ public class ClassMarkAdapter extends RecyclerView.Adapter<ClassMarkAdapter.View
 
         holder.tvStudentId.setText(score.getStudentCode());
         holder.tvStudentName.setText(score.getStudentName());
-        holder.edMidTermScore.setText(String.valueOf(score.getMidScore()));
-        holder.edFinalScore.setText(String.valueOf(score.getFinalScore()));
+        if (score.getMidScore() != 0) {
+            holder.edMidTermScore.setText(String.valueOf(score.getMidScore()));
+        } else {
+            holder.edMidTermScore.setText("");
+        }
+
+        if (score.getFinalScore() != 0) {
+            holder.edFinalScore.setText(String.valueOf(score.getFinalScore()));
+        } else {
+            holder.edFinalScore.setText("");
+        }
     }
 
     @Override
