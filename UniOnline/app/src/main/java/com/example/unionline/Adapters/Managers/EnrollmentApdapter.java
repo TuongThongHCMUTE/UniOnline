@@ -40,9 +40,9 @@ public class EnrollmentApdapter extends RecyclerView.Adapter<EnrollmentApdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Enrollment enrollment=enrollments.get(position);
-            holder.tvNameID.setText(enrollment.getStudentId());
-            holder.tvNameStudent.setText(enrollment.getStudentName());
+        Enrollment enrollment=enrollments.get(position);
+        holder.tvNameID.setText(enrollment.getStudentId());
+        holder.tvNameStudent.setText(enrollment.getStudentName());
     }
 
     @Override

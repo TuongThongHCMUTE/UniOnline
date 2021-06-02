@@ -23,19 +23,19 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
     Context context;
     ArrayList<ClassModel1> listClass;
     private RecyclerViewClickListener listener;
-public ClassAdapter(Context context, ArrayList<ClassModel1> listClass, RecyclerViewClickListener listener)
-{
-    this.context = context;
-    this.listClass = listClass;
-    this.listener = listener;
-}
+    public ClassAdapter(Context context, ArrayList<ClassModel1> listClass, RecyclerViewClickListener listener)
+    {
+        this.context = context;
+        this.listClass = listClass;
+        this.listener = listener;
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.item_mananger_class,parent,false);
         return new ViewHolder(view);
     }
-//    public void setData(ArrayList<ClassModel> list){
+    //    public void setData(ArrayList<ClassModel> list){
 //        this.listClass = list;
 //        notifyDataSetChanged();
 //    }

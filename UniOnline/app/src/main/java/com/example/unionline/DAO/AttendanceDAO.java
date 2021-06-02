@@ -80,11 +80,12 @@ public class AttendanceDAO {
         });
     }
 
-    public boolean UpdateAttendenceByClassModel(ClassModel1 classModelOld,ClassModel1 classModelNew,List<Attendance> attendances,List<Lesson> lessonList)
+    public boolean UpdateAttendenceByClassModel(ClassModel1 classModelOld,ClassModel1 classModelNew)
     {
         error=true;
-
-
+        List<Attendance> attendances=new ArrayList<>();
+        List<Lesson> lessonList=new ArrayList<>();
+        LessonDAO.getInstance().GetAllLessonByClass(lessonList,classModelNew);
         mDataBase = FirebaseDatabase.getInstance().getReference("Attendances").child(classModelOld.getSemesterId());
         mDataBase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -92,6 +93,7 @@ public class AttendanceDAO {
                 Date date = convertStringToDate(classModelNew.getStartDate());
                 Calendar calendar = dateToCalendar(date);
                 calendar.setTime(date);
+                System.out.println("value of classID"+classModelOld.getClassId());
                 attendances.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Attendance attendance = dataSnapshot.getValue(Attendance.class);
@@ -99,24 +101,23 @@ public class AttendanceDAO {
                         attendances.add(attendance);
                     }
                 }
-                for(int i=0;i<attendances.size();i++)
-                {
-                    for(int j=0;j<lessonList.size();j++)
-                    {
-                        if(attendances.get(i).getLessonId().equals(lessonList.get(j).getLessonId()))
-                        {
+                System.out.println("List of lesson "+String.valueOf(lessonList.size()));
+                System.out.println("List attendances "+attendances.size());
+                for(int index=0;index<lessonList.size();index++) {
+                    for (int i = 0; i < attendances.size(); i++) {
+                        if(lessonList.get(index).getLessonId().equals(attendances.get(i).getLessonId())) {
+                            System.out.println(attendances.get(i).toString());
                             attendances.get(i).setClassId(classModelNew.getClassId());
                             attendances.get(i).setClassName(classModelNew.getClassName());
                             attendances.get(i).setClassRoom(classModelNew.getRoom());
-                            String fulldate=lessonList.get(i).getDate()+" | "+"Tiết "+classModelNew.getStartTime()+" - "+classModelNew.getEndTime();
-                            attendances.get(i).setFullDate(fulldate);
-                            attendances.get(i).setLessonName(lessonList.get(j).getName());
-                            attendances.get(i).setFullDate(lessonList.get(j).getDate());
+                            attendances.get(i).setFullDate(lessonList.get(index).getDate());
+                            attendances.get(i).setLessonName(lessonList.get(index).getName());
+                            //attendance.setFullDate(lesson.getDate());
                             setValude(attendances.get(i), classModelNew);
                         }
+                        //deleteAntendence(attendances.get(i),classModelOld);
                     }
                 }
-
 
             }
 
