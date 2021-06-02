@@ -2,6 +2,7 @@ package com.example.unionline.DAO;
 
 import androidx.annotation.NonNull;
 
+import com.example.unionline.Common;
 import com.example.unionline.DTO.ClassModel1;
 import com.example.unionline.DTO.Lesson;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +33,13 @@ public class LessonDAO {
 
     public LessonDAO() { path = "Lessons"; }
 
+    public void update(Lesson lesson) {
+        mDataBase = FirebaseDatabase.getInstance().getReference(path);
+        mDataBase.child(Common.semester.getSemesterId())
+                .child(lesson.getLessonId())
+                .setValue(lesson);
+    }
+
     public void changeStatusLesson(Lesson lesson, String semesterId) {
         mDataBase = FirebaseDatabase.getInstance().getReference();
         mDataBase.child(path)
@@ -39,6 +47,7 @@ public class LessonDAO {
                 .child(String.valueOf(lesson.getLessonId()))
                 .child("status").setValue(!lesson.isStatus());
     }
+
     public List<Lesson> getAllLessonByClassModel(ClassModel1 classModel1)
     {
         List<Lesson> lessons=new ArrayList<>();
