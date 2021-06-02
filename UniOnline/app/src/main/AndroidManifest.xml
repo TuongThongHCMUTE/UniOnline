@@ -33,14 +33,16 @@
         <activity android:name=".Views.Teachers.TeacherClassDetailActivity" />
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity" />
+        <activity android:name=".Views.Teachers.TeacherScheduleActivity"/>
         <activity android:name=".Views.Manager.MainActivity" />
-        <activity android:name=".Views.Common.LoginActivity">
+        <activity android:name=".Views.Common.CommonLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Views.Common.CommonForgotPasswordActivity"/>
         <activity android:name=".Views.Students.StudentMainActivity" />
     </application>
 

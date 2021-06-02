@@ -38,8 +38,6 @@ public class TeacherClassDetailActivity extends AppCompatActivity {
             currentClass = (Class) bundle.getSerializable("class");
         }
 
-        Toast.makeText(this, currentClass.getClassId(), Toast.LENGTH_LONG).show();
-
         // Set activity name on toolbar
         txtActivityName = (TextView) findViewById(R.id.activity_name);
         txtActivityName.setText(currentClass.getClassName());

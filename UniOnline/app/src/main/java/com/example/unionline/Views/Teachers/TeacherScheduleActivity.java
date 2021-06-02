@@ -62,10 +62,6 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_schedule);
 
-        // Set current date
-        Date createDate = new Date();
-        tvCurrentDate.setText(formatter.format(createDate));
-
         // Open calendar when clicking on "Chọn ngày khác"
         tvCurrentDate = findViewById(R.id.txtDate);
         tvChooseOtherDate = findViewById(R.id.txtOtherDate);
@@ -76,6 +72,10 @@ public class TeacherScheduleActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+
+        // Set current date
+        Date createDate = new Date();
+        tvCurrentDate.setText(formatter.format(createDate));
 
         setToolbar();
         setRecyclerView();

@@ -263,7 +263,8 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
                 String dateEnd=tvDateEnd.getText().toString();
                 Boolean status=true;
                 if(isAddNew == true){
-                    ClassModel1 classModel=new ClassModel1(classId,semester,teacher,className,Integer.parseInt(capacity),room,timeStart,timeEnd,dateStart,dateEnd,status);
+                    ClassModel1 classModel = new ClassModel1();
+                    //ClassModel1 classModel=new ClassModel1(classId,semester,teacher,className,Integer.parseInt(capacity),room,timeStart,timeEnd,dateStart,dateEnd,status);
                     error=validationDate(classId,className,room,dateStart,dateEnd,message);
                     if(!error)
                     {
@@ -287,7 +288,8 @@ public class ManageClassControllers extends Fragment implements View.OnClickList
 //                    classModel.setDateStart(dateEnd);
 //
 //                    ClassDAO.getInstance().setClassValue(classModel);
-                    ClassModel1 classModel1=new ClassModel1(classId,semester,teacher,className,Integer.parseInt(capacity),room,timeStart,timeEnd,dateStart,dateEnd,status);
+                    ClassModel1 classModel1 = new ClassModel1();
+                    //ClassModel1 classModel1=new ClassModel1(classId,semester,teacher,className,Integer.parseInt(capacity),room,timeStart,timeEnd,dateStart,dateEnd,status);
                     //error=validationDate(classId,className,room,dateStart,dateEnd,message);
                     error=false;
                     if(!error)

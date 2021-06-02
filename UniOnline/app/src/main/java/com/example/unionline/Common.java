@@ -68,5 +68,4 @@ public class Common {
         aaNames.add("Đã được phê duyệt");
         aaNames.add("Không phê duyệt");
     }
-
 }
