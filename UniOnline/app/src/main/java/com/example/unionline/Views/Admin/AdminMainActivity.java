@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.unionline.DAO.Dao;
 import com.example.unionline.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
@@ -17,7 +16,6 @@ public class AdminMainActivity extends AppCompatActivity {
 
    private BottomNavigationView bottomNav;
     DatabaseReference mData;
-    private static Dao<Class> classDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

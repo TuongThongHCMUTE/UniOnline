@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.unionline.DAO.Dao;
 import com.example.unionline.DTO.Class;
 import com.example.unionline.R;
 import com.example.unionline.Views.Common.CommonAccountFragment;
@@ -22,7 +21,6 @@ public class TeacherMainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
     DatabaseReference mData;
-    private static Dao<Class> classDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
