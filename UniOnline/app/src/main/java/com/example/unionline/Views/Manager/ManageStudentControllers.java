@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 //import com.example.implementproject.model.Lesson;
 //import com.example.implementproject.model.User;
 import com.example.unionline.Adapters.Managers.StudentAdapter;
+import com.example.unionline.Common;
 import com.example.unionline.DTO.Attendance;
 import com.example.unionline.DTO.ClassModel1;
 import com.example.unionline.DTO.Enrollment;
@@ -204,8 +205,8 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
         enrollment.setClassTuition(classModel1.getTuition());
         enrollment.setStudentCode(user.getEmail().substring(0,8));
         enrollment.setStudentName(user.getName());
-//        enrollment.setFinalScore(0);
-//        enrollment.setMidScore(0);
+        enrollment.setFinalScore(-1);
+        enrollment.setMidScore(-1);
         String fulldate=classModel1.getStartDate()+" | Từ tiết "+classModel1.getStartTime()+" - "+classModel1.getEndTime();
         //enrollment.setStudentCode(user.getEmail().substring(0,8));
 //        String fulldate=classModel1.getStartDate()+" | "+changeTime(classModel1.getStartTime())+" - "+changeTime(classModel1.getEndTime());
@@ -254,7 +255,7 @@ public class ManageStudentControllers extends Fragment implements View.OnClickLi
                     attendance.setLessonName(lesson.getName());
                     attendance.setClassName(classModel1.getClassName());
                     attendance.setClassRoom(classModel1.getRoom());
-                    attendance.setState(1);
+                    attendance.setState(Common.ATTENDANCE_NOT_YET);
                     String fulltime="Tiết "+classModel1.getStartTime()+" - "+classModel1.getEndTime();
                     attendance.setFullDate(lesson.getDate());
                     attendance.setFullTime(fulltime);
