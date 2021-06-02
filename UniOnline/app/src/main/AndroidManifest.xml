@@ -34,6 +34,7 @@
         <activity android:name=".Views.Teachers.TeacherListClassesActivity" />
         <activity android:name=".Views.Teachers.TeacherMainActivity" />
         <activity android:name=".Views.Teachers.TeacherScheduleActivity"/>
+        <activity android:name=".Views.Teachers.TeacherAbsenceApplicationActivity"/>
         <activity android:name=".Views.Manager.MainActivity" />
         <activity android:name=".Views.Common.CommonLoginActivity">
             <intent-filter>

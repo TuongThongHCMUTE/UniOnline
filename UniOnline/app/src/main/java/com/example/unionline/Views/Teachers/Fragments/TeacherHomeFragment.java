@@ -105,7 +105,7 @@ public class TeacherHomeFragment extends Fragment {
                     News news = dataSnapshot.getValue(News.class);
 
                     // Only add news sent to teachers
-                    if(news.getSentTo().contains("Giảng viên") || news.getSentTo() == "Toàn trường"){
+                    if(news.getSentTo().contains("Giảng viên") || news.getSentTo().equals("Toàn trường")){
                         newss.add(news);
                     }
                 }
